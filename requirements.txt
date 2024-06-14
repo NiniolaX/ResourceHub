@@ -1,0 +1,3 @@
+# ResourceHub App Dependencies
+sqlalchemy
+flask
