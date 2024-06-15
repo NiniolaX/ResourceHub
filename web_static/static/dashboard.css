@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#flexBox {
+    height: auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: right;
+}
+#flexBox div {
+margin: 0 30px;
+}
+.logo {
+    padding: 10px;
+    display: inline;
+    box-sizing: border-box;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size:xx-large;
+    background-color: whitesmoke;
+    color: blue;
+}
+.logo i b {
+    color: orange;
+}
+.demo, .feature {
+    padding: 10px;
+}
+.log_in {
+    border: 1px solid blue;
+    border-radius: 15px;
+    padding: 10px 20px;
+}
+a {
+   text-decoration: none;
+}
+.sign_up {
+    border: 1px solid;
+    border-radius: 20px;
+    background-color: blue;
+    color: white !important;
+    padding: 10px;
+}
+#top {
+    border-bottom: 3px solid wheat;
+}
+#container1, #container2, #container3 {
+    box-sizing: border-box;
+    margin: 50px 150px;
+    /* border: 1px solid black; */
+    box-shadow: 10px;
+    height: 300px;
+    width: auto;
+}
+#container1 {
+    color: orange;
+    position: relative;
+    height: 300px;
+    background-image:url("images/library.jpg")
+}
+.inner_box {
+    text-shadow: 5px;
+    box-sizing: border-box;
+    border: 2px solid blue;
+    position: absolute;
+    width: 50%;
+    height: 200px;
+    margin: 50px;
+    padding: 20px;
+}
+#container2 {
+    height: 400px;
+}
+.item, .item2, .item3 {
+    display: inline-block;
+    border: 1px solid black;
+    width: 30%;
+    height: 320px;
+    margin: 15px;
+    text-align: center;
+    bac
+}
+.item {
+    background-image: url("images/seemless_resource.png");
+    background-position: center;
+}   
+.item2 {
+    background-image: url("images/centralized_resource.jpg");
+    background-position: center;
+}
+.item3 {
+    background-image: url("images/user_friendly.webp");
+    background-position: center;
+}
+#container3 {
+    border: 1px solid blue;
+    height: 250px;
+}
+#container2 h1 {
+    color: orange;
+}
+#container2 p {
+    color: blue;
+}
+#buttom {
+    height: max-content;
+    margin: 0 auto;
+    padding: 5px;
+    display: flex;
+    column-gap: 10%;
+    background-color: blue;
+    color: whitesmoke;
+}
+.foot {
+    color: orange;
+}
