@@ -34,10 +34,9 @@ class BaseModel:
         to_dict: Returns a dictionary containing all keys/values of the
                 __dict__ of the instance
      """
-#    if models.storage_t == "db":
-#        id = Column(String(60), primary_key=True)
-#        created_at = Column(DateTime, default=datetime.now)
-#        updated_at = Column(DateTime, default=datetime.now)
+    id = Column(String(60), primary_key=True)
+    created_at = Column(DateTime, default=datetime.now)
+    updated_at = Column(DateTime, default=datetime.now)
 
     def __init__(self, *args, **kwargs):
         """Instantiates a new model or recreates an existing model"""
@@ -83,9 +82,9 @@ class BaseModel:
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
-        if save_fs is None:
-            if "password" in new_dict:
-                del new_dict["password"]
+        #if save_fs is None:
+        #    if "password" in new_dict:
+        #        del new_dict["password"]
         return new_dict
 
     def delete(self):

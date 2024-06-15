@@ -7,6 +7,7 @@ import models
 from models.base_model import BaseModel, Base
 from models.department import Department
 from models.learner import Learner
+from models.resource import Resource
 from models.school import School
 from models.teacher import Teacher
 from os import getenv
@@ -18,7 +19,8 @@ classes = {
         "school": School,
         "department": Department,
         "teacher": Teacher,
-        "learner": Learner
+        "learner": Learner,
+        "resource": Resource
         }
 
 class DBStorage:
@@ -75,6 +77,7 @@ class DBStorage:
         """
         if obj is not None:
             self.__session.delete(obj)
+            self.save()
 
     def reload(self):
         """Reloads data from the database"""
@@ -106,9 +109,9 @@ class DBStorage:
             return None
 
         # Retrieve object
-        cls_objs = models.storage.all(cls)
-        for obj in cls_objs.values():
-            if (obj.id == id):
+        cls_objs = models.storage.all(cls).values()
+        for obj in cls_objs:
+            if (obj.id == obj_id):
                 return obj
         # Return None if object was not found
         return None
