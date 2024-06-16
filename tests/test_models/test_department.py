@@ -92,5 +92,6 @@ class TestDepartment(unittest.TestCase):
 
     def test_str(self):
         """test that the str method hathe correct output"""
-        string = "[Department] ({}) {}".format(self.dept.id, self.dept.__dict__)
+        string = "[Department] ({}) {}".format(self.dept.id,
+                                               self.dept.__dict__)
         self.assertEqual(string, str(self.dept))

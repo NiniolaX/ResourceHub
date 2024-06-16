@@ -23,6 +23,7 @@ classes = {
         "resource": Resource
         }
 
+
 class DBStorage:
     """Class interacts with MySQL database"""
     __engine = None
@@ -63,6 +64,7 @@ class DBStorage:
             obj(object): Object to be added
         """
         self.__session.add(obj)
+        self.save()
 
     def save(self):
         """Commits all changes of the current database session"""

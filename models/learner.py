@@ -15,9 +15,9 @@ class Learner(BaseModel, Base):
     email = Column(String(128), unique=True, nullable=False)
     password = Column(String(128), nullable=False)
     department_id = Column(String(60), ForeignKey('departments.id'),
-                            nullable=False)
+                           nullable=False)
     school_id = Column(String(60), ForeignKey('schools.id'),
-                            nullable=False)
+                       nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Initializes learner"""

@@ -38,8 +38,8 @@ class TestSchool(unittest.TestCase):
     """Test the School class"""
     def setUp(self):
         self.school = School(name="University of Ibadan",
-                        email="ui@gmail.com",
-                        password="12345678")
+                             email="ui@gmail.com",
+                             password="12345678")
         self.school.save()
 
     def tearDown(self):
@@ -85,5 +85,6 @@ class TestSchool(unittest.TestCase):
 
     def test_str(self):
         """test that the str method hathe correct output"""
-        string = "[School] ({}) {}".format(self.school.id, self.school.__dict__)
+        string = "[School] ({}) {}".format(self.school.id,
+                                           self.school.__dict__)
         self.assertEqual(string, str(self.school))

@@ -45,7 +45,6 @@ class test_dbStorage(unittest.TestCase):
         # Confirm that object was saved
         self.assertIn(school, storage.all(School).values())
         storage.close()  # SQL alchemy didn't reload his 'Session' so close
-        #self.cur.execute('SELECT COUNT(*) FROM states')
         final_count = storage.count(School)
         self.assertNotEqual(initial_count, final_count)
         school.delete()

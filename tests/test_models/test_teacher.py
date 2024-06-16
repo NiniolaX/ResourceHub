@@ -41,15 +41,15 @@ class TestTeacher(unittest.TestCase):
     def setUp(self):
         """Sets up test resources"""
         self.school = School(name="Havard University",
-                        email="havard@gmail.com",
-                        password="harvard123")
+                             email="havard@gmail.com",
+                             password="harvard123")
         self.dept = Department(name="Department of Computer Science",
-                        school_id=self.school.id)
+                               school_id=self.school.id)
         self.teacher = Teacher(fname="Love", lname="Afinni",
-                        email="loveafinni@gmail.com",
-                        password="12345678",
-                        department_id=self.dept.id,
-                        school_id=self.school.id)
+                               email="loveafinni@gmail.com",
+                               password="12345678",
+                               department_id=self.dept.id,
+                               school_id=self.school.id)
         self.school.save()
         self.dept.save()
         self.teacher.save()
@@ -105,5 +105,6 @@ class TestTeacher(unittest.TestCase):
 
     def test_str(self):
         """test that the str method hathe correct output"""
-        string = "[Teacher] ({}) {}".format(self.teacher.id, self.teacher.__dict__)
+        string = "[Teacher] ({}) {}".format(self.teacher.id,
+                                            self.teacher.__dict__)
         self.assertEqual(string, str(self.teacher))

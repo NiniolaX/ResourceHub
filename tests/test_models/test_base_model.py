@@ -7,7 +7,6 @@ import time
 import unittest
 from unittest import mock
 from models.base_model import BaseModel
-#BaseModel = models.base_model.BaseModel
 module_doc = models.base_model.__doc__
 
 

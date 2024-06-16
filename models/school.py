@@ -12,10 +12,10 @@ class School(BaseModel, Base):
     __tablename__ = 'schools'
     name = Column(String(128), unique=True, nullable=False)
     email = Column(String(128), unique=True, nullable=False)
-    password = Column(String(128), nullable=False)
+    password = Column(String(255), nullable=False)
     departments = relationship("Department",
-                                backref="school",
-                                cascade="all, delete, delete-orphan")
+                               backref="school",
+                               cascade="all, delete, delete-orphan")
     teachers = relationship("Teacher",
                             backref="school",
                             cascade="all, delete, delete-orphan")

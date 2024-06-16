@@ -42,23 +42,24 @@ class TestResource(unittest.TestCase):
     def setUp(self):
         """Sets up test resources"""
         self.school = School(name="Havard University",
-                        email="havard@gmail.com",
-                        password="harvard123")
+                             email="havard@gmail.com",
+                             password="harvard123")
         self.dept = Department(name="Department of Computer Science",
-                        school_id=self.school.id)
+                               school_id=self.school.id)
         self.teacher = Teacher(fname="Love", lname="Afinni",
-                        email="loveafinni@gmail.com",
-                        password="12345678",
-                        department_id=self.dept.id,
-                        school_id=self.school.id)
+                               email="loveafinni@gmail.com",
+                               password="12345678",
+                               department_id=self.dept.id,
+                               school_id=self.school.id)
         self.resource = Resource(title="Data Structures and Algorithms",
-                        content="""
-                        A data structure is a way to store data.
-
-                        We structure data in different ways depending on what data we have, and what we want to do with it.""",
-                        teacher_id=self.teacher.id,
-                        department_id=self.dept.id,
-                        school_id=self.school.id)
+                                 content="""
+                                 A data structure is a way to store data.
+                                 We structure data in different ways depending
+                                 on what data we have, and what we want to do
+                                 with it.""",
+                                 teacher_id=self.teacher.id,
+                                 department_id=self.dept.id,
+                                 school_id=self.school.id)
         self.school.save()
         self.dept.save()
         self.teacher.save()
@@ -112,5 +113,6 @@ class TestResource(unittest.TestCase):
 
     def test_str(self):
         """test that the str method hathe correct output"""
-        string = "[Resource] ({}) {}".format(self.resource.id, self.resource.__dict__)
+        string = "[Resource] ({}) {}".format(self.resource.id,
+                                             self.resource.__dict__)
         self.assertEqual(string, str(self.resource))

@@ -17,7 +17,7 @@ class Resource(BaseModel, Base):
     department_id = Column(String(60), ForeignKey('departments.id'),
                            nullable=False)
     school_id = Column(String(60), ForeignKey('schools.id'),
-                        nullable=False)
+                       nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Initializes resource"""

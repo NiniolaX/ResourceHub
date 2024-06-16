@@ -19,8 +19,8 @@ class Department(BaseModel, Base):
                             backref="department",
                             cascade="all, delete, delete-orphan")
     resources = relationship("Resource",
-                            backref="department",
-                            cascade="all, delete, delete-orphan")
+                             backref="department",
+                             cascade="all, delete, delete-orphan")
 
     def __init__(self, *args, **kwargs):
         """Initializes department"""
