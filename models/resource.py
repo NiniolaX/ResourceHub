@@ -10,7 +10,8 @@ from sqlalchemy.orm import relationship
 class Resource(BaseModel, Base):
     """Representation of resource"""
     __tablename__ = 'resources'
-    title = Column(String(256), nullable=False)
+    title = Column(String(255), nullable=False)
+    description = Column(Text)
     content = Column(Text, nullable=False)
     teacher_id = Column(String(60), ForeignKey('teachers.id'),
                         nullable=False)
@@ -18,6 +19,7 @@ class Resource(BaseModel, Base):
                            nullable=False)
     school_id = Column(String(60), ForeignKey('schools.id'),
                        nullable=False)
+    teacher = relationship("Teacher", back_populates="resources")
 
     def __init__(self, *args, **kwargs):
         """Initializes resource"""
