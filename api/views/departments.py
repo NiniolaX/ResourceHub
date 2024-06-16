@@ -17,6 +17,7 @@ def get_departments(school_id):
     school = storage.get(School, school_id)
     if not school:
         abort(404)
+
     department_list = [department.to_dict()
                        for department in school.departments]
 
@@ -29,6 +30,10 @@ def create_department(school_id):
     """
     Adds a new department to database
     """
+    school = storage.get(School, school_id)
+    if not school:
+        abort(404)
+
     try:
         request_data = request.get_json()
     except Exception as e:
@@ -40,17 +45,17 @@ def create_department(school_id):
         if param not in request_data:
             return make_response({"error": f"Missing {param}"}, 400)
 
+    # Check that dept does not exists (Used set for quicker membership tests)
+    departments = storage.all(Department).values()
+    department_names = {department.name for department in departments}
+    if request_data['name'] in department_names:
+        return make_response({"error": "Department already exists"}, 400)
+
     # Build data to pass to model for object creation
     data = {
             "school_id": school_id,
             "name": request_data['name']
     }
-
-    # Check if dept already exists (Used set for quicker membership tests)
-    departments = storage.all(Department).values()
-    department_names = {department.name for department in departments}
-    if data['name'] in department_names:
-        return make_response({"error": "Department already exists"}, 400)
 
     new_department = Department(**data)
     new_department.save()

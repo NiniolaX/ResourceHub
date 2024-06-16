@@ -63,14 +63,14 @@ class test_dbStorage(unittest.TestCase):
         """Test the count method with class argument"""
         school_count = len(storage.all(School))
         if school_count:
-            self.isInstance(school_count, int)
+            self.assertIsInstance(school_count, int)
         self.assertEqual(school_count, storage.count(School))
 
     def test_count_without_class(self):
         """Test the count method without class argument"""
         obj_count = len(storage.all())
         if obj_count:
-            self.isInstance(obj_count, int)
+            self.assertIsInstance(obj_count, int)
         self.assertEqual(obj_count, storage.count())
 
     def test_delete(self):
@@ -82,3 +82,19 @@ class test_dbStorage(unittest.TestCase):
         self.assertIn(new_school, storage.all(School).values())
         storage.delete(new_school)
         self.assertNotIn(new_school, storage.all(School).values())
+
+    def test_is_email_unique(self):
+        """Tests the is_email_unique method"""
+        school = School(name="University of Ilorin",
+                        email="unilorin@gmail.com",
+                        password="123456")
+
+        check1 = storage.is_email_unique(school.email)
+        self.assertIsInstance(check1, bool)
+        self.assertTrue(check1)
+
+        school.save()
+
+        check2 = storage.is_email_unique(school.email)
+        self.assertIsInstance(check1, bool)
+        self.assertFalse(check2)

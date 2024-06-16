@@ -13,7 +13,7 @@ class Learner(BaseModel, Base):
     fname = Column(String(128), nullable=False)
     lname = Column(String(128), nullable=False)
     email = Column(String(128), unique=True, nullable=False)
-    password = Column(String(128), nullable=False)
+    password = Column(String(255), nullable=False)
     department_id = Column(String(60), ForeignKey('departments.id'),
                            nullable=False)
     school_id = Column(String(60), ForeignKey('schools.id'),

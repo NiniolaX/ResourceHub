@@ -10,10 +10,11 @@ from sqlalchemy.orm import relationship
 class Teacher(BaseModel, Base):
     """Representation of teacher """
     __tablename__ = 'teachers'
+    title = Column(String(60))
     fname = Column(String(128), nullable=False)
     lname = Column(String(128), nullable=False)
     email = Column(String(128), unique=True, nullable=False)
-    password = Column(String(128), nullable=False)
+    password = Column(String(255), nullable=False)
     department_id = Column(String(60), ForeignKey('departments.id'),
                            nullable=False)
     school_id = Column(String(60), ForeignKey('schools.id'),

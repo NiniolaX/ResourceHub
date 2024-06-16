@@ -13,7 +13,7 @@ from models.teacher import Teacher
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker, registry
 
 classes = {
         "school": School,
@@ -87,6 +87,9 @@ class DBStorage:
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
         self.__session = Session
+#        for cls in classes.values():
+#            registry.map_imperatively(cls, cls.__table__,
+#                                      confirm_deleted_rows=False)
 
     def close(self):
         """Call remove() method on the private session attribute"""
@@ -127,3 +130,16 @@ class DBStorage:
             return len(models.storage.all().values())
         else:
             return len(models.storage.all(cls).values())
+
+    def is_email_unique(self, email):
+        """Checks that an email does not already exist in storage
+        Args:
+            email(str): Email to validate
+        Return:
+            (bool): True if email does not exist, False if otherwise
+        """
+        user_models = [School, Teacher, Learner]
+        for model in user_models:
+            if self.__session.query(model).filter_by(email=email).first():
+                return False
+        return True

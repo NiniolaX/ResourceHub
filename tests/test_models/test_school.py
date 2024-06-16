@@ -84,7 +84,7 @@ class TestSchool(unittest.TestCase):
                          self.school.updated_at.strftime(t_format))
 
     def test_str(self):
-        """test that the str method hathe correct output"""
+        """test that the str method has the correct output"""
         string = "[School] ({}) {}".format(self.school.id,
                                            self.school.__dict__)
         self.assertEqual(string, str(self.school))
