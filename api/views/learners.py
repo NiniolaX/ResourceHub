@@ -7,7 +7,6 @@ from models import storage
 from models.department import Department
 from models.learner import Learner
 from models.school import School
-from werkzeug.security import generate_password_hash
 
 
 @api_views.route('/departments/<department_id>/learners',
@@ -60,7 +59,7 @@ def create_learner(department_id):
             "fname": request_data['fname'],
             "lname": request_data['lname'],
             "email": request_data['email'],
-            "password": generate_password_hash(request_data['lname'])
+            "password": request_data['lname']
     }
 
     new_learner = Learner(**data)
@@ -69,12 +68,12 @@ def create_learner(department_id):
     return jsonify(new_learner.to_dict()), 201
 
 
-@api_views.route('/learners/<learner_id>',
+@api_views.route('/learners/<email>',
                  methods=['GET'], strict_slashes=False)
-@swag_from('documentation/learner/get_id_learner.yml', methods=['get'])
-def get_learner(learner_id):
+@swag_from('documentation/learner/get_email_learner.yml', methods=['get'])
+def get_learner(email):
     """ Retrieves a learner from database """
-    learner = storage.get(Learner, learner_id)
+    learner = storage.get_user_by_email(email, "learner")
     if not learner:
         abort(404)
 

@@ -3,7 +3,7 @@
 Contains the class DBStorage
 """
 
-import models
+#import models
 from models.base_model import BaseModel, Base
 from models.department import Department
 from models.learner import Learner
@@ -114,7 +114,7 @@ class DBStorage:
             return None
 
         # Retrieve object
-        cls_objs = models.storage.all(cls).values()
+        cls_objs = self.all(cls).values()
         for obj in cls_objs:
             if (obj.id == obj_id):
                 return obj
@@ -127,9 +127,9 @@ class DBStorage:
             cls(class): Class of objects to count
         """
         if not cls:
-            return len(models.storage.all().values())
+            return len(self.all().values())
         else:
-            return len(models.storage.all(cls).values())
+            return len(self.all(cls).values())
 
     def is_email_unique(self, email):
         """Checks that an email does not already exist in storage
@@ -143,3 +143,18 @@ class DBStorage:
             if self.__session.query(model).filter_by(email=email).first():
                 return False
         return True
+
+    def get_user_by_email(self, email, user_type):
+        """Returns a user object by email
+        Args:
+            email(str): Email of user to fetch
+            user_type(str): Type of user
+        """
+        if user_type not in classes:
+            return None
+
+        for user in self.all(classes[user_type]).values():
+            if user.email == email:
+                return user
+
+        return None

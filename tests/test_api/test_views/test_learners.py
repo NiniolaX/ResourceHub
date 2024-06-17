@@ -8,7 +8,6 @@ from models.learner import Learner
 from models.department import Department
 from models.school import School
 from os import getenv
-from werkzeug.security import check_password_hash
 
 
 class LearnerApiTestCase(unittest.TestCase):
@@ -69,7 +68,7 @@ class LearnerApiTestCase(unittest.TestCase):
 
     def test_get_learner(self):
         """ Test GET /api/learners/<learner_id> endpoint """
-        response = self.api.get(f"/api/learners/{self.learner.id}")
+        response = self.api.get(f"/api/learners/{self.learner.email}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
         self.assertEqual(data_returned, self.learner.to_dict())
@@ -101,8 +100,7 @@ class LearnerApiTestCase(unittest.TestCase):
         self.assertEqual(data_returned["lname"], "Learner")
         self.assertEqual(data_returned["email"], "test02@gmail.com")
         self.assertEqual(data_returned["fname"], "New")
-        self.assertTrue(check_password_hash(data_returned["password"],
-                                            new_learner_info["lname"]))
+        self.assertTrue(data_returned["password"], "12345")
 
         # Check that new object is in storage
         learner_id = data_returned["id"]

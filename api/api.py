@@ -57,5 +57,5 @@ Swagger(api)
 if __name__ == "__main__":
     """ Main Function """
     host = environ.get("HBNB_API_HOST", "0.0.0.0")
-    port = int(environ.get("HBNB_API_PORT", 5000))
-    api.run(host=host, port=port, threaded=True, debug=True)
+    port = int(environ.get("HBNB_API_PORT", 5001))
+    api.run(host=host, port=port, threaded=True)

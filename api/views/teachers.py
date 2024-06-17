@@ -7,7 +7,6 @@ from models import storage
 from models.department import Department
 from models.school import School
 from models.teacher import Teacher
-from werkzeug.security import generate_password_hash
 
 
 @api_views.route('/departments/<department_id>/teachers',
@@ -44,7 +43,7 @@ def create_teacher(department_id):
         return make_response({"error": "Not a JSON"}, 400)
 
     # Check that required parameters were passed
-    required_params = ["fname", "lname", "email"]
+    required_params = ["fname", "lname", "email", "password"]
     for param in required_params:
         if param not in request_data:
             return make_response({"error": f"Missing {param}"}, 400)
@@ -61,7 +60,7 @@ def create_teacher(department_id):
             "fname": request_data['fname'],
             "lname": request_data['lname'],
             "email": request_data['email'],
-            "password": generate_password_hash(request_data['lname'])
+            "password": request_data['password']
     }
 
     new_teacher = Teacher(**data)
@@ -70,12 +69,12 @@ def create_teacher(department_id):
     return jsonify(new_teacher.to_dict()), 201
 
 
-@api_views.route('/teachers/<teacher_id>',
+@api_views.route('/teachers/<email>',
                  methods=['GET'], strict_slashes=False)
-@swag_from('documentation/teacher/get_id_teacher.yml', methods=['get'])
-def get_teacher(teacher_id):
+@swag_from('documentation/teacher/get_email_teacher.yml', methods=['get'])
+def get_teacher(email):
     """ Retrieves a specific Teacher """
-    teacher = storage.get(Teacher, teacher_id)
+    teacher = storage.get_user_by_email(email, "teacher")
     if not teacher:
         abort(404)
 

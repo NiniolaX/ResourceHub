@@ -5,7 +5,6 @@ from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
 from models import storage
 from models.school import School
-from werkzeug.security import generate_password_hash
 
 
 @api_views.route('/schools', methods=['GET'], strict_slashes=False)
@@ -46,24 +45,17 @@ def create_school():
     if not storage.is_email_unique(request_data['email']):
         return make_response({"error": "Email already exists"}, 400)
 
-    # Build data to pass to model for object creation
-    data = {
-            "name": request_data['name'],
-            "email": request_data['email'],
-            "password": generate_password_hash(request_data['password'])
-    }
-
-    new_school = School(**data)
+    new_school = School(**request_data)
     new_school.save()
 
     return jsonify(new_school.to_dict()), 201
 
 
-@api_views.route('/schools/<school_id>', methods=['GET'], strict_slashes=False)
-@swag_from('documentation/school/get_id_school.yml', methods=['get'])
-def get_school(school_id):
+@api_views.route('/schools/<email>', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/school/get_email_school.yml', methods=['get'])
+def get_school(email):
     """ Retrieves a specific School """
-    school = storage.get(School, school_id)
+    school = storage.get_user_by_email(email, "school")
     if not school:
         abort(404)
 

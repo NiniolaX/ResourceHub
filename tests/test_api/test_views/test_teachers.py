@@ -68,8 +68,8 @@ class TeacherApiTestCase(unittest.TestCase):
             self.assertTrue(obj["__class__"] not in other_classes)
 
     def test_get_teacher(self):
-        """ Test GET /api/teachers/<teacher_id> endpoint """
-        response = self.api.get(f"/api/teachers/{self.teacher.id}")
+        """ Test GET /api/teachers/<email> endpoint """
+        response = self.api.get(f"/api/teachers/{self.teacher.email}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
         self.assertEqual(data_returned, self.teacher.to_dict())
@@ -101,8 +101,7 @@ class TeacherApiTestCase(unittest.TestCase):
         self.assertEqual(data_returned["lname"], "Teacher")
         self.assertEqual(data_returned["email"], "test02@gmail.com")
         self.assertEqual(data_returned["fname"], "New")
-        self.assertTrue(check_password_hash(data_returned["password"],
-                                            new_teacher_info["lname"]))
+        self.assertEqual(data_returned["password"], "12345")
 
         # Check that new object is in storage
         teacher_id = data_returned["id"]

@@ -6,7 +6,6 @@ from api.api import api
 from models import storage
 from models.school import School
 from os import getenv
-from werkzeug.security import check_password_hash
 
 
 class SchoolApiTestCase(unittest.TestCase):
@@ -48,8 +47,8 @@ class SchoolApiTestCase(unittest.TestCase):
             self.assertTrue(obj["__class__"] not in other_classes)
 
     def test_get_school(self):
-        """ Test GET /api/schools/<school_id> endpoint """
-        response = self.api.get(f"/api/schools/{self.school.id}")
+        """ Test GET /api/schools/<email> endpoint """
+        response = self.api.get(f"/api/schools/{self.school.email}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
         self.assertEqual(data_returned, self.school.to_dict())
@@ -76,8 +75,7 @@ class SchoolApiTestCase(unittest.TestCase):
         self.assertIn("id", data_returned)
         self.assertEqual(data_returned["name"], "New School")
         self.assertEqual(data_returned["email"], "new_school@gmail.com")
-        self.assertTrue(check_password_hash(data_returned["password"],
-                        new_school_info["password"]))
+        self.assertEqual(data_returned["password"], "123456")
 
         # Check that new object is in storage
         school_id = data_returned["id"]
