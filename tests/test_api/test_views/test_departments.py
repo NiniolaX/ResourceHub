@@ -56,8 +56,7 @@ class DepartmentApiTestCase(unittest.TestCase):
         response = self.api.get(f"/api/departments/{self.department.id}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
-        self.assertEqual(data_returned["id"], self.department.id)
-        self.assertEqual(data_returned["name"], "Test Department")
+        self.assertEqual(data_returned, self.department.to_dict())
 
     def test_delete_department(self):
         """ Test DELETE /api/departments/<department_id> endpoint """

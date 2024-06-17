@@ -20,7 +20,7 @@ class Teacher(BaseModel, Base):
     school_id = Column(String(60), ForeignKey('schools.id'),
                        nullable=False)
     resources = relationship("Resource",
-                             backref="teacher",
+                             back_populates="teacher",
                              cascade="all, delete, delete-orphan")
 
     def __init__(self, *args, **kwargs):

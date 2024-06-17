@@ -57,6 +57,7 @@ def create_teacher(department_id):
     data = {
             "department_id": department_id,
             "school_id": department.school_id,
+            "title": request_data.get('title'),
             "fname": request_data['fname'],
             "lname": request_data['lname'],
             "email": request_data['email'],

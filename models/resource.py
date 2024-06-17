@@ -11,7 +11,7 @@ class Resource(BaseModel, Base):
     """Representation of resource"""
     __tablename__ = 'resources'
     title = Column(String(255), nullable=False)
-    description = Column(Text)
+    description = Column(Text, nullable=True)
     content = Column(Text, nullable=False)
     teacher_id = Column(String(60), ForeignKey('teachers.id'),
                         nullable=False)

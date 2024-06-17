@@ -52,10 +52,7 @@ class SchoolApiTestCase(unittest.TestCase):
         response = self.api.get(f"/api/schools/{self.school.id}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
-        self.assertEqual(data_returned["id"], self.school.id)
-        self.assertEqual(data_returned["name"], "Test School")
-        self.assertEqual(data_returned["email"], "test@gmail.com")
-        self.assertEqual(data_returned["password"], "123")
+        self.assertEqual(data_returned, self.school.to_dict())
 
     def test_delete_school(self):
         """ Test DELETE /api/schools/<school_id> endpoint """

@@ -45,11 +45,10 @@ def create_department(school_id):
         if param not in request_data:
             return make_response({"error": f"Missing {param}"}, 400)
 
-    # Check that dept does not exists (Used set for quicker membership tests)
-    departments = storage.all(Department).values()
-    department_names = {department.name for department in departments}
-    if request_data['name'] in department_names:
-        return make_response({"error": "Department already exists"}, 400)
+    # Check that department name does not already exist in database
+    for department in storage.all(Department).values():
+        if department.name == request_data['name']:
+            return make_response({"error": "Department already exists"}, 400)
 
     # Build data to pass to model for object creation
     data = {

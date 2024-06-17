@@ -82,7 +82,7 @@ def delete_school(school_id):
     if not school:
         abort(404)
 
-    storage.save()
+    storage.delete(school)
 
     return jsonify({}), 200
 

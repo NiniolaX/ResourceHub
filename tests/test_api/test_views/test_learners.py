@@ -72,11 +72,7 @@ class LearnerApiTestCase(unittest.TestCase):
         response = self.api.get(f"/api/learners/{self.learner.id}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
-        self.assertEqual(data_returned["id"], self.learner.id)
-        self.assertEqual(data_returned["email"], "test01@gmail.com")
-        self.assertEqual(data_returned["fname"], "Test")
-        self.assertEqual(data_returned["lname"], "Learner")
-        self.assertEqual(data_returned["password"], "123")
+        self.assertEqual(data_returned, self.learner.to_dict())
 
     def test_delete_learner(self):
         """ Test DELETE /api/learners/<learner_id> endpoint """
@@ -164,15 +160,15 @@ class LearnerApiTestCase(unittest.TestCase):
     def test_update_learner(self):
         """ Test PUT /api/learner/<learner_id>" endpoint """
         response = self.api.put(f"/api/learners/{self.learner.id}",
-                                data=json.dumps({"name": "Updated Learner"}),
+                                data=json.dumps({"fname": "Updated"}),
                                 content_type="application/json")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
-        self.assertEqual(data_returned["name"], "Updated Learner")
+        self.assertEqual(data_returned["fname"], "Updated")
 
         # Check that update is visible in storage
         learner = storage.get(Learner, self.learner.id)
-        self.assertEqual(learner.name, "Updated Learner")
+        self.assertEqual(learner.fname, "Updated")
 
 
 if __name__ == "__main__":

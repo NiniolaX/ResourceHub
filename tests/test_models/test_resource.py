@@ -84,9 +84,11 @@ class TestResource(unittest.TestCase):
         """Test the Resource attributes"""
         self.assertTrue(hasattr(self.resource, "title"))
         self.assertTrue(hasattr(self.resource, "content"))
+        self.assertTrue(hasattr(self.resource, "description"))
         self.assertTrue(hasattr(self.resource, "teacher_id"))
         self.assertTrue(hasattr(self.resource, "department_id"))
         self.assertTrue(hasattr(self.resource, "school_id"))
+        self.assertTrue(hasattr(self.resource, "teacher"))
         self.assertEqual(self.resource.title, "Data Structures and Algorithms")
 
     def test_to_dict_creates_dict(self):
