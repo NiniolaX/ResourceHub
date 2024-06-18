@@ -4,61 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="sign_up.css">
 </head>
 <body>
-    <section id="top">
-        <div class="logo"><i>Resource<b>Hub</b></i></div>
-    <div id="flexBox">
-        <div class="demo"><a href="dashboard.html">Watch Demo</a></div>
-        <div class="feature"><a href="dashboard.html">Features</a></div>
-        <div class="log_in"><a href="log_in.html">Log in</a></div>
-        <div class="sign_up">Sign up School</div>
-    </div>
-    </section>
+    <header>
+        <div class="header">
+            <div class="logo"><img src="images/" alt="ResourceHub"></div>
+            <div class="demo"><a href="landing_page.html">Watch Demo</a></div>
+            <div class="feature"><a href="landing_page.html">Features</a></div>
+            <button class="log_in"><a href="log_in.html">Log in</a></button>
+            <button class="sign_up">Sign up School</button>
+        </div>
+</header>
     <section id="container">
-        <h3>Sign up your Institution</h3>  
+        <h3>Sign up your Institution</h3>
+    <form action="POST">  
         <div>
             <label for="name">Name of institution</label>
-            <input type="text" placeholder="University of Lagos">
+            <input id="name" type="text" placeholder="University of Lagos">
         </div>
         <div>
             <label for="email">Email Address</label>
-            <input type="email" placeholder="Unilag@school.edu.ng">
+            <input id="email" type="email" placeholder="Unilag@school.edu.ng">
         </div>
         <div>
             <label for="password">Password</label>
-            <input type="password">
+            <input id="password" type="password">
         </div>
         <div>
-            <label for="password2">Password</label>
-            <input type="password">
+            <label for="password2">Re-enter your Password</label>
+            <input id="password2" type="password">
         <div>
-        <button>Sign up</button>
-    </div>
+        <button class="login_bot">Sign up</button>
+        </div>
+    </form>
         <div>
             <p>already have an account? <a href="log_in.html">log in</a></p>
         </div>
     </section>
-    <section id="buttom">
+    <footer id="buttom">
         <div>
-            <h2 class="logo"><i>Resource<b>Hub</b></i></h2>
+            <h2><img src="images/" alt="ResourceHub"></h2>
             <p>Resource hub is an organised system for distributing educational resources within learning institutions</p>
         </div>
         <div>
-            <h2>Contact Us</h2>
+            <h2 class="foot">Contact Us</h2>
             <p>www.resourcehub.com.ng</p>
         </div>
         <div>
-            <h2>Institutions</h2>
+            <h2 class="foot">Institutions</h2>
             <p>University of Lagos</p>
             <p>Convenant university</p>
         </div>
         <div>
-            <h2>About</h2>
+            <h2 class="foot">About</h2>
             <p>Developer</p>
             <p>Terms of Services</p>
         </div>
-    </section>
+    </footer>
 </body>
 </html>

@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="landing_page.css">
 </head>
 <body>
-    <section id="top">
-        <div class="logo"><i>Resource<b>Hub</b></i></div>
-    <div id="flexBox">
-        <div class="demo"><a href="#container3">Watch Demo</a></div>
-        <div class="feature"><a href="#container2">Features</a></div>
-        <div class="log_in"><a href="log_in.html">Log in</a></div>
-        <div class="sign_up"><a href="sign_up.html">Sign up School</a></div>
-    </div>
-    </section>
+    <header>
+        <div class="header">
+            <div><img src="images/" alt="ResourceHub"></div>
+            <div class="demo"><a href="#container3">Watch Demo</a></div>
+            <div class="feature"><a href="#container2">Features</a></div>
+            <button class="log_in"><a href="log_in.html">Log in</a></button>
+            <button class="sign_up"><a href="sign_up.html">Sign up School</a></button>
+        </div>
+    </header>
     <section id="container1">
         <div class="inner_box">
             <h1>Simplfying Academic resources sharing and management</h1>
@@ -23,29 +24,32 @@
         </div>
     </section>
     <h2 style="text-align: center;">Features</h2>
-    <section id="container2">
+    <div id="container2">
+            <div class="item1"></div>
+            <div class="item2"></div>
+            <div class="item3"></div>
+    </div>
+    <div id="container2">
             <div class="item">
                 <h1>Seamless resource Sharing</h1>
                 <p>Teachers and Instructors can seamlesslessly upload resource materials and share with their students</p>
             </div>
-            <div class="item2">
+            <div class="item">
                 <h1>Centralized Resorce management</h1>
                 <p>Institutions can manage all academic resources without stress</p>
             </div>
-            <div class="item3">
+            <div class="item">
                 <h1>User-friendly access</h1>
                 <p>Learners can access vital learning materials at anywhere anytime</p>
             </div>
-        </div>
-    </section>
+    </div>
     <h2 style="text-align: center;">Watch Demo</h2>
     <section id="container3">
         <div>three</div>
     </section>
-    <footer>
-    <section id="buttom">
+    <footer id="buttom">
         <div>
-            <h2 class="logo"><i>Resource<b>Hub</b></i></h2>
+            <h2><img src="images/" alt="ResourceHub"></h2>
             <p>Resource hub is an organised system for distributing educational resources within learning institutions</p>
         </div>
         <div>
@@ -61,8 +65,7 @@
             <h2 class="foot">About</h2>
             <p>Developer</p>
             <p>Terms of Services</p>
-        </div>
-    </section>    
+        </div> 
     </footer>
 </body>
 </html>
