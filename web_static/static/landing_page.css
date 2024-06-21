@@ -14,7 +14,7 @@
 #container1 {
     color: wheat;
     position: relative;
-    height: 300px;
+    height: 500px;
     background-image:url("images/library.jpg")
 }
 .inner_box {
@@ -23,9 +23,12 @@
     border: 1px solid #0D1A49;
     position: absolute;
     width: 50%;
-    height: 200px;
+    height: 300px;
     margin: 50px;
     padding: 20px;
+    background-color: #fff;
+    color: #000;
+    font-size: 30px;
 }
 #container2, #container {
     display: flex;
