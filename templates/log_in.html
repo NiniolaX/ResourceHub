@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResourceHub</title>
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/log_in.css">
+    <link rel="shortcut icon" href="images/Logo cropped.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <img src="images/Logo cropped.png" alt="ResourceHub">
+            <div class="demo"><a href="landing_page.html">Watch Demo</a></div>
+            <div class="feature"><a href="landing_page.html">Features</a></div>
+            <button class="log_in"><a href="log_in.html">Log in</a></button>
+            <button class="sign_up"><a href="sign_up.html">Sign up School</a></button>
+        </div>
+    </header>
+    <section id="container">
+        <h3>Log in</h3>
+   <form method="POST" action="">
+        <div>
+            <label for="email">Email Address</label>
+            <input class="box" type="email" placeholder="Unilag@school.edu.ng">
+        </div>
+        <div>
+            <div for="password">Select user type</div>
+            <div id="user_type">
+                <div class="drop">
+                <span>Click and Select <b>^</b></span>
+                <div class="down">
+                    <input type="radio" id="institutions" name="userType">
+                    <label for="institutions" id="userType">Institution</label>
+                    <input type="radio" id="teachers" name="userType">
+                    <label for="teachers" id="userType">Teachers</label>
+                    <input type="radio" id="student" name="userType">
+                    <label for="student" id="userType">Students</label>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="password2">Password</label>
+            <input class="box" type="password">
+        <div>
+        <button class="login_bot">Log In</button>
+        </div>
+        <div>
+            <p>Don't have an account? <a href="log_in.html">Sign up</a></p>
+        </div>
+    </form>
+    </section>
+    <footer id="buttom">
+        <div>
+            <h2><img src="images/Logo cropped.png" alt="ResourceHub"></h2>
+            <p>Resource hub is an organised system for distributing educational resources within learning institutions</p>
+        </div>
+        <div>
+            <p class="foot">Contact Us</p>
+            <p>www.resourcehub.com.ng</p>
+        </div>
+        <div>
+            <p class="foot">Institutions</p>
+            <p>University of Lagos</p>
+            <p>Convenant university</p>
+        </div>
+        <div>
+            <p class="foot">About</p>
+            <p>Developer</p>
+            <p>Terms of Services</p>
+        </div>
+    </footer>
+</body>
+</html>
