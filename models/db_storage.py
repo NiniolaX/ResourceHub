@@ -144,17 +144,21 @@ class DBStorage:
                 return False
         return True
 
-    def get_user_by_email(self, email, user_type):
+    def get_user_by_email(self, email, user_type=None):
         """Returns a user object by email
         Args:
             email(str): Email of user to fetch
             user_type(str): Type of user
         """
-        if user_type not in classes:
-            return None
-
-        for user in self.all(classes[user_type]).values():
-            if user.email == email:
-                return user
+        if not user_type:
+            for user in self.all().values():
+                if user.email == email:
+                    return user
+        else:
+            if user_type not in classes:
+                return None
+            for user in self.all(classes[user_type]).values():
+                if user.email == email:
+                    return user
 
         return None

@@ -5,6 +5,7 @@ from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
 from models import storage
 from models.school import School
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @api_views.route('/schools', methods=['GET'], strict_slashes=False)
@@ -33,42 +34,32 @@ def create_school():
     required_params = ["name", "email", "password"]
     for param in required_params:
         if param not in request_data:
-            return make_response({"error": f"Missing {param}!"}, 400)
+            return make_response({"error": f"Missing {param}"}, 400)
 
-    # Check if school name exists (Used set for quicker membership tests)
-    schools = storage.all(School).values()
-    school_names = {school.name for school in schools}
-    if request_data['name'] in school_names:
-        return make_response({"error": "School already exists!"}, 400)
-
-    # Check that email does not exist
-    if not storage.is_email_unique(request_data['email']):
-        return make_response({"error": "Email already exists!"}, 400)
-
-    new_school = School(**request_data)
-    new_school.save()
+    # Build data to pass to model for object creation
+    data = {
+            "name": request_data['name'],
+            "email": request_data['email'],
+            "password": generate_password_hash(request_data['password'])
+    }
+    try:
+        new_school = School(**data)
+        new_school.save()
+    except Exception as e:
+        return make_response({"error": f"{type(e).__name__}: {str(e)}"}, 500)
 
     return jsonify(new_school.to_dict()), 201
 
+
 @api_views.route('/schools/<school_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/school/get_id_school.yml', methods=['get'])
-def get_school_by_id(school_id):
-    """ Retrieves a specific School by id """
+def get_school(school_id):
+    """ Retrieves a specific School """
     school = storage.get(School, school_id)
     if not school:
         abort(404)
 
     return jsonify(school.to_dict())
-
-#@api_views.route('/emails/<email>', methods=['GET'], strict_slashes=False)
-#@swag_from('documentation/school/get_email_school.yml', methods=['get'])
-#def get_school_by_email(email):
-#    """ Retrieves a specific School by email """
-#    school = storage.get_user_by_email(email, "school")
-#    if not school:
-#        abort(404)
-#
-#    return jsonify(school.to_dict())
 
 
 @api_views.route('/schools/<school_id>', methods=['DELETE'],

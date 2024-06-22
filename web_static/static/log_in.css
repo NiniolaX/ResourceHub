@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#flexBox {
+    height: auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: right;
+}
+#flexBox div {
+margin: 0 30px;
+}
+.logo {
+    padding: 10px;
+    display: inline;
+    box-sizing: border-box;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size:xx-large;
+    background-color: whitesmoke;
+    color: blue;
+}
+.logo i b {
+    color: orange;
+}
+.demo, .feature {
+    padding: 10px;
+}
+.log_in {
+    border: 1px solid blue;
+    border-radius: 15px;
+    padding: 10px 20px;
+}
+a {
+   text-decoration: none;
+}
+.sign_up {
+    border: 1px solid;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    padding: 10px;
+}
+#top {
+    border-bottom: 3px solid wheat;
+}
+#container {
+    margin: 50px 0;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 250px;
+}
+#container div {
+    margin-top: 20px;
+}
+.box {
+    width: 100%;
+    height: 50px;
+}
+#user_type {
+    width: 100%;
+    height: 70px;
+    border: 1px solid black;
+}
+button {
+    height: 50px;
+    width: 100%;
+    background-color: orange;
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+}
+button:hover, button:active {
+    background-color: blue;
+}
+.drop {
+    position: relative;
+    display: flex;
+}
+.down {
+   display: none;
+   position: absolute;
+}
+.drop:hover .down {
+    display: block;
+}
+#buttom {
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+    display: flex;
+    column-gap: 15%;
+    background-color: blue;
+    color: whitesmoke;
+}

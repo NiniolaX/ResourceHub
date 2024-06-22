@@ -10,3 +10,4 @@ from api.views.departments import *
 from api.views.teachers import *
 from api.views.learners import *
 from api.views.resources import *
+from api.views.users import *

@@ -2,12 +2,13 @@
 """ Contains the School class"""
 import models
 from models.base_model import BaseModel, Base
+from flask_login import UserMixin
 import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
 
-class School(BaseModel, Base):
+class School(UserMixin, BaseModel, Base):
     """Representation of school """
     __tablename__ = 'schools'
     name = Column(String(128), unique=True, nullable=False)

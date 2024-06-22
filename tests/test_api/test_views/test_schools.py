@@ -47,8 +47,8 @@ class SchoolApiTestCase(unittest.TestCase):
             self.assertTrue(obj["__class__"] not in other_classes)
 
     def test_get_school(self):
-        """ Test GET /api/schools/<email> endpoint """
-        response = self.api.get(f"/api/schools/{self.school.email}")
+        """ Test GET /api/schools/<user_id> endpoint """
+        response = self.api.get(f"/api/schools/{self.school.id}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
         self.assertEqual(data_returned, self.school.to_dict())
