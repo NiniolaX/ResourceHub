@@ -12,19 +12,39 @@ body {
 .sign_up {
     border: 1px solid;
     border-radius: 30px;
-    padding: 10px;
+    padding: 4px 8px;
     background-color: #0D1A49;
     color: white !important;
+    margin: 10px;
+    width: 40%;
 }
-.header {
-    display: flex;
-    flex-basis: 20%;
-    flex: 0;
-    flex-grow: 0;
-    flex-shrink: 0;
+header {
     height: auto;
+    border: 1px solid red;
     background-color: #ffffff;
     border-bottom: 3px solid wheat;
+}
+header div {
+    display: flex;
+    border: 1px solid rd;
+    flex-basis: 50%;
+}
+@media screen and (max-width: 850px) {
+    header div {
+        display: inline-block;
+        grid-template-columns: auto;
+    }
+}
+div .left {
+    flex-basis: 40%;
+    border: 1px solid rd;
+}
+div .right {
+    flex-basis: 60%;
+    column-gap: 10px;
+    flex-grow: 0;
+    flex-wrap: nowrap;
+    justify-content: left;
 }
 .logo {
     width: 10px;
@@ -32,10 +52,15 @@ body {
 }
 .demo, .feature {
     padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
 }
 .log_in {
-    width: 5rem;
-    border-radius: 20px ;
+    width: 40%;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 4px 8px;
 }
 a {
     text-decoration: none;

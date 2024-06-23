@@ -98,6 +98,14 @@ h2 {
     margin-top: 3rem;
 }
 #container3 {
+    margin-top: 0;
     border: 1px solid #0D1A49;
     height: 250px;
+}
+.sub-head {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-top: 50px;
 }
