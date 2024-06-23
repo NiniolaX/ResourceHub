@@ -109,3 +109,18 @@ h2 {
     font-family: sans-serif;
     margin-top: 50px;
 }
+.grid {
+    display: grid;
+}
+.grid-box {
+    border: 2px solid #0D1A49;
+    height: 40px;
+    width: 144px;
+    color: #0D1A49;
+    background-color: #E69138;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    grid-row-start: 8;
+    grid-row-end: 9;
+}

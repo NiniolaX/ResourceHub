@@ -10,7 +10,7 @@
 .login_bot {
     height: 50px;
     width: 100%;
-    background-color: orange;
+    background-color: #E69138;
     font-size: larger;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -19,7 +19,7 @@
     color: #fff;
 }
 .foot {
-    color: orange;
+    color: #E69138;
 }
 footer div p {
     margin-top: 20px;
