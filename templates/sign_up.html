@@ -6,6 +6,7 @@
     <title>ResourceHub</title>
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/sign_up.css">
     <link rel="shortcut icon" href="images/Logo cropped.png" type="image/x-icon">
 </head>
@@ -13,42 +14,31 @@
     <header>
         <div class="header">
             <img src="images/Logo cropped.png" alt="ResourceHub">
-            <div class="demo"><a href="landing_page.html">Watch Demo</a></div>
-            <div class="feature"><a href="landing_page.html">Features</a></div>
-            <button class="log_in"><a href="log_in.html">Log in</a></button>
+            <div class="demo"><a href="home.html">Watch Demo</a></div>
+            <div class="feature"><a href="home.html">Features</a></div>
+            <button class="log_in"><a href="log_in.html">Log In</a></button>
             <button class="sign_up">Sign up School</button>
         </div>
 </header>
-    <section id="container">
-        <h3>Sign up your Institution</h3>
-    <form action="POST">  
-        <div>
-            <label for="name">Name of institution</label>
-            <input id="name" type="text" placeholder="University of Lagos">
-        </div>
-        <div>
-            <label for="email">Email Address</label>
-            <input id="email" type="email" placeholder="Unilag@school.edu.ng">
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input id="password" type="password">
-        </div>
-        <div>
-            <label for="password2">Re-enter your Password</label>
-            <input id="password2" type="password">
-        <div>
-        <button class="login_bot">Sign up</button>
-        </div>
-    </form>
-        <div>
-            <p>already have an account? <a href="log_in.html">log in</a></p>
-        </div>
+    <h3>Sign up your Institution</h3>
+        <section id="container">
+            <form action="POST">  
+                <label for="name">Name of institution</label>
+                    <input id="name" type="text" placeholder="University of Lagos">
+                        <label for="email">Email Address</label>
+                            <input id="email" type="email" placeholder="Unilag@school.edu.ng">
+                                <label for="password">Password</label>
+                            <input id="password" type="password">
+                        <label for="password2">Re-enter your Password</label>
+                    <input id="password2" type="password">
+                <button class="login_bot">Sign Up</button>
+            </form>
     </section>
+        <p class="exist">already have an account? <a href="log_in.html">log in</a></p>
     <footer id="buttom">
         <div>
             <img src="images/Logo cropped.png" alt="ResourceHub">
-            <p>Resource hub is an organised system for distributing educational resources within learning institutions</p>
+                <p>Resource hub is an organised system for distributing educational resources within learning institutions</p>
         </div>
         <div>
             <p class="foot">Contact Us</p>

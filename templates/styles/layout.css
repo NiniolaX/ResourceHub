@@ -1,0 +1,39 @@
+#container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 250px;
+}
+label, .login_bot {
+    margin-top: 20px;
+}
+.box, .login_bot {
+    display: flex;
+    width: 517px;
+    height: 66px;
+}
+label {
+    text-align: center;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+h3 {
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 3opx;
+}
+.exist {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.login_bot {
+    text-align: center;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+p a {
+    text-decoration: underline;
+    color: #E69138;
+}

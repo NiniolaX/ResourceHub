@@ -1,18 +1,6 @@
-#container {
-    margin: 50px 0;
-    padding: 20px;
-    box-sizing: border-box;
-    margin: 0 250px;
-}
-#container div {
-    margin-top: 20px;
-}
-.box {
-    width: 100%;
-    height: 50px;
-}
 #user_type {
-    width: 100%;
+    box-sizing: border-box;
+    width: 517px;
     height: 70px;
     border: 1px solid black;
 }
@@ -26,4 +14,18 @@
 }
 .drop:hover .down {
     display: block;
+    padding: 30px;
+    background-color: #E69138;
+    border: 2px solid #0D1A49;
+}
+.dropdown-btn {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    padding: 20px;
+}
+.click {
+    justify-self: left;
+    font-size: 18px;
+    font-family: sans-serif;
 }

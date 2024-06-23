@@ -6,6 +6,7 @@
     <title>ResourceHub</title>
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/log_in.css">
     <link rel="shortcut icon" href="images/Logo cropped.png" type="image/x-icon">
 </head>
@@ -13,50 +14,50 @@
     <header>
         <div class="header">
             <img src="images/Logo cropped.png" alt="ResourceHub">
-            <div class="demo"><a href="landing_page.html">Watch Demo</a></div>
-            <div class="feature"><a href="landing_page.html">Features</a></div>
-            <button class="log_in"><a href="log_in.html">Log in</a></button>
-            <button class="sign_up"><a href="sign_up.html">Sign up School</a></button>
+            <div class="demo"><a href="home.html">Watch Demo</a></div>
+            <div class="feature"><a href="home.html">Features</a></div>
+            <button class="log_in"><a href="log_in.html">Log In</a></button>
+            <button class="sign_up"><a href="sign_up.html">Sign Up School</a></button>
         </div>
     </header>
+    <h3>Log In</h3>
     <section id="container">
-        <h3>Log in</h3>
-   <form method="POST" action="">
-        <div>
+        <form method="POST" action="">
             <label for="email">Email Address</label>
-            <input class="box" type="email" placeholder="Unilag@school.edu.ng">
-        </div>
-        <div>
-            <div for="password">Select user type</div>
-            <div id="user_type">
-                <div class="drop">
-                <span>Click and Select <b>^</b></span>
-                <div class="down">
-                    <input type="radio" id="institutions" name="userType">
-                    <label for="institutions" id="userType">Institution</label>
-                    <input type="radio" id="teachers" name="userType">
-                    <label for="teachers" id="userType">Teachers</label>
-                    <input type="radio" id="student" name="userType">
-                    <label for="student" id="userType">Students</label>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <label for="password2">Password</label>
-            <input class="box" type="password">
-        <div>
-        <button class="login_bot">Log In</button>
-        </div>
-        <div>
-            <p>Don't have an account? <a href="log_in.html">Sign up</a></p>
-        </div>
-    </form>
+            <input class="box" type="email" id="email"><br>
+            <label>Select User Type</label>
+                <div id="user_type">
+                    <div class="drop">
+                        <div class="dropdown-btn">
+                            <div class="click">Click and Select</div>
+                            <div><img height="20px" width="30px" src="images/drop-down.png" alt="click"></div>
+                        </div>
+                        <div class="down">
+                            <label for="institution" id="userType">
+                                <input type="radio" id="institution" name="userType" value="institution">
+                                Institution
+                            </label>
+                            <label for="teacher" id="userType">
+                                <input type="radio" id="teacher" name="userType" value="teacher">
+                                Teacher
+                            </label>
+                            <label for="student" id="userType">
+                                <input type="radio" id="student" name="userType" value="student">
+                                Student
+                            </label>
+                        </div>
+                    </div>
+                </div><br>
+            <label for="password">Password</label>
+                <input class="box" type="password" id="password"><br>
+            <button class="login_bot">Log In</button>
+        </form>
     </section>
+        <p class="exist">Don't have an account? <a href="sign_up.html">Sign up</a></p>
     <footer id="buttom">
         <div>
             <h2><img src="images/Logo cropped.png" alt="ResourceHub"></h2>
-            <p>Resource hub is an organised system for distributing educational resources within learning institutions</p>
+            <p>ResourceHub is an organised system for distributing educational resources within learning institutions</p>
         </div>
         <div>
             <p class="foot">Contact Us</p>
