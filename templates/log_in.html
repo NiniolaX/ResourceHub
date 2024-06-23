@@ -1,82 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResourceHub</title>
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/log_in.css">
-    <link rel="shortcut icon" href="images/Logo cropped.png" type="image/x-icon">
-</head>
-<body>
-    <header>
-        <div class="head">
-            <div class="left">
-                <img src="images/Logo cropped.png" alt="ResourceHub">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ResourceHub</title>
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/layout.css">
+        <link rel="stylesheet" href="styles/log_in.css">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source Serif Pro'>
+        <link rel="shortcut icon" href="images/Logo cropped.png" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+            <div class="header-left">
+                <img src="images/Logo cropped.png" alt="logo">
             </div>
-            <div class="right">
-                <div class="demo"><a href="home.html">Watch Demo</a></div>
-                <div class="feature"><a href="home.html">Features</a></div>
+            <div class="header-right">
+                <div class="demo"><a href="#demo-section">Watch Demo</a></div>
+                <div class="features"><a href="#features-section">Features</a></div>
                 <button class="log_in"><a href="log_in.html">Log in</a></button>
                 <button class="sign_up"><a href="sign_up.html">Sign up School</a></button>
             </div>
-        </div>
-    </header>
-    <h3>Login to your account</h3>
-    <section id="container">
-        <form method="POST" action="">
-            <label for="email">Email Address</label>
-            <input class="box" type="email" id="email"><br>
-            <label>Select User Type</label>
-                <div id="user_type">
-                    <div class="drop">
-                        <div class="dropdown-btn">
-                            <div class="click"></div>
-                            <div><img height="20px" width="30px" src="images/drop-down.png" alt="click"></div>
+        </header>
+        <h3>Login to your account</h3>
+        <section id="container">
+            <form method="POST" action="">
+                <label for="email">Email Address</label>
+                <input class="box" type="email" id="email"><br>
+                <label>Select User Type</label>
+                    <div id="user_type">
+                        <div class="drop">
+                            <div class="dropdown-btn">
+                                <div class="click"></div>
+                                <div><img height="20px" width="30px" src="images/drop-down.png" alt="click"></div>
+                            </div>
+                            <div class="down">
+                                <label for="institution" id="userType">
+                                    <input type="radio" id="institution" name="userType" value="institution">
+                                    Institution
+                                </label>
+                                <label for="teacher" id="userType">
+                                    <input type="radio" id="teacher" name="userType" value="teacher">
+                                    Teacher
+                                </label>
+                                <label for="student" id="userType">
+                                    <input type="radio" id="student" name="userType" value="student">
+                                    Student
+                                </label>
+                            </div>
                         </div>
-                        <div class="down">
-                            <label for="institution" id="userType">
-                                <input type="radio" id="institution" name="userType" value="institution">
-                                Institution
-                            </label>
-                            <label for="teacher" id="userType">
-                                <input type="radio" id="teacher" name="userType" value="teacher">
-                                Teacher
-                            </label>
-                            <label for="student" id="userType">
-                                <input type="radio" id="student" name="userType" value="student">
-                                Student
-                            </label>
-                        </div>
-                    </div>
-                </div><br>
-            <label for="password">Password</label>
-                <input class="box" type="password" id="password"><br>
-            <button class="login_bot">Log In</button>
-        </form>
-    </section>
-        <p class="exist">Don't have an account? <a href="sign_up.html">Sign up</a></p>
-    <footer id="buttom">
-        <div>
-            <h2><img src="images/Logo cropped.png" alt="ResourceHub"></h2>
-            <p>ResourceHub is an organised system for distributing educational resources within learning institutions</p>
-        </div>
-        <div>
-            <p class="foot">Contact Us</p>
-            <p>www.resourcehub.com.ng</p>
-        </div>
-        <div>
-            <p class="foot">Institutions</p>
-            <p>University of Lagos</p>
-            <p>Convenant university</p>
-        </div>
-        <div>
-            <p class="foot">About</p>
-            <p>Developer</p>
-            <p>Terms of Services</p>
-        </div>
-    </footer>
-</body>
+                    </div><br>
+                <label for="password">Password</label>
+                    <input class="box" type="password" id="password"><br>
+                <button class="login_bot">Log In</button>
+            </form>
+        </section>
+            <p class="exist">Don't have an account? <a href="sign_up.html">Sign up</a></p>
+        <footer id="footer">
+            <div class="footer-left">
+                <img src="images/Logo cropped.png" alt="ResourceHub">
+                <p>ResourceHub is an organised system for distributing educational resources within learning institutions</p>
+            </div>
+            <div class="footer-right">
+                <div>
+                    <p class="foot">Contact Us</p>
+                    <p>info@resourcehub.com</p>
+                </div>
+                <div>
+                    <p class="foot">Institutions</p>
+                    <p>University of Lagos</p>
+                    <p>Convenant university</p>
+                </div>
+                <div>
+                    <p class="foot">About</p>
+                    <p>Developer</p>
+                    <p>Terms of Services</p>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

@@ -1,68 +1,60 @@
-* {
-    margin: 0 auto;
-}
-button {
-    cursor: pointer;
-}
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.sign_up {
-    border: 1px solid;
-    border-radius: 30px;
-    padding: 4px 8px;
-    background-color: #0D1A49;
-    color: white !important;
-    margin: 10px;
-    width: 40%;
-}
-header {
-    height: auto;
-    border: 1px solid red;
-    background-color: #ffffff;
-    border-bottom: 3px solid wheat;
-}
-header div {
-    display: flex;
-    border: 1px solid rd;
-    flex-basis: 50%;
-}
 @media screen and (max-width: 850px) {
-    header div {
-        display: inline-block;
+    header {
         grid-template-columns: auto;
     }
 }
-div .left {
-    flex-basis: 40%;
-    border: 1px solid rd;
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 30%;
+    background-color: #ffffff;
+    height: 60px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-div .right {
-    flex-basis: 60%;
-    column-gap: 10px;
+
+.header-left {
+    flex-basis: 30%;
+}
+
+.header-right {
+    display: flex;
+    flex-basis: 30%;
+    align-items: center;
+    justify-content: flex-end;
     flex-grow: 0;
     flex-wrap: nowrap;
-    justify-content: left;
 }
-.logo {
-    width: 10px;
-    height: 5px;
-}
-.demo, .feature {
-    padding: 10px;
-    font-size: 16px;
+
+.demo, .features {
+    font-size: 14px;
     font-weight: bold;
-    margin: 10px;
 }
-.log_in {
-    width: 40%;
-    border-radius: 20px;
-    margin: 10px;
-    padding: 4px 8px;
+
+header button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 30px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
 }
+
 a {
     text-decoration: none;
     color: inherit;
- }
+}
+
+.sign_up {
+    background-color: #0D1A49;
+    color: #ffffff !important;
+    width: 130px;
+}
+
+.log_in {
+    width: 80px;
+    background-color: #ffffff;
+    border: solid 1px #000000;
+    color: #000;
+}
