@@ -2,4 +2,21 @@
 
 {% block content %}
 <p>You can manage departments here</p>
+<ul class="departments">
+    <li>
+        <form action="{{ url_for('add_department') }}" method="post">
+            <input id="name" type="text" placeholder="Enter department here" name="name" required>
+            <input type="submit" value="Add">
+        </form>
+    </li>
+    {% for department in department_names %}
+    <li>{{ department }}</li>
+    {% endfor %}
+<!--<li>
+        <form action="{{ url_for('delete_department') }}" method="post">
+            <input id="name" type="text" placeholder="Enter department here">
+            <input type="submit" value="Add">
+        </form>
+    </li> -->
+</ul>
 {% endblock %}

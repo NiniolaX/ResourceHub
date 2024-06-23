@@ -18,7 +18,7 @@ login_manager = LoginManager()
 login_manager.login_view = "login"
 login_manager.init_app(app)
 
-# Function loads role user
+# Function loads user to login manager
 @login_manager.user_loader
 def load_user(user_id):
     response = requests.get(f"http://127.0.0.1:5001/api/users/{user_id}/")
@@ -45,6 +45,7 @@ def role_required(role):
             return f(*args, **kwargs)
         return decorated_function
     return decorator
+
 
 @app.route("/")
 def home():
@@ -135,15 +136,62 @@ def logout():
 
 @app.route("/manage-departments", strict_slashes=False)
 @login_required
-@role_required(Teacher)
+@role_required(School)
 def render_manage_departments():
     """ Renders manage departments page """
-    return render_template("manage_departments.html")
+    departments = [department.name for department in current_user.departments]
+    return render_template("manage_departments.html",
+                           department_names=departments)
 
-#@app.route("/dashboard/manage-teachers")
+
+@app.route("/add-department", methods=["POST"], strict_slashes=False)
+@login_required
+@role_required(School)
+def add_department():
+    """ Adds a new department to a school """
+    name = request.form["name"]
+    school_id = current_user.id
+    response = requests.post(f"http://127.0.0.1:5001/api/schools/{school_id}/departments",
+                             data=json.dumps(name),
+                             headers={"Content-Type": "application/json"})
+    if response.status_code == 201:
+        flash("Successfully added department")
+        return redirect(url_for("render_manage_departments"))
+    elif response.status_code == 400:
+        flash("Department already exists!")
+        return redirect(url_for("render_manage_departments"))
+    else:
+        return redirect(url_for("render_manage_departments"))
+
+
+@app.route("/delete-department", methods=["POST"], strict_slashes=False)
+@login_required
+@role_required(School)
+def delete_department():
+    """ Deletes a department """
+    pass
+
+
+@app.route("/manage-teachers", strict_slashes=False)
+@login_required
+@role_required(School)
+def render_manage_teachers():
+    """ Renders manage teachers page """
+    return render_template("manage_teachers.html")
+
+
+@app.route("/manage-learners", strict_slashes=False)
+@login_required
+@role_required(School)
+def render_manage_learners():
+    """ Renders manage learners page """
+    return render_template("manage_learners.html")
+
+
 #@app.route("/dashboard/manage-learners")
 #@app.route("/dashboard/create-resource")
 #@app.route("/dashboard/view-resources")
+
 
 if __name__ == "__main__":
     """ Start the Flask application """

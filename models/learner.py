@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """ Contains the Learner class"""
 import models
-from models.base_model import BaseModel, Base
 import sqlalchemy
+from flask_login import UserMixin
+from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Learner(BaseModel, Base):
+class Learner(BaseModel, Base, UserMixin):
     """Representation of learner """
     __tablename__ = 'learners'
     fname = Column(String(128), nullable=False)

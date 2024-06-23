@@ -2,5 +2,5 @@
 
 {% block content %}
 <p>Welcome to your School's dashboard!</p>
-<p>You can manage departments <a href="http://127.0.0.1:5000/manage-departments">here</a></p>
+<p>You can manage departments <a href=" {{ url_for('render_manage_departments') }}">here</a></p>
 {% endblock %}

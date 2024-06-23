@@ -103,7 +103,7 @@ class TestLearner(unittest.TestCase):
                          self.learner.updated_at.strftime(t_format))
 
     def test_str(self):
-        """test that the str method hathe correct output"""
+        """test that the str method has the correct output"""
         string = "[Learner] ({}) {}".format(self.learner.id,
                                             self.learner.__dict__)
         self.assertEqual(string, str(self.learner))
