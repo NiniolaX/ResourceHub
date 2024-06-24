@@ -300,7 +300,30 @@ def delete_learner():
     return redirect(url_for("render_manage_learners"))
 
 
-#@app.route("/dashboard/create-resource")
+@app.route("/create-resource", strict_slashes=False)
+@login_required
+@role_required(Teacher)
+def render_create_resource():
+    """ Returns the create resource page """
+    return render_template("create_resource.html")
+
+
+
+@app.route("/create-resource", methods=["POST"], strict_slashes=False)
+@login_required
+@role_required(Teacher)
+def create_resource():
+    """ Creates a resource """
+    pass
+
+
+@app.route("/delete-resource", methods=["POST"], strict_slashes=False)
+@login_required
+@role_required(Teacher)
+def delete_resource():
+    """ Deletes a resource """
+    pass
+
 #@app.route("/dashboard/view-resources")
 
 
