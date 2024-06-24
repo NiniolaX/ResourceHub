@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>You can manage departments here</p>
-<ul class="departments">
+<h3 class="title">Manage departments</h3>
+
+<ul class="department-list">
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <p >{{ messages[0][1] }}</p>
+            <p>{{ messages[0][1] }}</p>
         {% endif %}
     {% endwith %}
-    <form action="{{ url_for('add_department') }}" method="post">
-        <input id="name" type="text" placeholder="Enter department here" name="name" required>
-        <input type="submit" value="Add">
+
+
+    <form class="add-department" action="{{ url_for('add_department') }}" method="post">
+        <input class="delete-button" type="text" placeholder="Enter department here" name="name" required>
+        <input class="add-button" type="submit" value="Add">
     </form>
+
     {% for department in departments %}
-    <li>
-        {{ department['name'] }}
-        <form action="{{ url_for('delete_department')}}" method="post">
+    <li class="department">
+        <p>{{ department['name'] }}</p>
+        <form class="delete-department" action="{{ url_for('delete_department')}}" method="post">
             <input type="hidden" name="department_id" value="{{ department['id']}}">
-            <input type="submit" value="Delete">
+            <input class="delete-button" type="submit" value="Delete">
         </form>
     </li>
     {% endfor %}

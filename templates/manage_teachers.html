@@ -2,36 +2,44 @@
 
 {% block content %}
 
-<p>You can manage teachers here</p>
-<ul class="departments">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <p >{{ messages[0][1] }}</p>
-        {% endif %}
-    {% endwith %}
-    {% for department in departments %}
-    <li>
-        {{ department['name'] }}
-        <ul class="teachers">
-            <form action="{{ url_for('add_teacher') }}" method="post">
-                <input name="fname" class="fname" type="text" placeholder="Enter first name here" required>
-                <input name="lname" class="lname" type="text" placeholder="Enter last name here" required>
-                <input name="email" class="email" type="email" placeholder="Enter email here" required>
-                <input type="hidden" name="department_id" value="{{ department['id'] }}">
-                <input type="submit" value="Add">
-            </form>
-            {% for teacher in teachers[department['id']] %}
-            <li>
-                {{ teacher['fname'] }} {{ teacher['lname'] }} - {{ teacher['email'] }}
-                <form action="{{ url_for('delete_teacher')}}" method="post">
-                    <input type="hidden" name="teacher_id" value="{{ teacher['id']}}">
-                    <input type="submit" value="Delete">
+<h3 class="title">Manage teachers</h3>
+<section>
+    <ul class="department-list">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <p >{{ messages[0][1] }}</p>
+            {% endif %}
+        {% endwith %}
+
+        {% for department in departments %}
+        <li class="department">
+            <p class="department-name">{{ department['name'] }}</p>
+
+            <ul class="teacher-list">
+                <form class="add-teacher" action="{{ url_for('add_teacher') }}" method="post">
+                    <input class="fname" name="fname" type="text" placeholder="Enter first name here" required>
+                    <input class="lname" name="lname" type="text" placeholder="Enter last name here" required>
+                    <input class="email" name="email" type="email" placeholder="Enter email here" required>
+                    <input type="hidden" name="department_id" value="{{ department['id'] }}">
+                    <input class="add-button" type="submit" value="Add">
                 </form>
-            </li>
-            {% endfor %}
-        </ul>
-    </li>
-    {% endfor %}
-</ul>
+
+                {% for teacher in teachers[department['id']] %}
+                <li class="teacher">
+                    <p>{{ teacher['fname'] }}</p>
+                    <p> {{ teacher['lname'] }}</p>
+                    <p>{{ teacher['email'] }}</p>
+                    <form class="delete-teacher" action="{{ url_for('delete_teacher')}}" method="post">
+                        <input type="hidden" name="teacher_id" value="{{ teacher['id']}}">
+                        <input class="delete-button" type="submit" value="Delete">
+                    </form>
+                </li>
+                {% endfor %}
+            </ul><!-- end .teacher-list -->
+        </li><!-- end .department -->
+        {% endfor %}
+
+    </ul><!-- end .department-list -->
+</section>
 
 {% endblock %}
