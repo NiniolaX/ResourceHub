@@ -122,8 +122,10 @@ def render_dashboard():
         return render_template("school_dashboard.html", name=current_user.name)
     elif isinstance(current_user, Teacher):
         return render_template("teacher_dashboard.html", name=current_user.fname)
-    else:
+    elif isinstance(current_user, Learner):
         return render_template("learner_dashboard.html", name=current_user.fname)
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route("/logout", methods=["GET", "POST"], strict_slashes=False)
@@ -144,6 +146,7 @@ def render_manage_departments():
     departments = response.json()
     return render_template("manage_departments.html",
                            departments=departments)
+
 
 @app.route("/add-department", methods=["POST"], strict_slashes=False)
 @login_required
@@ -184,9 +187,19 @@ def delete_department():
 def render_manage_teachers():
     """ Renders manage teachers page """
     school_id = current_user.id
+
+    # Get departments
     response = requests.get(f"http://127.0.0.1:5001/api/schools/{school_id}/departments")
     departments = response.json()
-    return render_template("manage_teachers.html", departments=departments)
+
+    # Get teachers
+    teachers = {}
+    for department in departments:
+        department_id = department['id']
+        response2 = requests.get(f"http://127.0.0.1:5001/api/departments/{department_id}/teachers")
+        teachers[department_id] = response2.json()
+
+    return render_template("manage_teachers.html", departments=departments, teachers=teachers)
 
 
 @app.route("/add-teacher", methods=["POST"], strict_slashes=False)
@@ -213,15 +226,80 @@ def add_teacher():
     return redirect(url_for("render_manage_teachers"))
 
 
+@app.route("/delete-teacher", methods=["POST"], strict_slashes=False)
+@login_required
+@role_required(School)
+def delete_teacher():
+    """ Deletes a teacher from a school """
+    teacher_id = request.form["teacher_id"]
+    response = requests.delete(f"http://127.0.0.1:5001/api/teachers/{teacher_id}")
+    if response.status_code != 200:
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
+    else:
+        flash("Teacher deleted successfully!", "success")
+    return redirect(url_for("render_manage_teachers"))
+
+
 @app.route("/manage-learners", strict_slashes=False)
 @login_required
 @role_required(School)
 def render_manage_learners():
     """ Renders manage learners page """
-    return render_template("manage_learners.html")
+    school_id = current_user.id
+
+    # Get departments
+    response = requests.get(f"http://127.0.0.1:5001/api/schools/{school_id}/departments")
+    departments = response.json()
+
+    # Get teachers
+    learners = {}
+    for department in departments:
+        department_id = department['id']
+        response2 = requests.get(f"http://127.0.0.1:5001/api/departments/{department_id}/learners")
+        learners[department_id] = response2.json()
+
+    return render_template("manage_learners.html", departments=departments, learners=learners)
 
 
-#@app.route("/dashboard/manage-learners")
+@app.route("/add-learner", methods=["POST"], strict_slashes=False)
+@login_required
+@role_required(School)
+def add_learner():
+    """ Adds a new learner to a school """
+    learner_info = {
+        "fname": request.form["fname"],
+        "lname": request.form["lname"],
+        "email": request.form["email"],
+        "password": generate_password_hash(request.form["lname"])
+    }
+    department_id = request.form["department_id"]
+    response = requests.post(f"http://127.0.0.1:5001/api/departments/{department_id}/learners",
+                             data=json.dumps(learner_info),
+                             headers={"Content-Type": "application/json"})
+    if response.status_code == 201:
+        flash("Successfully added learner", "success")
+    else:
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
+    return redirect(url_for("render_manage_learners"))
+
+
+@app.route("/delete-learner", methods=["POST"], strict_slashes=False)
+@login_required
+@role_required(School)
+def delete_learner():
+    """ Deletes a learner from a school """
+    learner_id = request.form["learner_id"]
+    response = requests.delete(f"http://127.0.0.1:5001/api/learners/{learner_id}")
+    if response.status_code != 200:
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
+    else:
+        flash("Learner deleted successfully!", "success")
+    return redirect(url_for("render_manage_learners"))
+
+
 #@app.route("/dashboard/create-resource")
 #@app.route("/dashboard/view-resources")
 

@@ -43,7 +43,7 @@ def create_learner(department_id):
         return make_response({"error": "Not a JSON"}, 400)
 
     # Check that required parameters were passed
-    required_params = ["fname", "lname", "email"]
+    required_params = ["fname", "lname", "email", "password"]
     for param in required_params:
         if param not in request_data:
             return make_response({"error": f"Missing {param}"}, 400)
@@ -59,7 +59,7 @@ def create_learner(department_id):
             "fname": request_data['fname'],
             "lname": request_data['lname'],
             "email": request_data['email'],
-            "password": request_data['lname']
+            "password": request_data['password']
     }
 
     new_learner = Learner(**data)
