@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Create resource</h2>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <p >{{ messages[0][1] }}</p>
+    {% endif %}
+{% endwith %}
+<form action="{{ url_for('create_resource') }}" method="post">
+    <input id="name" type="text" placeholder="Enter resource here" name="name" required>
+    <input type="submit" value="Create">
+</form>
+{% endblock %}

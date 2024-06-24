@@ -7,12 +7,23 @@
 </head>
 <body>
     <header>
-        <p>Welcome {{ name }}</p>
-        <a href="http://127.0.0.1:5000/logout">Logout</a>
+    	<div class="left">
+    		<img id="logo" src="" alt="logo">
+            </div>
+    	<div class="right">
+        	<p class="user-name">Welcome {{ name }}!</p>
+            <img id="bell" src="" alt="bell">
+        	<button><a href="{{ url_for('logout') }}">Logout</a></button>
+    	</div>
     </header>
+
     <div class="container">
         {% block content %}
         {% endblock %}
-    </div>
+    </div><!-- end container -->
+
+    <footer>
+        <p>ResourceHub</p>
+    </footer>
 </body>
 </html>
