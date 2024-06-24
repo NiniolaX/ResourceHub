@@ -101,7 +101,7 @@ def login_post():
     response = requests.get(f"http://127.0.0.1:5001/api/usersbyemail/{email}/")
     if response.status_code == 404:
         flash("User does not exist")
-        return redirect(url_for('signup'))
+        return redirect(url_for('login'))
 
     # Check that user password is correct
     user_data = response.json()
@@ -139,10 +139,11 @@ def logout():
 @role_required(School)
 def render_manage_departments():
     """ Renders manage departments page """
-    departments = [department.name for department in current_user.departments]
+    school_id = current_user.id
+    response = requests.get(f"http://127.0.0.1:5001/api/schools/{school_id}/departments")
+    departments = response.json()
     return render_template("manage_departments.html",
-                           department_names=departments)
-
+                           departments=departments)
 
 @app.route("/add-department", methods=["POST"], strict_slashes=False)
 @login_required
@@ -152,16 +153,14 @@ def add_department():
     name = request.form["name"]
     school_id = current_user.id
     response = requests.post(f"http://127.0.0.1:5001/api/schools/{school_id}/departments",
-                             data=json.dumps(name),
+                             data=json.dumps({"name": name}),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
-        flash("Successfully added department")
-        return redirect(url_for("render_manage_departments"))
-    elif response.status_code == 400:
-        flash("Department already exists!")
-        return redirect(url_for("render_manage_departments"))
+        flash("Successfully added department", "success")
     else:
-        return redirect(url_for("render_manage_departments"))
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
+    return redirect(url_for("render_manage_departments"))
 
 
 @app.route("/delete-department", methods=["POST"], strict_slashes=False)
@@ -169,7 +168,14 @@ def add_department():
 @role_required(School)
 def delete_department():
     """ Deletes a department """
-    pass
+    department_id = request.form["department_id"]
+    response = requests.delete(f"http://127.0.0.1:5001/api/departments/{department_id}")
+    if response.status_code != 200:
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
+    else:
+        flash("Department deleted successfully!", "success")
+    return redirect(url_for("render_manage_departments"))
 
 
 @app.route("/manage-teachers", strict_slashes=False)
@@ -177,7 +183,34 @@ def delete_department():
 @role_required(School)
 def render_manage_teachers():
     """ Renders manage teachers page """
-    return render_template("manage_teachers.html")
+    school_id = current_user.id
+    response = requests.get(f"http://127.0.0.1:5001/api/schools/{school_id}/departments")
+    departments = response.json()
+    return render_template("manage_teachers.html", departments=departments)
+
+
+@app.route("/add-teacher", methods=["POST"], strict_slashes=False)
+@login_required
+@role_required(School)
+def add_teacher():
+    """ Adds a new teacher to a school """
+    teacher_info = {
+        "fname": request.form["fname"],
+        "lname": request.form["lname"],
+        "email": request.form["email"],
+        "title": request.form.get("title"),
+        "password": generate_password_hash(request.form["lname"])
+    }
+    department_id = request.form["department_id"]
+    response = requests.post(f"http://127.0.0.1:5001/api/departments/{department_id}/teachers",
+                             data=json.dumps(teacher_info),
+                             headers={"Content-Type": "application/json"})
+    if response.status_code == 201:
+        flash("Successfully added teacher", "success")
+    else:
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
+    return redirect(url_for("render_manage_teachers"))
 
 
 @app.route("/manage-learners", strict_slashes=False)

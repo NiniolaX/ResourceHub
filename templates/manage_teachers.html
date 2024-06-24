@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>You can manage teachers here</p>
+<ul class="departments">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <p >{{ messages[0][1] }}</p>
+        {% endif %}
+    {% endwith %}
+    {% for department in departments %}
+    <li>
+        {{ department['name'] }}
+        <ul class="teachers">
+            <form action="{{ url_for('add_teacher') }}" method="post">
+                <input name="fname" class="fname" type="text" placeholder="Enter first name here" required>
+                <input name="lname" class="lname" type="text" placeholder="Enter last name here" required>
+                <input name="email" class="email" type="email" placeholder="Enter email here" required>
+                <input type="hidden" name="department_id" value="{{ department['id']}}">
+                <input type="submit" value="Add">
+            </form>
+            {% for teacher in department.teachers %}
+            <li>
+                <p>{{ teacher['fname'] }} {{ teacher['lname'] }} {{ teacher['email'] }}</p>
+                <!--<form action="{{ url_for('delete_department')}}" method="post">
+                    <input type="hidden" name="department_id" value="{{ department['id']}}">
+                    <input type="submit" value="Delete">
+                </form>-->
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <p >{{ messages[0][1] }}</p>
+    {% endif %}
+{% endwith %}
+
+{% endblock %}

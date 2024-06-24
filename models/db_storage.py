@@ -151,7 +151,8 @@ class DBStorage:
             user_type(str): Type of user
         """
         if not user_type:
-            for user in self.all().values():
+            all_users = {**self.all(School), **self.all(Teacher), **self.all(Learner)}
+            for user in all_users.values():
                 if user.email == email:
                     return user
         else:
