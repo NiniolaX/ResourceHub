@@ -81,7 +81,7 @@ def signup_post():
 
     # Redirect client to login
     flash("School created successfully!", "success")
-    return redirect(url_for("login"))
+    return redirect(url_for("signup"))
 
 
 @app.route("/login", strict_slashes=False)

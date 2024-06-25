@@ -2,8 +2,15 @@
 
 {% block content %}
 <p>Welcome to your Learner dashboard!</p>
-<p>Resources</p>
+
+<h3>Resources</h3>
 <ul class="resources">
-    
+    {% for resource in resources %}
+    <li class="resource">
+        <h4><a href="">{{ resource['title'] }}</a></h4>
+        <p>{{ resource['description'] }}</p>
+        <p>{{ resource['content'] }}</p>
+    </li>
+    {% endfor %}
 </ul>
 {% endblock %}

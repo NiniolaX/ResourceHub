@@ -6,7 +6,7 @@
 <ul class="department-list">
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <p>{{ messages[0][1] }}</p>
+            <p class="notification">{{ messages[0][1] }}</p>
         {% endif %}
     {% endwith %}
 

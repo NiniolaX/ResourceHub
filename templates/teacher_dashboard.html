@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>Welcome to your Teacher's dashboard!</p>
+<p>Welcome to your Teacher dashboard</p>
 
-<p>You can create resource <a href="{{ url_for('render_create_resource') }}">here</a></p>
-
-<ul class="resources">
+<h3 class="title">Manage resources</h3>
+<button><a href="{{ url_for('render_create_resource') }}">Create resource</a></button>
+<ul class="resource-list">
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <p >{{ messages[0][1] }}</p>
+            <p class="notification">{{ messages[0][1] }}</p>
         {% endif %}
     {% endwith %}
+
     {% for resource in resources %}
-    <li>
+    <li class="resource">
         <h4><a href="">{{ resource['title'] }}</a></h4>
-        <form action="{{ url_for('delete_resource') }}" method="post">
+        <p>{{ resource['description'] }}</p>
+        <form class="delete-resource" action="{{ url_for('delete_resource') }}" method="post">
             <input type="hidden" name="resource_id" value="{{ resource['id']}}">
-            <input type="submit" value="Delete">
+            <input class="delete-button" type="submit" value="Delete">
         </form>
     </li>
     {% endfor %}
-</ul>
+
+</ul><!-- end .resource-list -->
 
 {% endblock %}
