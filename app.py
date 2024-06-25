@@ -56,7 +56,7 @@ def home():
 @app.route("/signup", strict_slashes=False)
 def signup():
     """Returns the signup page"""
-    return render_template("signup.html")
+    return render_template("sign_up.html")
 
 
 @app.route("/signup", methods=['POST'], strict_slashes=False)
@@ -87,7 +87,7 @@ def signup_post():
 @app.route("/login", strict_slashes=False)
 def login():
     """ Returns the login page """
-    return render_template("login.html")
+    return render_template("log_in.html")
 
 
 @app.route("/login", methods=['POST'], strict_slashes=False)

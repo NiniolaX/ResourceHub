@@ -39,7 +39,7 @@ def create_school():
     schools = storage.all(School).values()
     school_names = {school.name for school in schools}
     if request_data['name'] in school_names:
-        return make_response({"error": "School already exists!"}, 400)
+        return make_response({"error": "School name already exists!"}, 400)
 
     # Check that email does not exist
     if not storage.is_email_unique(request_data['email']):

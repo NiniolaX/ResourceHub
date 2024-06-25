@@ -1,0 +1,53 @@
+form#auth {
+    width: 550px;
+    box-sizing: border-box;
+    padding: 30px;
+    margin-bottom: 40px;
+    border: solid 1px #333;
+}
+
+h3#form-header {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.submit-button {
+    border: none;
+    background-color: #E69138;
+    font-size: 16px;
+}
+
+.submit-button:hover {
+    background-color: #AC6B27;
+    color: #fff;
+}
+
+.submit-button:active {
+    background-color: #0D1A49;
+    color: #fff;
+}
+
+.exist {
+    text-align: center;
+}
+
+p a {
+    text-decoration: underline;
+    color: #E69138;
+}
+
+select option {
+    height: 20px;
+    font-size: 14px;
+    font-family: 'Source Serif Pro', sans-serif;
+}
