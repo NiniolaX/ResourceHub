@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ resource['title'] }}</h1>
+<p>Date created: {{ resource['created_at'] }}</p>
+<p>{{ resource['content'] }}</p>
+{% endblock %}

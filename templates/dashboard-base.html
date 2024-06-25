@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Dashboard</title>
+</head>
+<body>
+    <header>
+    	<div class="header-left">
+    		<img id="logo" src="" alt="logo">
+            </div>
+    	<div class="header-right">
+            {% if current_user.fname %}
+            <p class="user-name">Hello {{ current_user.fname }}</p>
+            {% else %}
+            <p class="user-name">Hello {{ current_user.name }}</p>
+            {% endif %}
+            <img class="bell" src="" alt="bell">
+        	<button class="logout"><a href="{{ url_for('logout') }}">Logout</a></button>
+    	</div>
+    </header>
+
+    <div class="container">
+    {% block content %}
+    {% endblock %}
+    </div><!-- end main container -->
+    
+    <footer id="footer">
+        <div class="footer-left">
+            <img src="images/Logo cropped.png" alt="ResourceHub">
+            <p>ResourceHub is an organised system for distributing educational resources within learning institutions.</p>
+        </div>
+        <div class="footer-right">
+            <div>
+                <p class="foot">Contact Us</p>
+                <p>info@resourcehub.com</p>
+            </div>
+            <div>
+                <p class="foot">Institutions</p>
+                <p>University of Lagos</p>
+                <p>Convenant university</p>
+            </div>
+            <div>
+                <p class="foot">About</p>
+                <p>Developer</p>
+                <p>Terms of Services</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
