@@ -23,11 +23,6 @@
     justify-content: flex-start;
     padding: 20px;
 }
-.click {
-    justify-self: left;
-    font-size: 18px;
-    font-family: sans-serif;
-}
 select {
     background-color: #E69138;
     color: #0D1A49;
