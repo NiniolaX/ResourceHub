@@ -14,8 +14,7 @@
 }
 .drop:hover .down {
     display: block;
-    padding: 30px;
-    background-color: #E69138;
+    padding: 2px;
     border: 2px solid #0D1A49;
 }
 .dropdown-btn {
@@ -28,4 +27,13 @@
     justify-self: left;
     font-size: 18px;
     font-family: sans-serif;
+}
+select {
+    background-color: #E69138;
+    color: #0D1A49;
+    font-weight: bold;
+}
+option {
+    background-color: #fff;
+    color: #000;
 }

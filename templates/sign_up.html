@@ -24,25 +24,27 @@
             </div>
         </div>
     </header>
-    <h3>Sign up your Institution</h3>
-        <section id="container">
-            <form action="POST">  
-                <label for="name">Name of institution</label>
-                    <input id="name" type="text">
-                        <label for="email">Email Address</label>
-                            <input id="email" type="email">
-                                <label for="password">Password</label>
-                            <input id="password" type="password">
-                        <label for="password2">Re-enter your Password</label>
-                    <input id="password2" type="password">
-                <button class="login_bot">Sign Up</button>
-            </form>
-    </section>
+    <div id="banner">
+        <h3>Sign up your Institution</h3>
+            <section id="container">
+                <form action="POST">  
+                    <label for="name">Name of institution</label>
+                        <input id="name" type="text" required>
+                            <label for="email">Email Address</label>
+                                <input id="email" type="email" required>
+                                    <label for="password">Password</label>
+                                <input id="password" type="password" required>
+                            <label for="password2">Re-enter your Password</label>
+                        <input id="password2" type="password" required>
+                    <button class="login_bot">Sign Up</button>
+                </form>
+            </section>
         <p class="exist">already have an account? <a href="log_in.html">log in</a></p>
+    </div>
     <footer id="buttom">
         <div>
             <img src="images/Logo cropped.png" alt="ResourceHub">
-                <p>Resource hub is an organised system for distributing educational resources within learning institutions</p>
+            <p>Resource hub is an organised system for distributing educational resources within learning institutions</p>
         </div>
         <div>
             <p class="foot">Contact Us</p>
