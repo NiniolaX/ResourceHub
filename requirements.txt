@@ -1,3 +1,9 @@
 # ResourceHub App Dependencies
-sqlalchemy
+flasgger
 flask
+flask-cors
+flask-login
+mysqlclient
+requests
+sqlalchemy
+Werkzeug

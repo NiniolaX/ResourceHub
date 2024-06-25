@@ -57,6 +57,7 @@ class TestResource(unittest.TestCase):
                                  We structure data in different ways depending
                                  on what data we have, and what we want to do
                                  with it.""",
+                                 slug="abcdefghij",
                                  teacher_id=self.teacher.id,
                                  department_id=self.dept.id,
                                  school_id=self.school.id)
@@ -84,7 +85,7 @@ class TestResource(unittest.TestCase):
         """Test the Resource attributes"""
         self.assertTrue(hasattr(self.resource, "title"))
         self.assertTrue(hasattr(self.resource, "content"))
-        self.assertTrue(hasattr(self.resource, "description"))
+        self.assertTrue(hasattr(self.resource, "slug"))
         self.assertTrue(hasattr(self.resource, "teacher_id"))
         self.assertTrue(hasattr(self.resource, "department_id"))
         self.assertTrue(hasattr(self.resource, "school_id"))

@@ -119,11 +119,17 @@ def login_post():
 def render_dashboard():
     """ Returns the school dashboard """
     if isinstance(current_user, School):
-        return render_template("school_dashboard.html", name=current_user.name)
+        return render_template("school_dashboard.html")
     elif isinstance(current_user, Teacher):
-        return render_template("teacher_dashboard.html", name=current_user.fname)
+        teacher_id = current_user.id
+        response = requests.get(f"http://127.0.0.1:5001/api/teachers/{teacher_id}/resources")
+        resources = response.json()
+        return render_template("teacher_dashboard.html", resources=resources)
     elif isinstance(current_user, Learner):
-        return render_template("learner_dashboard.html", name=current_user.fname)
+        department_id = current_user.department_id
+        response = requests.get(f"http://127.0.0.1:5001/api/departments/{department_id}/resources")
+        resources = response.json()
+        return render_template("learner_dashboard.html", resources=resources)
     else:
         return redirect(url_for('login'))
 
@@ -308,23 +314,60 @@ def render_create_resource():
     return render_template("create_resource.html")
 
 
-
 @app.route("/create-resource", methods=["POST"], strict_slashes=False)
 @login_required
 @role_required(Teacher)
 def create_resource():
     """ Creates a resource """
-    pass
-
+    resource_info = {
+        "title": request.form['title'],
+        "content": request.form['content']
+    }
+    teacher_id = request.form['teacher_id']
+    response = requests.post(f"http://127.0.0.1:5001/api/teachers/{teacher_id}/resources",
+                             data=json.dumps(resource_info),
+                             headers={"Content-Type": "application/json"})
+    if response.status_code == 201:
+        flash("New resource created", "success")
+    else:
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
+    return redirect(url_for("render_dashboard"))
+    
 
 @app.route("/delete-resource", methods=["POST"], strict_slashes=False)
 @login_required
 @role_required(Teacher)
 def delete_resource():
     """ Deletes a resource """
-    pass
+    resource_id = request.form["resource_id"]
+    response = requests.delete(f"http://127.0.0.1:5001/api/resources/{resource_id}")
+    if response.status_code != 200:
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
+    else:
+        flash("Resource deleted successfully!", "success")
+    return redirect(url_for("render_dashboard"))
 
-#@app.route("/dashboard/view-resources")
+
+@app.route("/resources/<slug>", strict_slashes=False)
+@login_required
+def view_resource(slug):
+    """ Views a resource by slug """
+    response = requests.get(f"http://127.0.0.1:5001/api/resourcesbyslug/{slug}")
+    if response.status_code == 200:
+        resource = response.json()
+
+        # Remove time from resource creation date
+        t_index = resource['created_at'].find('T')
+        resource['created_at'] = resource['created_at'][:t_index]
+
+        # Convert teacher to dictionary
+        #resource['teacher'] = resource['teacher'].to_dict()
+        return render_template('view_resource.html', resource=resource)
+    else:
+        error_message = response.json().get("error", "An error has occured")
+        flash(error_message)
 
 
 if __name__ == "__main__":

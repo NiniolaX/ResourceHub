@@ -1,16 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>Welcome to your Learner dashboard!</p>
 
 <h3>Resources</h3>
 <ul class="resources">
     {% for resource in resources %}
     <li class="resource">
-        <h4><a href="">{{ resource['title'] }}</a></h4>
-        <p>{{ resource['description'] }}</p>
-        <p>{{ resource['content'] }}</p>
+        <p><a href="{{ url_for('view_resource', slug=resource.slug) }}">{{ resource['title'] }}</a> by {{ }}</p>
     </li>
     {% endfor %}
 </ul>
+
 {% endblock %}

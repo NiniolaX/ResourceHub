@@ -39,9 +39,7 @@ class ResourceApiTestCase(unittest.TestCase):
                                department_id=self.department.id,
                                school_id=self.school.id)
         self.resource = Resource(title="The Art of War",
-                                 description="""An ancient Chinese military
-                                                treatise dating from the late
-                                                Spring and Autumn period.""",
+                                 slug="the-art-of-war-abcde-23453-86987",
                                  content="""
                                             1. Sun Tzu said: The art of war is
                                             of vital importance to the State.
@@ -115,6 +113,7 @@ class ResourceApiTestCase(unittest.TestCase):
         """ Test POST /api/teachers/<teacher_id>/resources/ endpoint """
         # Create new resource via API
         new_resource_info = {"title": "The 48 Laws of Power",
+                             "slug": "the-48-laws-of-power-0876-cdrfgv3",
                              "content": """
                                         48 Laws of Power details the laws
                                         for attaining power in life, business,

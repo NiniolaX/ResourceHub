@@ -11,7 +11,11 @@
     		<img id="logo" src="" alt="logo">
             </div>
     	<div class="header-right">
-        	<p class="user-name">Welcome {{ name }}</p>
+            {% if current_user.fname %}
+            <p class="user-name">Hello {{ current_user.fname }}</p>
+            {% else %}
+            <p class="user-name">Hello {{ current_user.name }}</p>
+            {% endif %}
             <img class="bell" src="" alt="bell">
         	<button class="logout"><a href="{{ url_for('logout') }}">Logout</a></button>
     	</div>

@@ -52,23 +52,13 @@ def create_school():
 
 @api_views.route('/schools/<school_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/school/get_id_school.yml', methods=['get'])
-def get_school_by_id(school_id):
+def get_school(school_id):
     """ Retrieves a specific School by id """
     school = storage.get(School, school_id)
     if not school:
         abort(404)
 
     return jsonify(school.to_dict())
-
-#@api_views.route('/emails/<email>', methods=['GET'], strict_slashes=False)
-#@swag_from('documentation/school/get_email_school.yml', methods=['get'])
-#def get_school_by_email(email):
-#    """ Retrieves a specific School by email """
-#    school = storage.get_user_by_email(email, "school")
-#    if not school:
-#        abort(404)
-#
-#    return jsonify(school.to_dict())
 
 
 @api_views.route('/schools/<school_id>', methods=['DELETE'],
