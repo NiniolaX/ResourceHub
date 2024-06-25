@@ -6,7 +6,7 @@
 <ul class="resources">
     {% for resource in resources %}
     <li class="resource">
-        <p><a href="{{ url_for('view_resource', slug=resource.slug) }}">{{ resource['title'] }}</a> by {{ }}</p>
+        <p><a href="{{ url_for('view_resource', slug=resource.slug) }}">{{ resource['title'] }}</a> by Author</p>
     </li>
     {% endfor %}
 </ul>

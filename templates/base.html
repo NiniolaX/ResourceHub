@@ -4,35 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ResourceHub</title>
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_forms.css') }}" type="text/css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source Serif Pro'>
-    <link rel="shortcut icon" href="images/Logo cropped.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.png') }}" alt="logo" type="image/x-icon">
 </head>
+
 <body>
     <header>
         <div class="header-left">
-            <img src="images/Logo cropped.png" alt="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
         </div>
         <div class="header-right">
             <div class="demo"><a href="#demo-section">Watch Demo</a></div>
             <div class="features"><a href="#features-section">Features</a></div>
-            <button class="log_in"><a href="log_in.html">Log in</a></button>
-            <button class="sign_up"><a href="sign_up.html">Sign up School</a></button>
+            <button class="log_in"><a href="{{ url_for('login') }}">Log in</a></button>
+            <button class="sign_up"><a href="{{ url_for('signup') }}">Sign up School</a></button>
         </div>
     </header>
 
     <div class="container">
-    {% block content %}
-    {% end block %}
+        {% block content %}
+        {% endblock %}
     </div><!-- end main container -->
 
     <footer id="footer">
         <div class="footer-left">
-            <img src="images/Logo cropped.png" alt="ResourceHub">
-            <p>ResourceHub is an organised system for distributing educational resources within learning institutions</p>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+            <p>ResourceHub is an organised system for managing and distributing educational resources within learning institutions.</p>
         </div>
         <div class="footer-right">
             <div>
@@ -52,4 +55,5 @@
         </div>
     </footer>
 </body>
+
 </html>

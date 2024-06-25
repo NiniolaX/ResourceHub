@@ -1,77 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ResourceHub</title>
-        <link rel="stylesheet" href="styles/header.css">
-        <link rel="stylesheet" href="styles/footer.css">
-        <link rel="stylesheet" href="styles/layout.css">
-        <link rel="stylesheet" href="styles/log_in.css">
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source Serif Pro'>
-        <link rel="shortcut icon" href="images/Logo cropped.png" type="image/x-icon">
-    </head>
-    <body>
-        <header>
-            <div class="header-left">
-                <img src="images/Logo cropped.png" alt="logo">
-            </div>
-            <div class="header-right">
-                <div class="demo"><a href="#demo-section">Watch Demo</a></div>
-                <div class="features"><a href="#features-section">Features</a></div>
-                <button class="log_in"><a href="log_in.html">Log in</a></button>
-                <button class="sign_up"><a href="sign_up.html">Sign up School</a></button>
-            </div>
-        </header>
-        <div id="banner">
-            <h3>Login to your account</h3>
-            <section id="container">
-                <form method="POST" action="">
-                    <label for="email">Email Address</label>
-                    <input class="box" type="email" id="email" required><br>
-                    <label>Select User Type</label>
-                        <div id="user_type">
-                            <div class="drop">
-                                <div class="dropdown-btn">
-                                    <div><img height="20px" width="30px" src="images/drop-down.png" alt="click"></div>
-                                </div>
-                                <div class="down">
-                                    <select name="user_type" id="user_type" required>
-                                        <option value="institution">Institution</option>
-                                        <option value="teacher">Teacher</option>
-                                        <option value="student">Student</option>
-                                      </select>
-                                </div>
-                            </div>
-                        </div><br>
-                    <label for="password">Password</label>
-                        <input class="box" type="password" id="password" required><br>
-                    <button class="login_bot">Log In</button>
-                </form>
-            </section>
-            <p class="exist">Don't have an account? <a href="sign_up.html">Sign up</a></p>
-        </div>
-        <footer id="footer">
-            <div class="footer-left">
-                <img src="images/Logo cropped.png" alt="ResourceHub">
-                <p>ResourceHub is an organised system for distributing educational resources within learning institutions</p>
-            </div>
-            <div class="footer-right">
-                <div>
-                    <p class="foot">Contact Us</p>
-                    <p>info@resourcehub.com</p>
-                </div>
-                <div>
-                    <p class="foot">Institutions</p>
-                    <p>University of Lagos</p>
-                    <p>Convenant university</p>
-                </div>
-                <div>
-                    <p class="foot">About</p>
-                    <p>Developer</p>
-                    <p>Terms of Services</p>
-                </div>
-            </div>
-        </footer>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<h3 id="form-header">Login to your account</h3>
+<form id="auth" action="{{ url_for('login_post') }}" method="POST">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <p class="flash"><em>{{ messages[0][1] }}</em></p>
+        {% endif %}
+    {% endwith %}
+    <label for="email">Email</label><br>
+    <input class="box" type="email" id="email" name="email" required><br>
+
+    <label for="password">Password</label><br>
+    <input class="box" type="password" id="password" name="password" required><br>
+
+    <label id="user_type">Select user type</label><br>
+    <select name="user_type" required>
+        <option value="school">-----</option>
+        <option value="school">Institution</option>
+        <option value="teacher">Teacher</option>
+        <option value="learner">Learner</option>
+    </select>
+
+    <input type="submit" value="Login" class="submit-button"><br>
+    <p class="exist">Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+
+</form>
+
+{% endblock %}
