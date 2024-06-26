@@ -47,4 +47,5 @@ section.user-items {
 /* Style for buttons outside forms (i.e. 'create resource', 'manage departments', 'manage learners', etc */
 .action {
     text-decoration: none;
+    color: default;
 }
