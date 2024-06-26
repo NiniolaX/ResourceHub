@@ -41,7 +41,7 @@ header button {
     font-weight: bold;
 }
 
-a {
+header a {
     text-decoration: none;
     color: inherit;
 }

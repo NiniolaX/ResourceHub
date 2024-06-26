@@ -3,11 +3,12 @@
 {% block content %}
 
 <h3 class="title">Manage learners</h3>
-<section>
+
+<section class="user-items">
     <ul class="department-list">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <p class="notification">{{ messages[0][1] }}</p>
+                <p class="flash">{{ messages[0][1] }}</p>
             {% endif %}
         {% endwith %}
 

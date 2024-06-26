@@ -20,8 +20,16 @@ def get_resources_by_department(department_id):
     department = storage.get(Department, department_id)
     if not department:
         abort(404)
-    resource_list = [resource.to_dict()
-                    for resource in department.resources]
+#    resource_list = [resource.to_dict()
+#                    for resource in department.resources]
+    resource_list = []
+    for resource in department.resources:
+        resource_dict = resource.to_dict()
+        # Serialize teacher object in resource as well
+        teacher = resource.teacher
+        if teacher:
+            resource_dict['teacher'] = teacher.to_dict()
+        resource_list.append(resource_dict)
 
     return jsonify(resource_list)
 
@@ -98,7 +106,13 @@ def get_resource(resource_id):
     if not resource:
         abort(404)
 
-    return jsonify(resource.to_dict())
+    resource_dict = resource.to_dict()
+    # Serialize teacher object in resource as well
+    teacher = resource.teacher
+    if teacher:
+        resource_dict['teacher'] = teacher.to_dict()
+
+    return jsonify(resource_dict)
 
 
 @api_views.route('/resourcesbyslug/<slug>',
@@ -108,7 +122,12 @@ def get_resource_by_slug(slug):
     """ Retrieves a specific Resource """
     for resource in storage.all(Resource).values():
         if resource.slug == slug:
-            return jsonify(resource.to_dict())
+            # Searialize teacher object in resource
+            resource_dict = resource.to_dict()
+            teacher = resource.teacher
+            if teacher:
+                resource_dict['teacher'] = teacher.to_dict()
+            return jsonify(resource_dict)
 
     abort(404)
 

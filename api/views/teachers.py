@@ -69,12 +69,12 @@ def create_teacher(department_id):
     return jsonify(new_teacher.to_dict()), 201
 
 
-@api_views.route('/teachers/<email>',
+@api_views.route('/teachers/<teacher_id>',
                  methods=['GET'], strict_slashes=False)
-@swag_from('documentation/teacher/get_email_teacher.yml', methods=['get'])
-def get_teacher(email):
+@swag_from('documentation/teacher/get_id_teacher.yml', methods=['get'])
+def get_teacher(teacher_id):
     """ Retrieves a specific Teacher """
-    teacher = storage.get_user_by_email(email, "teacher")
+    teacher = storage.get(Teacher, teacher_id)
     if not teacher:
         abort(404)
 

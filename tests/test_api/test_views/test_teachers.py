@@ -69,7 +69,7 @@ class TeacherApiTestCase(unittest.TestCase):
 
     def test_get_teacher(self):
         """ Test GET /api/teachers/<email> endpoint """
-        response = self.api.get(f"/api/teachers/{self.teacher.email}")
+        response = self.api.get(f"/api/teachers/{self.teacher.id}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
         self.assertEqual(data_returned, self.teacher.to_dict())

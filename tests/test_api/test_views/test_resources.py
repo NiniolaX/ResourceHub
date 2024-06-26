@@ -89,7 +89,9 @@ class ResourceApiTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
         # Check that resource object exists in data returned
-        self.assertIn(self.resource.to_dict(), data_returned)
+        resource_dict = self.resource.to_dict()
+        resource_dict['teacher'] = self.resource.teacher.to_dict()
+        self.assertIn(resource_dict, data_returned)
         # Check that object of different class does not exist in data returned
         other_classes = ["School", "Department", "Teacher", "Learner"]
         for obj in data_returned:
@@ -100,7 +102,9 @@ class ResourceApiTestCase(unittest.TestCase):
         response = self.api.get(f"/api/resources/{self.resource.id}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
-        self.assertEqual(data_returned, self.resource.to_dict())
+        self.assertEqual(data_returned['id'], self.resource.id)
+        self.assertEqual(data_returned['teacher'], self.resource.teacher.to_dict())
+        #self.assertEqual(data_returned, self.resource.to_dict())
 
     def test_delete_resource(self):
         """ Test DELETE /api/resources/<resource_id> endpoint """

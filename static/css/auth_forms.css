@@ -25,6 +25,7 @@ input, select {
     border: none;
     background-color: #E69138;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .submit-button:hover {
@@ -35,6 +36,7 @@ input, select {
 .submit-button:active {
     background-color: #0D1A49;
     color: #fff;
+    cursor: grab;
 }
 
 .exist {

@@ -1,0 +1,50 @@
+.dashboard-container {
+    width: 70vw;
+    min-height: 65vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 80px 100px;
+    border: solid 1px #ccc;
+}
+
+.title {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    background-color: #0D1A49;
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Style for section containing user items(i.e a school's items, teacher's items, etc) */
+section.user-items {
+    border: solid 1px red;
+    box-sizing: border-box;
+    padding: 20px 0;
+}
+
+.add-button {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #E69138;
+    width: 150px;
+    height: 23px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #B40909;
+    width: 150px;
+    height: 23px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Style for buttons outside forms (i.e. 'create resource', 'manage departments', 'manage learners', etc */
+.action {
+    text-decoration: none;
+}

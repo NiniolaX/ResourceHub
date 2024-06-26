@@ -12,10 +12,10 @@ body {
 }
 
 .container {
-    width: 1080px;
-    margin: 0 auto;
+    width: 80vw;
     min-height: 65vh;
-    border: solid 1px red;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 p.flash {

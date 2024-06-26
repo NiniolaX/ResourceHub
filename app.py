@@ -131,6 +131,7 @@ def render_dashboard():
         resources = response.json()
         return render_template("learner_dashboard.html", resources=resources)
     else:
+        flash('Not a valid user type', 'error')
         return redirect(url_for('login'))
 
 
@@ -218,7 +219,7 @@ def add_teacher():
         "lname": request.form["lname"],
         "email": request.form["email"],
         "title": request.form.get("title"),
-        "password": generate_password_hash(request.form["lname"])
+        "password": generate_password_hash(request.form["lname"].lower())
     }
     department_id = request.form["department_id"]
     response = requests.post(f"http://127.0.0.1:5001/api/departments/{department_id}/teachers",
@@ -277,7 +278,7 @@ def add_learner():
         "fname": request.form["fname"],
         "lname": request.form["lname"],
         "email": request.form["email"],
-        "password": generate_password_hash(request.form["lname"])
+        "password": generate_password_hash(request.form["lname"].lower())
     }
     department_id = request.form["department_id"]
     response = requests.post(f"http://127.0.0.1:5001/api/departments/{department_id}/learners",
@@ -361,9 +362,6 @@ def view_resource(slug):
         # Remove time from resource creation date
         t_index = resource['created_at'].find('T')
         resource['created_at'] = resource['created_at'][:t_index]
-
-        # Convert teacher to dictionary
-        #resource['teacher'] = resource['teacher'].to_dict()
         return render_template('view_resource.html', resource=resource)
     else:
         error_message = response.json().get("error", "An error has occured")

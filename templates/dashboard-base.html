@@ -7,36 +7,36 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_forms.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard-base.css') }}" type="text/css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source Serif Pro'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source Sans Pro'>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.png') }}" alt="logo" type="image/x-icon">
 </head>
 <body>
     <header>
     	<div class="header-left">
-    		<img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+    		<a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"></a>
             </div>
     	<div class="header-right">
+            <a href="{{ url_for('render_dashboard') }}">Home</a>
             {% if current_user.fname %}
-            <p class="user-name">Hello <strong>{{ current_user.fname }}</strong>!</p>
+            <p class="user-name">Hello <em><strong>{{ current_user.fname }}</strong></em>!</p>
             {% else %}
-            <p class="user-name">Hello <strong>{{ current_user.name }}</strong>!</p>
+            <p class="user-name">Hello <em><strong>{{ current_user.name }}</strong></em>!</p>
             {% endif %}
             <img class="bell" src="{{ url_for('static', filename='images/bell.png') }}" alt="bell">
-        	<button class="logout"><a href="{{ url_for('logout') }}">Logout</a></button>
+        	<button class="logout"><a class="action" id="button" href="{{ url_for('logout') }}">Logout</a></button>
     	</div>
     </header>
 
-    <div class="container">
+    <div class="dashboard-container">
     {% block content %}
     {% endblock %}
     </div><!-- end main container -->
     
     <footer id="footer">
         <div class="footer-left">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResourceHub">
+    		<a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"></a>
             <p>ResourceHub is an organised system for distributing and managing educational resources within learning institutions.</p>
         </div>
         <div class="footer-right">
