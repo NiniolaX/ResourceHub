@@ -18,7 +18,7 @@
     		<a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"></a>
             </div>
     	<div class="header-right">
-            <a href="{{ url_for('render_dashboard') }}">Home</a>
+            <a href="{{ url_for('render_dashboard') }}">Dashboard</a>
             {% if current_user.fname %}
             <p class="user-name">Hello <em><strong>{{ current_user.fname }}</strong></em>!</p>
             {% else %}

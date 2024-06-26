@@ -46,7 +46,7 @@ def create_department(school_id):
             return make_response({"error": f"Missing {param}"}, 400)
 
     # Check that department name does not already exist in database
-    for department in storage.all(Department).values():
+    for department in school.departments:
         if department.name == request_data['name']:
             return make_response({"error": "Department already exists"}, 400)
 
