@@ -1,0 +1,46 @@
+{% extends "dashboard-base.html" %}
+
+{% block content %}
+
+<h3 class="title">Manage learners</h3>
+
+<section class="user-items">
+    <ul class="department-list">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <p class="flash">{{ messages[0][1] }}</p>
+            {% endif %}
+        {% endwith %}
+
+        {% for department in departments %}
+        <li class="department">
+            <p>{{ department['name'] }}</p>
+
+            <ul class="learner-list">
+                <form class="add-learner" action="{{ url_for('add_learner') }}" method="post">
+                    <input class="fname" name="fname" type="text" placeholder="Enter first name here" required>
+                    <input class="lname" name="lname" type="text" placeholder="Enter last name here" required>
+                    <input class="email" name="email" type="email" placeholder="Enter email here" required>
+                    <input type="hidden" name="department_id" value="{{ department['id'] }}">
+                    <input class="add-button" type="submit" value="Add">
+                </form>
+
+                {% for learner in learners[department['id']] %}
+                <li class="learner">
+                    <p>{{ learner['fname'] }}</p>
+                    <p>{{ learner['lname'] }}</p>
+                    <p>{{ learner['email'] }}</p>
+                    <form class="delete-learner" action="{{ url_for('delete_learner')}}" method="post">
+                        <input type="hidden" name="learner_id" value="{{ learner['id']}}">
+                        <input class="delete-button" type="submit" value="Delete">
+                    </form>
+                </li>
+                {% endfor %}
+            </ul><!-- end .learner-list -->
+        </li><!-- end .department -->
+        {% endfor %}
+
+    </ul><!-- end .department.list -->
+</section>
+
+{% endblock %}

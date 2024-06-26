@@ -1,0 +1,134 @@
+#banner-section, #features-section, #demo-section {
+    height: auto;
+    width: 100%;
+    margin: 5rem 0px;
+    box-sizing: border-box;
+}
+
+#banner-section {
+    background-image: url("../images/library.jpg");
+    display: flex;
+}
+
+#banner-section .inner_box {
+    width: 60%;
+    height: 400px;
+    margin: 40px auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+    border: solid 1px #000;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    color: #000;
+}
+
+#banner-section .inner_box h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 46px;
+    width: 100%;
+}
+
+#banner-section .inner_box p {
+    margin-top: 22px;
+    width: 100%;
+}
+#banner-section .grid {
+    width: 20%;
+    display: grid;
+    justify-content: flex-end;
+}
+
+.get-started {
+    border: 1px solid #0D1A49;
+    height: 40px;
+    width: 144px;
+    color: #0D1A49;
+    background-color: #E69138;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    grid-row-start: 8;
+    grid-row-end: 9;
+}
+
+@media screen and (max-width: 1057px) { 
+    #banner-section {
+        flex-basis: 100%;
+        height: auto;
+        margin: 50px 20px;
+    }
+    .inner_box {
+        box-sizing: content-box;
+        display: flex;
+        flex-shrink: 0;
+        flex-grow: 0;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        margin-top: 70px;
+        margin: 50px;
+        height: auto;
+        width: 30%;
+        padding: 20px;
+        font-size: 10px;
+    }
+}
+
+.sub-head {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-bottom: 20px;
+}
+
+#features-subsection {
+    display: flex;
+}
+.item {
+    flex-basis: 30%;
+    height: auto;
+    border: 1px solid #0D1A49;
+    box-sizing: border-box;
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+.item h3 {
+    padding: 1rem;
+}
+
+.item1, .item2, .item3 {
+    flex-basis: 30%;
+    width: auto;
+    height: 350px;
+    border: 1px solid #0D1A49;
+}
+
+.item1 {
+    background-image: url("../images/seemless_resource.png");
+    background-position: center;
+}   
+.item2 {
+    background-image: url("../images/centralized_resource.jpg");
+    background-position: center;
+}
+.item3 {
+    background-image: url("../images/user_friendly.webp");
+    background-position: center;
+}
+
+@media screen and (max-width: 1057px) {
+    #features-section {
+        margin: 20px;
+    }
+    .item h3 {
+        font-size: 18px;
+    }
+}
+
+h3 {
+    margin-top: 3rem;
+}

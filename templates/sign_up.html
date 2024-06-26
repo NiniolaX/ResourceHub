@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 id="form-header">Sign up your Institution</h3>
+<form id="auth" action="{{ url_for('signup_post') }}" method="POST">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <p class="flash"><em>{{ messages[0][1] }}</em></p>
+        {% endif %}
+    {% endwith %}
+    <label for="name">Name of Institution</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <input type="submit" value="Submit" class="submit-button">
+
+    <p class="exist">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+</form>
+
+{% endblock %}

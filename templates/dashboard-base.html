@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard-base.css') }}" type="text/css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source Sans Pro'>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.png') }}" alt="logo" type="image/x-icon">
+</head>
+<body>
+    <header>
+    	<div class="header-left">
+    		<a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"></a>
+            </div>
+    	<div class="header-right">
+            <a href="{{ url_for('render_dashboard') }}">Dashboard</a>
+            {% if current_user.fname %}
+            <p class="user-name">Hello <em><strong>{{ current_user.fname }}</strong></em>!</p>
+            {% else %}
+            <p class="user-name">Hello <em><strong>{{ current_user.name }}</strong></em>!</p>
+            {% endif %}
+            <img class="bell" src="{{ url_for('static', filename='images/bell.png') }}" alt="bell">
+        	<button class="logout"><a class="action" id="button" href="{{ url_for('logout') }}">Logout</a></button>
+    	</div>
+    </header>
+
+    <div class="dashboard-container">
+    {% block content %}
+    {% endblock %}
+    </div><!-- end main container -->
+    
+    <footer id="footer">
+        <div class="footer-left">
+    		<a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"></a>
+            <p>ResourceHub is an organised system for distributing and managing educational resources within learning institutions.</p>
+        </div>
+        <div class="footer-right">
+            <div>
+                <p class="foot">Contact Us</p>
+                <p>info@resourcehub.com</p>
+            </div>
+            <div>
+                <p class="foot">Institutions</p>
+                <p>University of Lagos</p>
+                <p>Convenant university</p>
+            </div>
+            <div>
+                <p class="foot">About</p>
+                <p>Developer</p>
+                <p>Terms of Services</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

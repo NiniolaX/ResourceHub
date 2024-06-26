@@ -1,0 +1,16 @@
+{% extends "dashboard-base.html" %}
+
+{% block content %}
+
+<h3 class="title">Resources</h3>
+<section class="user-items">
+    <ul class="resources">
+        {% for resource in resources %}
+        <li class="resource">
+            <p><a href="{{ url_for('view_resource', slug=resource.slug) }}">{{ resource['title'] }}</a> by <span class="author">{{ resource['teacher']['fname'] }} {{ resource['teacher']['lname'] }}</span></p>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

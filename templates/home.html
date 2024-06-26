@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="banner-section">
+    <div class="inner_box">
+        <h1>Simplfying academic resource sharing and management</h1>
+        <p>Empower your institutions with seamless resource sharing for learners and educators.</p>
+    </div>
+    <div class="grid">
+        <button class="get-started"><a class="action" href="{{ url_for('signup') }}"><p>Get Started</p></a></button>
+    </div>
+</section><!-- end banner section-->
+
+<section id="features-section">
+    <h2 class="sub-head">Features</h2>
+    <div id="features-subsection">
+        <div class="item">
+            <div class="item1"></div>
+            <h3>Seamless resource Sharing</h3>
+            <p>Teachers and Instructors can seamlesslessly upload resource materials and share with their students.</p>
+        </div>
+        <div class="item">
+            <div class="item2"></div>
+            <h3>Centralized Resorce management</h3>
+            <p>Institutions can manage all academic resources without stress.</p>
+        </div>
+        <div class="item">
+            <div class="item3"></div>
+            <h3>User-friendly access</h3>
+            <p>Learners can access vital learning materials at anywhere anytime.</p>
+        </div>
+    </div>
+</section><!-- end features section-->
+
+<section id="demo-section">
+    <h2 class="sub-head">Watch Demo</h2>
+    <video width="100%" height="auto" controls>
+    <source src="https://app.heygen.com/share/f0b6207d494541949e7b5ffc356fd387" type="video/mp4"></video>
+</section><!-- end demo section -->
+
+{% endblock %}

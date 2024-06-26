@@ -1,0 +1,26 @@
+* {
+    margin: 0 auto;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*font-family: 'Source Serif Pro', sans-serif;
+    font-size: 14px;*/
+}
+
+.container {
+    width: 80vw;
+    min-height: 65vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+p.flash {
+    color: red;
+    padding-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}

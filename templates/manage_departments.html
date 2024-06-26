@@ -1,0 +1,31 @@
+{% extends "dashboard-base.html" %}
+
+{% block content %}
+<h3 class="title">Manage departments</h3>
+
+<section class="user-items">
+    <ul class="department-list">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <p class="flash">{{ messages[0][1] }}</p>
+            {% endif %}
+        {% endwith %}
+
+
+        <form class="add-department" action="{{ url_for('add_department') }}" method="post">
+            <input class="department-name" type="text" placeholder="Enter department here" name="name" required>
+            <input class="add-button" type="submit" value="Add">
+        </form>
+
+        {% for department in departments %}
+        <li class="department">
+            <p>{{ department['name'] }}</p>
+            <form class="delete-department" action="{{ url_for('delete_department')}}" method="post">
+                <input type="hidden" name="department_id" value="{{ department['id']}}">
+                <input class="delete-button" type="submit" value="Delete">
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
