@@ -20,8 +20,7 @@ def get_resources_by_department(department_id):
     department = storage.get(Department, department_id)
     if not department:
         abort(404)
-#    resource_list = [resource.to_dict()
-#                    for resource in department.resources]
+
     resource_list = []
     for resource in department.resources:
         resource_dict = resource.to_dict()
@@ -44,8 +43,12 @@ def get_resources_by_teacher(teacher_id):
     if not teacher:
         abort(404)
 
-    resource_list = [resource.to_dict()
-                    for resource in teacher.resources]
+    resource_list = []
+    for resource in teacher.resources:
+        resource_dict = resource.to_dict()
+        # Serialize teacher object in resource
+        resource_dict['teacher'] = teacher.to_dict()
+        resource_list.append(resource_dict)
 
     return jsonify(resource_list)
 
