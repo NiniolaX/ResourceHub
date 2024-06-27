@@ -12,16 +12,20 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import requests
 
 app = Flask(__name__)
-app.secret_key = 'my_secret_key'
+app.secret_key = environ.get('SECRET_KEY', 'default_secret_key')
 
 login_manager = LoginManager()
 login_manager.login_view = "login"
 login_manager.init_app(app)
 
+# Get API host and port
+api_host = environ.get('API_HOST', '127.0.0.1')
+api_port = int(environ.get('API_PORT', 5001))
+
 # Function loads user to login manager
 @login_manager.user_loader
 def load_user(user_id):
-    response = requests.get(f"http://127.0.0.1:5001/api/users/{user_id}/")
+    response = requests.get(f"http://{api_host}:{api_port}/api/users/{user_id}/")
     if response.status_code == 200:
         user_data = response.json()
 
@@ -69,7 +73,7 @@ def signup_post():
                    "password": generate_password_hash(request.form["password"])
                   }
 
-    response = requests.post("http://127.0.0.1:5001/api/schools/",
+    response = requests.post(f"http://{api_host}:{api_port}/api/schools/",
                              data=json.dumps(school_info),
                              headers={"Content-Type": "application/json"})
 
@@ -98,7 +102,7 @@ def login_post():
     user_type = request.form['user_type']
 
     # Check that user exists
-    response = requests.get(f"http://127.0.0.1:5001/api/usersbyemail/{email}/")
+    response = requests.get(f"http://{api_host}:{api_port}/api/usersbyemail/{email}/")
     if response.status_code == 404:
         flash("User does not exist")
         return redirect(url_for('login'))
@@ -122,12 +126,12 @@ def render_dashboard():
         return render_template("school_dashboard.html")
     elif isinstance(current_user, Teacher):
         teacher_id = current_user.id
-        response = requests.get(f"http://127.0.0.1:5001/api/teachers/{teacher_id}/resources")
+        response = requests.get(f"http://{api_host}:{api_port}/api/teachers/{teacher_id}/resources")
         resources = response.json()
         return render_template("teacher_dashboard.html", resources=resources)
     elif isinstance(current_user, Learner):
         department_id = current_user.department_id
-        response = requests.get(f"http://127.0.0.1:5001/api/departments/{department_id}/resources")
+        response = requests.get(f"http://{api_host}:{api_port}/api/departments/{department_id}/resources")
         resources = response.json()
         return render_template("learner_dashboard.html", resources=resources)
     else:
@@ -149,7 +153,7 @@ def logout():
 def render_manage_departments():
     """ Renders manage departments page """
     school_id = current_user.id
-    response = requests.get(f"http://127.0.0.1:5001/api/schools/{school_id}/departments")
+    response = requests.get(f"http://{api_host}:{api_port}/api/schools/{school_id}/departments")
     departments = response.json()
     return render_template("manage_departments.html",
                            departments=departments)
@@ -162,7 +166,7 @@ def add_department():
     """ Adds a new department to a school """
     name = request.form["name"]
     school_id = current_user.id
-    response = requests.post(f"http://127.0.0.1:5001/api/schools/{school_id}/departments",
+    response = requests.post(f"http://{api_host}:{api_port}/api/schools/{school_id}/departments",
                              data=json.dumps({"name": name}),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
@@ -179,7 +183,7 @@ def add_department():
 def delete_department():
     """ Deletes a department """
     department_id = request.form["department_id"]
-    response = requests.delete(f"http://127.0.0.1:5001/api/departments/{department_id}")
+    response = requests.delete(f"http://{api_host}:{api_port}/api/departments/{department_id}")
     if response.status_code != 200:
         error_message = response.json().get("error", "An error has occured")
         flash(error_message)
@@ -196,14 +200,14 @@ def render_manage_teachers():
     school_id = current_user.id
 
     # Get departments
-    response = requests.get(f"http://127.0.0.1:5001/api/schools/{school_id}/departments")
+    response = requests.get(f"http://{api_host}:{api_port}/api/schools/{school_id}/departments")
     departments = response.json()
 
     # Get teachers
     teachers = {}
     for department in departments:
         department_id = department['id']
-        response2 = requests.get(f"http://127.0.0.1:5001/api/departments/{department_id}/teachers")
+        response2 = requests.get(f"http://{api_host}:{api_port}/api/departments/{department_id}/teachers")
         teachers[department_id] = response2.json()
 
     return render_template("manage_teachers.html", departments=departments, teachers=teachers)
@@ -222,7 +226,7 @@ def add_teacher():
         "password": generate_password_hash(request.form["lname"].lower())
     }
     department_id = request.form["department_id"]
-    response = requests.post(f"http://127.0.0.1:5001/api/departments/{department_id}/teachers",
+    response = requests.post(f"http://{api_host}:{api_port}/api/departments/{department_id}/teachers",
                              data=json.dumps(teacher_info),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
@@ -239,7 +243,7 @@ def add_teacher():
 def delete_teacher():
     """ Deletes a teacher from a school """
     teacher_id = request.form["teacher_id"]
-    response = requests.delete(f"http://127.0.0.1:5001/api/teachers/{teacher_id}")
+    response = requests.delete(f"http://{api_host}:{api_port}/api/teachers/{teacher_id}")
     if response.status_code != 200:
         error_message = response.json().get("error", "An error has occured")
         flash(error_message)
@@ -256,14 +260,14 @@ def render_manage_learners():
     school_id = current_user.id
 
     # Get departments
-    response = requests.get(f"http://127.0.0.1:5001/api/schools/{school_id}/departments")
+    response = requests.get(f"http://{api_host}:{api_port}/api/schools/{school_id}/departments")
     departments = response.json()
 
     # Get teachers
     learners = {}
     for department in departments:
         department_id = department['id']
-        response2 = requests.get(f"http://127.0.0.1:5001/api/departments/{department_id}/learners")
+        response2 = requests.get(f"http://{api_host}:{api_port}/api/departments/{department_id}/learners")
         learners[department_id] = response2.json()
 
     return render_template("manage_learners.html", departments=departments, learners=learners)
@@ -281,7 +285,7 @@ def add_learner():
         "password": generate_password_hash(request.form["lname"].lower())
     }
     department_id = request.form["department_id"]
-    response = requests.post(f"http://127.0.0.1:5001/api/departments/{department_id}/learners",
+    response = requests.post(f"http://{api_host}:{api_port}/api/departments/{department_id}/learners",
                              data=json.dumps(learner_info),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
@@ -298,7 +302,7 @@ def add_learner():
 def delete_learner():
     """ Deletes a learner from a school """
     learner_id = request.form["learner_id"]
-    response = requests.delete(f"http://127.0.0.1:5001/api/learners/{learner_id}")
+    response = requests.delete(f"http://{api_host}:{api_port}/api/learners/{learner_id}")
     if response.status_code != 200:
         error_message = response.json().get("error", "An error has occured")
         flash(error_message)
@@ -325,7 +329,7 @@ def create_resource():
         "content": request.form['content']
     }
     teacher_id = request.form['teacher_id']
-    response = requests.post(f"http://127.0.0.1:5001/api/teachers/{teacher_id}/resources",
+    response = requests.post(f"http://{api_host}:{api_port}/api/teachers/{teacher_id}/resources",
                              data=json.dumps(resource_info),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
@@ -342,7 +346,7 @@ def create_resource():
 def delete_resource():
     """ Deletes a resource """
     resource_id = request.form["resource_id"]
-    response = requests.delete(f"http://127.0.0.1:5001/api/resources/{resource_id}")
+    response = requests.delete(f"http://{api_host}:{api_port}/api/resources/{resource_id}")
     if response.status_code != 200:
         error_message = response.json().get("error", "An error has occured")
         flash(error_message)
@@ -355,7 +359,7 @@ def delete_resource():
 @login_required
 def view_resource(slug):
     """ Views a resource by slug """
-    response = requests.get(f"http://127.0.0.1:5001/api/resourcesbyslug/{slug}")
+    response = requests.get(f"http://{api_host}:{api_port}/api/resourcesbyslug/{slug}")
     if response.status_code == 200:
         resource = response.json()
 
@@ -370,4 +374,6 @@ def view_resource(slug):
 
 if __name__ == "__main__":
     """ Start the Flask application """
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    host = environ.get('APP_HOST', '0.0.0.0')
+    port = int(environ.get('APP_PORT', 5000))
+    app.run(host=host, port=port)

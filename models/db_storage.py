@@ -10,7 +10,7 @@ from models.learner import Learner
 from models.resource import Resource
 from models.school import School
 from models.teacher import Teacher
-from os import getenv
+from os import environ
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, registry
@@ -29,15 +29,10 @@ class DBStorage:
     __engine = None
     __session = None
 
-    def __init__(self):
+    def __init__(self, DATABASE_URI):
         """Instantiates a DBStorage object"""
-        user = getenv('HUB_MYSQL_USER')
-        pwd = getenv('HUB_MYSQL_PWD')
-        host = getenv('HUB_MYSQL_HOST')
-        db = getenv('HUB_MYSQL_DB')
-        env = getenv('HUB_ENV')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(user, pwd, host, db))
+        self.__engine = create_engine(DATABASE_URI)  # DATABASE_URI defined and passed in models/__init__.py
+        env = environ.get('HUB_ENV')
         if env == "test":
             # Drop all tables
             Base.metadata.drop_all(self.__engine)

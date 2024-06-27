@@ -13,7 +13,7 @@ Attributes:
 """
 from api.views import api_views
 from flask import Flask, make_response, jsonify
-# from flask_cors import CORS
+from flask_cors import CORS
 from flasgger import Swagger
 from flasgger.utils import swag_from
 from models import storage
@@ -26,7 +26,7 @@ api.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 api.register_blueprint(api_views)
 
 # Define conditions for Cross-Origin Resource Sharing
-# cors = CORS(api, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(api, resources={r"/api/*": {"origins": "*"}})
 
 
 @api.teardown_appcontext
@@ -56,6 +56,6 @@ Swagger(api)
 
 if __name__ == "__main__":
     """ Main Function """
-    host = environ.get("HBNB_API_HOST", "0.0.0.0")
-    port = int(environ.get("HBNB_API_PORT", 5001))
-    api.run(host=host, port=port, threaded=True, debug=True)
+    host = environ.get("API_HOST", "0.0.0.0")
+    port = int(environ.get("API_PORT", 5001))
+    api.run(host=host, port=port, threaded=True)
