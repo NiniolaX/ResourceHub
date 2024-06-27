@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Contains the Department class """
-import models
-from models.base_model import BaseModel, Base
+from api import models
+from api.models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship

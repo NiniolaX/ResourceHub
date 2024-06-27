@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """ Handles all default RestFul API actions for Resources """
+from api.models import storage
+from api.models.department import Department
+from api.models.resource import Resource
+from api.models.teacher import Teacher
 from api.views import api_views
 from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
-from models import storage
-from models.department import Department
-from models.resource import Resource
-from models.teacher import Teacher
 import uuid
 
 

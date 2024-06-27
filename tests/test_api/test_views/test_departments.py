@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """ Tests the department view of the API """
-import unittest
-import json
 from api.api import api
-from models import storage
-from models.department import Department
-from models.school import School
+from api.models import storage
+from api.models.department import Department
+from api.models.school import School
 from os import getenv
+import json
+import unittest
 
 
 class DepartmentApiTestCase(unittest.TestCase):
@@ -114,11 +114,12 @@ class DepartmentApiTestCase(unittest.TestCase):
         response2 = self.api.post(f"/api/schools/{self.school.id}/departments/",
                                   data=json.dumps(department_info),
                                   content_type="^/application/json")
-        response3 = self.api.post(f"/api/schools/{self.school.id}/departments/",
+        response3 = self.api.post(f"/api/schools/{fake_department_info['school_id']}/departments/",
                                   data=json.dumps(fake_department_info),
                                   content_type="application/json")
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response2.status_code, 400)
+        self.assertEqual(response3.status_code, 404)
 
     def test_update_department(self):
         """ Test PUT /api/department/<department_id>" endpoint """

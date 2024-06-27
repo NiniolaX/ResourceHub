@@ -11,12 +11,12 @@ Attributes:
     Classes:
         None
 """
+from api.models import storage
 from api.views import api_views
 from flask import Flask, make_response, jsonify
 from flask_cors import CORS
 from flasgger import Swagger
 from flasgger.utils import swag_from
-from models import storage
 from os import environ
 
 api = Flask(__name__)
@@ -58,4 +58,4 @@ if __name__ == "__main__":
     """ Main Function """
     host = environ.get("API_HOST", "0.0.0.0")
     port = int(environ.get("API_PORT", 5001))
-    api.run(host=host, port=port, threaded=True)
+    api.run(host=host, port=port, threaded=True, debug=True)
