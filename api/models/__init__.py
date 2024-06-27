@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Initializes the database"""
-from models.db_storage import DBStorage
+from api.models.db_storage import DBStorage
 from os import environ
 
 user = environ.get('HUB_MYSQL_USER')

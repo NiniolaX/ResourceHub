@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ Handles all default RestFul API actions for Departments """
+from api.models import storage
+from api.models.department import Department
+from api.models.school import School
 from api.views import api_views
 from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
-from models import storage
-from models.department import Department
-from models.school import School
 
 
 @api_views.route('/schools/<school_id>/departments', methods=['GET'], strict_slashes=False)

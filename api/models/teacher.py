@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """ Contains the Teacher class"""
-import models
-import sqlalchemy
-from flask_login import UserMixin
-from models.base_model import BaseModel, Base
+from api import models
+from api.models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
+import sqlalchemy
 
 
-class Teacher(BaseModel, Base, UserMixin):
+class Teacher(BaseModel, Base):
     """Representation of teacher """
     __tablename__ = 'teachers'
     title = Column(String(60))

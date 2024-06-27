@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """ Handles all default RestFul API actions for Users """
+from api.models import storage
 from api.views import api_views
 from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
-from models import storage
 
 
 @api_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)

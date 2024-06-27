@@ -3,12 +3,12 @@
 import unittest
 import json
 from api.api import api
-from models import storage
-from models.department import Department
-from models.learner import Learner
-from models.resource import Resource
-from models.school import School
-from models.teacher import Teacher
+from api.models import storage
+from api.models.department import Department
+from api.models.learner import Learner
+from api.models.resource import Resource
+from api.models.school import School
+from api.models.teacher import Teacher
 from os import getenv
 
 

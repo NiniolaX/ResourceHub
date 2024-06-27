@@ -4,16 +4,16 @@ Contains the class DBStorage
 """
 
 #import models
-from models.base_model import BaseModel, Base
-from models.department import Department
-from models.learner import Learner
-from models.resource import Resource
-from models.school import School
-from models.teacher import Teacher
+from api.models.base_model import BaseModel, Base
+from api.models.department import Department
+from api.models.learner import Learner
+from api.models.resource import Resource
+from api.models.school import School
+from api.models.teacher import Teacher
 from os import environ
-import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, registry
+import sqlalchemy
 
 classes = {
         "school": School,
