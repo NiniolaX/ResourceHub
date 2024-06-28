@@ -1,0 +1,38 @@
+.department-name {
+    margin: 20px 0 20px 0;
+    padding: 0;
+    border: none;
+    font-weight: bold;
+}
+.teacher-list input {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+}
+.add-teacher {
+    display: flex;
+    border: 1px solid rd;
+    width: 100%;
+}
+.add-teacher input {
+    flex-basis: 30%;
+    gap: 5px;
+}
+.teacher {
+    border: 1px solid #ccc;
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+}
+.teacher p {
+    display: flex;
+    padding: 5px;
+    border: 1px solid  #ccc;
+    width: 100%;
+}
+.delete-teacher {
+    margin: 5px;
+}
