@@ -68,3 +68,8 @@ button.manage-item {
     font-family: 'Source Sans Pro', sans-serif;
     border-radius: 20px;
 }
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none ;
+}
