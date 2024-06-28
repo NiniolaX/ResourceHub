@@ -1,0 +1,32 @@
+.school_title {
+    width: 1059px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #0D1A49;
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.dashboard-box {
+    height:400px;
+    width: 1059px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.dashboard-box button {
+    border: solid 2px #fff;
+    margin: 100px 50px 50px 50px;
+    background-color: #0D1A49;
+    color: #E69138;
+    font-size: 18px;
+    font-weight:500;
+    width: 257px;
+    height: 40px;
+    border-radius: 20px;
+    box-shadow: 2px 2px;
+}
+button#manage-resources {
+    grid-column-start: 2;
+}

@@ -1,0 +1,16 @@
+.department {
+    border: none;
+    font-weight: bold;
+}
+.add-teacher {
+    display: flex;
+    width: 100%;
+    border: 1px solid purple;
+}
+.teacher-list input {
+    width: 301px;
+    height: 18ox;
+    border: 1px solid blue;
+    flex-basis: 15%;
+    margin-right: 50px;
+}

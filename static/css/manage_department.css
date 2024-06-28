@@ -1,0 +1,20 @@
+.department-name, .department {
+    height: 18px;
+    width: 600px;
+    border: solid 1px red;
+    
+}
+
+.add-button {
+    height: 23px;
+    width: 200px;
+}
+
+.department {
+    list-style-type: none;
+    margin: 20px 0 20px 0;
+    display: inline-block;
+}
+.delete-button:hover {
+    background-color: darkred;
+}

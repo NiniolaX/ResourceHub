@@ -27,17 +27,18 @@ section.user-items {
 .add-button {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: #E69138;
-    width: 150px;
+    width: 200px;
     height: 23px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    column-gap: 40px;
 }
 
 .delete-button {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: #B40909;
-    width: 150px;
+    width: 200px;
     height: 23px;
     border-radius: 10px;
     color: #fff;
