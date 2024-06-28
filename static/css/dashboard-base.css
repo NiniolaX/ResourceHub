@@ -50,3 +50,21 @@ section.user-items {
     text-decoration: none;
     color: default;
 }
+
+.dashboard-home {
+    text-decoration: underline;
+    color: #000;
+}
+
+button.manage-item {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #fff;
+    background-color: #0D1A49;
+    box-shadow: -4px 4px 4px 0 #0D1A49;
+    color: #E69138;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: 20px;
+}
