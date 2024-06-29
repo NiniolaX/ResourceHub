@@ -2,7 +2,7 @@
     border: 1px solid #ccc;
     margin-bottom: 20px;
     padding: 20px;
-    box-shadow: 2px 2px 2px #ccc;
+    box-shadow: 2px 2px 2px;
 }
 .department-name {
     margin-top: 15px;
@@ -14,19 +14,15 @@
     display: flex;
     margin: 0;
     padding: 0;
-
 }
 .add-teacher {
-    display: flex;
-    border: 1px solid rd;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     width: 100%;
+    column-gap: 35px;
 }
-.add-teacher input {
-    flex-basis: 30%;
-    gap: 5px;
-}
+
 .teacher {
-    border: 1px solid #ccc;
     display: flex;
     gap: 5px;
     width: 100%;
@@ -38,6 +34,7 @@
     padding: 5px;
     border: 1px solid  #ccc;
     width: 100%;
+    margin-top: 5px;
 }
 .delete-teacher {
     margin: 5px;
