@@ -19,7 +19,6 @@
 
 /* Style for section containing user items(i.e a school's items, teacher's items, etc) */
 section.user-items {
-    border: solid 1px red;
     box-sizing: border-box;
     padding: 20px 0;
 }
