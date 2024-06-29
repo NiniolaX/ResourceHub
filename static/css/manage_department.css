@@ -4,16 +4,11 @@
     gap: 50px;
     box-sizing: border-box;
 }
-.department-name{
+input.department-name{
     width: 80%;
-    border: solid 1px red;
+    border: 1px solid red;
     flex-basis: 70%;
     padding: 5px;
-}
-ul.department-list {
-    width: 100%;
-    display: flx;
-    flex-direction: colmn;
 }
 .delete-department {
     display: flex;

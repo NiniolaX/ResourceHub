@@ -33,6 +33,7 @@ section.user-items {
     border: none;
     cursor: pointer;
     column-gap: 40px;
+    margin: 15px 0;
 }
 
 .delete-button {
