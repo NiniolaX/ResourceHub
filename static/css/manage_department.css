@@ -3,12 +3,17 @@
     width: 100%;
     gap: 50px;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 10px;
 }
 input.department-name{
-    width: 80%;
-    border: 1px solid red;
-    flex-basis: 70%;
+    flex-basis: 72%;
+    height: 30px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
     padding: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .delete-department {
     display: flex;
@@ -18,13 +23,12 @@ li.department {
     width: 100%;
     box-sizing: border-box;
     gap: 50px;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .department p {
     padding: 5px;
     flex-basis: 80%;
-    border: 1px solid red;
-    width: 80%;
+    border: 1px solid #ccc;
 }
 .department form {
     flex-basis: 20%;
