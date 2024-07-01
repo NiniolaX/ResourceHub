@@ -1,0 +1,11 @@
+p.resource-info {
+    padding: 20px;
+}
+
+p.resource-content {
+    display: flex;
+    border: 1px solid #000;
+    height: auto;
+    width: 100%;
+    padding: 30px;
+}

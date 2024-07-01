@@ -1,10 +1,10 @@
-.add-department {
+.add-department, .resource {
     display: flex;
     width: 100%;
     gap: 50px;
     box-sizing: border-box;
 }
-input.department-name{
+input.department-name {
     width: 80%;
     border: 1px solid red;
     flex-basis: 70%;
