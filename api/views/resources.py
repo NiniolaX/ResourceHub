@@ -43,12 +43,7 @@ def get_resources_by_teacher(teacher_id):
     if not teacher:
         abort(404)
 
-    resource_list = []
-    for resource in teacher.resources:
-        resource_dict = resource.to_dict()
-        # Serialize teacher object in resource
-        resource_dict['teacher'] = teacher.to_dict()
-        resource_list.append(resource_dict)
+    resource_list = [resource.to_dict() for resource in teacher.resources]
 
     return jsonify(resource_list)
 

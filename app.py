@@ -117,19 +117,38 @@ def login_post():
 @app.route("/dashboard", strict_slashes=False)
 @login_required
 def render_dashboard():
-    """ Returns the school dashboard """
+    """ Returns the appropriate dashboard """
     if current_user.role == "School":
         return render_template("school_dashboard.html")
+
     elif current_user.role == "Teacher":
         teacher_id = current_user.id
         response = requests.get(f"http://{api_host}:{api_port}/api/teachers/{teacher_id}/resources")
-        resources = response.json()
+        if response.status_code == 200:
+            try:
+                resources = response.json()
+            except requests.exceptions.JSONDecodeError:
+                flash("Error decoding resources data", "error")
+                resources = []
+        else:
+            flash("Failed to fetch resources", "error")
+            resources = []
         return render_template("teacher_dashboard.html", resources=resources)
+
     elif current_user.role == "Learner":
         department_id = current_user.department_id
         response = requests.get(f"http://{api_host}:{api_port}/api/departments/{department_id}/resources")
-        resources = response.json()
+        if response.status_code == 200:
+            try:
+                resources = response.json()
+            except requests.exceptions.JSONDecodeError:
+                flash("Error decoding resources data", "error")
+                resources = []
+        else:
+            flash("Failed to fetch resources", "error")
+            resources = []
         return render_template("learner_dashboard.html", resources=resources)
+
     else:
         flash('Not a valid user type', 'error')
         return redirect(url_for('login'))
