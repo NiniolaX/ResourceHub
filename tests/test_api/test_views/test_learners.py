@@ -3,10 +3,10 @@
 import unittest
 import json
 from api.api import api
-from models import storage
-from models.learner import Learner
-from models.department import Department
-from models.school import School
+from api.models import storage
+from api.models.learner import Learner
+from api.models.department import Department
+from api.models.school import School
 from os import getenv
 
 
@@ -68,7 +68,7 @@ class LearnerApiTestCase(unittest.TestCase):
 
     def test_get_learner(self):
         """ Test GET /api/learners/<learner_id> endpoint """
-        response = self.api.get(f"/api/learners/{self.learner.email}")
+        response = self.api.get(f"/api/learners/{self.learner.id}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
         self.assertEqual(data_returned, self.learner.to_dict())

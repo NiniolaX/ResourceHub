@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """Test BaseModel for expected behavior and documentation"""
+from api import models
+from api.models.base_model import BaseModel
 from datetime import datetime
 import inspect
-import models
 import time
 import unittest
 from unittest import mock
-from models.base_model import BaseModel
 module_doc = models.base_model.__doc__
 
 

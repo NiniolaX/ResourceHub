@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """ Contains the School class"""
-import models
-import sqlalchemy
-from flask_login import UserMixin
-from models.base_model import BaseModel, Base
+from api import models
+from api.models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+import sqlalchemy
 
 
-class School(BaseModel, Base, UserMixin):
+class School(BaseModel, Base):
     """Representation of school """
     __tablename__ = 'schools'
     name = Column(String(128), unique=True, nullable=False)

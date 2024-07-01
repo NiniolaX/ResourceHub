@@ -3,13 +3,13 @@
 Contains unittests for the Learner class
 """
 
+from api import models
+from api.models.base_model import BaseModel
+from api.models.department import Department
+from api.models.learner import Learner
+from api.models.school import School
 from datetime import datetime
 import inspect
-import models
-from models.base_model import BaseModel
-from models.department import Department
-from models.learner import Learner
-from models.school import School
 import unittest
 
 

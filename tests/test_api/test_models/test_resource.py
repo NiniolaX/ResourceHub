@@ -3,14 +3,14 @@
 Contains unittests for the Resource class
 """
 
+from api import models
+from api.models.base_model import BaseModel
+from api.models.department import Department
+from api.models.resource import Resource
+from api.models.school import School
+from api.models.teacher import Teacher
 from datetime import datetime
 import inspect
-import models
-from models.base_model import BaseModel
-from models.department import Department
-from models.resource import Resource
-from models.school import School
-from models.teacher import Teacher
 import unittest
 
 

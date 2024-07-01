@@ -3,10 +3,10 @@
 import unittest
 import json
 from api.api import api
-from models import storage
-from models.teacher import Teacher
-from models.department import Department
-from models.school import School
+from api.models import storage
+from api.models.teacher import Teacher
+from api.models.department import Department
+from api.models.school import School
 from os import getenv
 from werkzeug.security import check_password_hash
 

@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ Tests the school view of the API """
-import unittest
-import json
 from api.api import api
-from models import storage
-from models.school import School
+from api.models import storage
+from api.models.school import School
 from os import getenv
+import json
+import unittest
 
 
 class SchoolApiTestCase(unittest.TestCase):

@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ Contains the Resource class """
-import models
-from models.base_model import BaseModel, Base
-import sqlalchemy
+from api import models
+from api.models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Text, ForeignKey
 from sqlalchemy.orm import relationship
+import sqlalchemy
 
 
 class Resource(BaseModel, Base):
