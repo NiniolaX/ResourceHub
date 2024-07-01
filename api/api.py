@@ -56,6 +56,6 @@ Swagger(api)
 
 if __name__ == "__main__":
     """ Main Function """
-    host = environ.get("API_HOST", "0.0.0.0")
-    port = int(environ.get("API_PORT", 5001))
-    api.run(host=host, port=port, threaded=True, debug=True)
+    host = "0.0.0.0"
+    port = int(environ.get("PORT", 5001))
+    api.run(host=host, port=port, threaded=True)
