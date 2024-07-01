@@ -16,8 +16,8 @@
         <li class="dept-item">
             <p class="department-name">{{ department['name'] }}</p>
 
-            <ul class="teacher-list">
-                <form class="add-teacher" action="{{ url_for('add_learner') }}" method="post">
+            <ul class="learner-list">
+                <form class="add-learner" action="{{ url_for('add_learner') }}" method="post">
                     <input class="fname" name="fname" type="text" placeholder="Enter first name here" required>
                     <input class="lname" name="lname" type="text" placeholder="Enter last name here" required>
                     <input class="email" name="email" type="email" placeholder="Enter email here" required>
@@ -26,11 +26,11 @@
                 </form>
 
                 {% for learner in learners[department['id']] %}
-                <li class="teacher">
+                <li class="learner">
                     <p>{{ learner['fname'] }}</p>
                     <p>{{ learner['lname'] }}</p>
                     <p>{{ learner['email'] }}</p>
-                    <form class="delete-teacher" action="{{ url_for('delete_learner')}}" method="post">
+                    <form class="delete-learner" action="{{ url_for('delete_learner')}}" method="post">
                         <input type="hidden" name="learner_id" value="{{ learner['id']}}">
                         <input class="delete-button" type="submit" value="Delete">
                     </form>

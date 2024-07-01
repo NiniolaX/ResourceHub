@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Setup scripts
+setup.sh
+setup_mysql_db.sql
+setup_mysql_test.sql
+
 # C extensions
 *.so
 

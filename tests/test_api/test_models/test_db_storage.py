@@ -1,21 +1,21 @@
 #!/usr/bin/python3
 """ Unittest for DBStorage class """
+from api.models import storage
+from api.models.school import School
 import unittest
 import MySQLdb
 import os
-from models.school import School
-from models import storage
 
 
 class test_dbStorage(unittest.TestCase):
     """ Class to test database storage """
     def setUp(self):
         """ Set up test resources """
-        self.db = MySQLdb.connect(host=os.getenv('HBNB_MYSQL_HOST'),
+        self.db = MySQLdb.connect(host=os.getenv('HUB_MYSQL_HOST'),
                                   port=3306,
-                                  user=os.getenv('HBNB_MYSQL_USER'),
-                                  passwd=os.getenv('HBNB_MYSQL_PWD'),
-                                  database=os.getenv('HBNB_MYSQL_DB')
+                                  user=os.getenv('HUB_MYSQL_USER'),
+                                  passwd=os.getenv('HUB_MYSQL_PWD'),
+                                  database=os.getenv('HUB_MYSQL_DB')
                                   )
         self.cur = self.db.cursor()
         storage.reload()

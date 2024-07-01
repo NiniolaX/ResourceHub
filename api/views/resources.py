@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """ Handles all default RestFul API actions for Resources """
+from api.models import storage
+from api.models.department import Department
+from api.models.resource import Resource
+from api.models.teacher import Teacher
 from api.views import api_views
 from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
-from models import storage
-from models.department import Department
-from models.resource import Resource
-from models.teacher import Teacher
 import uuid
 
 
@@ -20,8 +20,7 @@ def get_resources_by_department(department_id):
     department = storage.get(Department, department_id)
     if not department:
         abort(404)
-#    resource_list = [resource.to_dict()
-#                    for resource in department.resources]
+
     resource_list = []
     for resource in department.resources:
         resource_dict = resource.to_dict()
@@ -44,8 +43,7 @@ def get_resources_by_teacher(teacher_id):
     if not teacher:
         abort(404)
 
-    resource_list = [resource.to_dict()
-                    for resource in teacher.resources]
+    resource_list = [resource.to_dict() for resource in teacher.resources]
 
     return jsonify(resource_list)
 

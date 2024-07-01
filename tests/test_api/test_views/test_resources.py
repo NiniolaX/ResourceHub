@@ -3,12 +3,12 @@
 import unittest
 import json
 from api.api import api
-from models import storage
-from models.department import Department
-from models.learner import Learner
-from models.resource import Resource
-from models.school import School
-from models.teacher import Teacher
+from api.models import storage
+from api.models.department import Department
+from api.models.learner import Learner
+from api.models.resource import Resource
+from api.models.school import School
+from api.models.teacher import Teacher
 from os import getenv
 
 
@@ -83,7 +83,7 @@ class ResourceApiTestCase(unittest.TestCase):
         self.assertIn(self.teacher, storage.all(Teacher).values())
         self.assertIn(self.resource, storage.all(Resource).values())
 
-    def test_get_resources(self):
+    def test_get_resources_by_dept(self):
         """ Test GET /api/departments/<department_id>/resources endpoint """
         response = self.api.get(f"/api/departments/{self.department.id}/resources/")
         self.assertEqual(response.status_code, 200)
@@ -96,6 +96,15 @@ class ResourceApiTestCase(unittest.TestCase):
         other_classes = ["School", "Department", "Teacher", "Learner"]
         for obj in data_returned:
             self.assertTrue(obj["__class__"] not in other_classes)
+
+    def test_get_resources_by_teacher(self):
+        """ Test GET /api/teachers/<teacher_id>/resources endpoint """
+        response = self.api.get(f"/api/teachers/{self.teacher.id}/resources/")
+        self.assertEqual(response.status_code, 200)
+        data_returned = json.loads(response.data)
+        resource_dict = self.resource.to_dict()
+        self.assertIn(resource_dict, data_returned)
+
 
     def test_get_resource(self):
         """ Test GET /api/resources/<resource_id> endpoint """

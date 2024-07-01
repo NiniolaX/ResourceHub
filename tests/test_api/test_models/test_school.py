@@ -3,11 +3,11 @@
 Contains unittests for the School class
 """
 
+from api import models
+from api.models.base_model import BaseModel
+from api.models.school import School
 from datetime import datetime
 import inspect
-import models
-from models.base_model import BaseModel
-from models.school import School
 import unittest
 
 
@@ -37,12 +37,14 @@ class TestSchoolDocs(unittest.TestCase):
 class TestSchool(unittest.TestCase):
     """Test the School class"""
     def setUp(self):
+        """ Sets up test resources """
         self.school = School(name="University of Ibadan",
                              email="ui@gmail.com",
                              password="12345678")
         self.school.save()
 
     def tearDown(self):
+        """ Clears test resources """
         self.school.delete()
         models.storage.close()
 
