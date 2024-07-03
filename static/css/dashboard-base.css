@@ -60,13 +60,26 @@ button.manage-item {
     width: 300px;
     height: 40px;
     border: solid 1px #fff;
-    background-color: #0D1A49;
+    background: #0D1A49;
     box-shadow: -4px 4px 4px 0 #0D1A49;
     color: #E69138;
     font-size: 18px;
     font-weight: 500;
     font-family: 'Source Sans Pro', sans-serif;
     border-radius: 20px;
+}
+button.manage-item:hover {
+    background: #000;
+    color: #ffffff;
+}
+button.manage-item:active {
+    color: #ffffff;
+}
+.manage-item a.action:hover {
+    color: #fff;
+}
+.manage-item a.action:active {
+    color: #fff;
 }
 ul, li {
     margin: 0;

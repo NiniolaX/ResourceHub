@@ -1,13 +1,11 @@
 p.resource-name {
-    border: 1px solid red;
+    border: 1px solid #ccc;
     width: 100%;
     margin: 5px !important;
-    text-align:left;
+    text-align: left;
     padding: 5px;
 }
-a {
-    text-decoration: none;
-}
-a:hover {
-    color: purple;
+
+button.create-resource {
+    margin-bottom: 40px;
 }

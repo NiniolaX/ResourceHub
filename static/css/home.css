@@ -129,11 +129,18 @@
     }
 }
 
+
+/* Styles for Team section and About page */
+#about {
+    padding: 50px 0;
+}
+
 .about-subsection {
     border: 1px solid back;
     width: 100%;
     height: 100%;
     flex-direction: column;
+    padding: 20px 0;
 }
 
 .developers {
@@ -141,7 +148,7 @@
     display: flex;
     flex-wrap: nowrap;
     border: 1px solid rd;
-    margin-top: 20px;
+    margin-top: 30px;
     color: #fff;
     background-image: linear-gradient(180deg, #fff, #0D1A49);
     min-height: 300px;
@@ -149,6 +156,10 @@
 
 .developers h2 {
     color: #E69138 !important;
+}
+
+#team {
+    margin-top: 30px;
 }
 
 .image-circle {
@@ -175,8 +186,7 @@ p {
 }
 
 .github-repo {
-    background-color: #0D1A49;
     color: #E69138;
-    text-align: center;
     text-decoration: none;
+    padding-top: 30px;
 }

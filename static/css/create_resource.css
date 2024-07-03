@@ -1,4 +1,22 @@
+input#title,
+textarea {
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#title {
+    width: 100%;
+    height: 30px;
+    margin-top: 30px;
+}
+#content {
+    width: 100%;
+}
 #post {
     background-color: #E69138;
     color: #0D1A49;
+    width: 100px;
+    height: 30px;
+    border-radius: 50px
 }
