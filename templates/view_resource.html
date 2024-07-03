@@ -1,7 +1,7 @@
 {% extends "dashboard-base.html" %}
 
 {% block content %}
-<h1 class="resource-title">{{ resource['title'] }}</h1>
+<h1>{{ resource['title'] }}</h1>
 <p class="resource-info">Created by <strong class="author">{{ resource['teacher']['fname'] }} {{ resource['teacher']['lname'] }}</strong> on <small id="date">{{ resource['created_at'] }}</small></p>
 <p class="resource-content">{{ resource['content'] }}</p>
 {% endblock %}

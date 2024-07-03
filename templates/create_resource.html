@@ -11,9 +11,9 @@
 
 <form id="create-resource-form" action="{{ url_for('create_resource') }}" method="post">
     <input id="title" type="text" placeholder="Title" name="title" required><br><br>
-    <textarea id="content" name="content" rows="20" cols="50" required></textarea><br><br>
+    <textarea id="content" placeholder="Content" name="content" rows="20" cols="50" required></textarea><br><br>
     <input type="hidden" name="teacher_id" value="{{ current_user.id }}"><br>
-    <input id="post" type="submit" value="Post">
+    <input id="post" type="submit" value="Create">
 </form>
 
 {% endblock %}

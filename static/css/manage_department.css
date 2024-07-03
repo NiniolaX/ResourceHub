@@ -1,0 +1,40 @@
+.add-department, .resource {
+    display: flex;
+    width: 100%;
+    gap: 50px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+
+input.department-name {
+    width: 80%;
+    flex-basis: 72%;
+    height: 30px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.delete-department {
+    display: flex;
+}
+li.department {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 50px;
+    margin-bottom: 20px;
+}
+.department p {
+    padding: 5px;
+    flex-basis: 80%;
+    border: 1px solid #ccc;
+}
+.department form {
+    flex-basis: 20%;
+}
+.delete-button:hover {
+    background-color: darkred;
+}

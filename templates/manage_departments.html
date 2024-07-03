@@ -21,7 +21,7 @@
         <li class="department">
             <p>{{ department['name'] }}</p>
             <form class="delete-department" action="{{ url_for('delete_department')}}" method="post">
-                <input type="hidden" name="department_id" value="{{ department['id']}}">
+                <input class="right" type="hidden" name="department_id" value="{{ department['id']}}">
                 <input class="delete-button" type="submit" value="Delete">
             </form>
         </li>

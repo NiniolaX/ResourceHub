@@ -13,8 +13,8 @@
         {% endwith %}
 
         {% for department in departments %}
-        <li class="department">
-            <p>{{ department['name'] }}</p>
+        <li class="dept-item">
+            <p class="department-name">{{ department['name'] }}</p>
 
             <ul class="learner-list">
                 <form class="add-learner" action="{{ url_for('add_learner') }}" method="post">

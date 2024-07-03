@@ -19,7 +19,6 @@
 
 /* Style for section containing user items(i.e a school's items, teacher's items, etc) */
 section.user-items {
-    border: solid 1px red;
     box-sizing: border-box;
     padding: 20px 0;
 }
@@ -27,17 +26,19 @@ section.user-items {
 .add-button {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: #E69138;
-    width: 150px;
+    width: 200px;
     height: 23px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    column-gap: 40px;
+    margin: 15px 0;
 }
 
 .delete-button {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: #B40909;
-    width: 150px;
+    width: 200px;
     height: 23px;
     border-radius: 10px;
     color: #fff;
@@ -48,4 +49,40 @@ section.user-items {
 .action {
     text-decoration: none;
     color: default;
+}
+
+.dashboard-home {
+    text-decoration: underline;
+    color: #000;
+}
+
+button.manage-item {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #fff;
+    background: #0D1A49;
+    box-shadow: -4px 4px 4px 0 #0D1A49;
+    color: #E69138;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: 20px;
+}
+button.manage-item:hover {
+    background: #000;
+    color: #ffffff;
+}
+button.manage-item:active {
+    color: #ffffff;
+}
+.manage-item a.action:hover {
+    color: #fff;
+}
+.manage-item a.action:active {
+    color: #fff;
+}
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none ;
 }

@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard-base.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/school_dashboard.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_department.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_teachers_learners.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_resource.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/create_resource.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/teacher_dashboard.css') }}" type="text/css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source Sans Pro'>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.png') }}" alt="logo" type="image/x-icon">
@@ -18,7 +24,7 @@
     		<a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"></a>
             </div>
     	<div class="header-right">
-            <a href="{{ url_for('render_dashboard') }}">Dashboard</a>
+            <a class="dashboard-home" href="{{ url_for('render_dashboard') }}">Dashboard</a>
             {% if current_user.fname %}
             <p class="user-name">Hello <em><strong>{{ current_user.fname }}</strong></em>!</p>
             {% else %}

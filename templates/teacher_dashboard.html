@@ -2,9 +2,9 @@
 
 {% block content %}
 
+<button class="manage-item create-resource"><a class="action" href="{{ url_for('render_create_resource') }}">Create resource</a></button>
 <h3 class="title">Manage resources</h3>
 <section class="user-items">
-    <button><a class="action" href="{{ url_for('render_create_resource') }}">Create resource</a></button>
     <ul class="resource-list">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -14,8 +14,8 @@
 
         {% for resource in resources %}
         <li class="resource">
-            <p><a href="{{ url_for('view_resource', slug=resource.slug) }}">{{ resource['title'] }}</a></p>
-            <form class="delete-resource" action="{{ url_for('delete_resource') }}" method="post">
+            <p class="resource-name"><a href="{{ url_for('view_resource', slug=resource.slug) }}">{{ resource['title'] }}</a></p>
+            <form class="delete-resource add-button" action="{{ url_for('delete_resource') }}" method="post">
                 <input type="hidden" name="resource_id" value="{{ resource['id']}}">
                 <input class="delete-button" type="submit" value="Delete">
             </form>

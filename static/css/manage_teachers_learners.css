@@ -1,0 +1,62 @@
+.dept-item {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 20px 30px;
+    box-shadow: -1px 1px 2px #ccc;
+}
+.department-name {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: none;
+}
+.teacher-list input, .learner-list input {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border: solid 1px #ccc;
+}
+.add-teacher, .add-learner {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    justify-content: left;
+    align-items: center;
+}
+.add-teacher input[type="text"],
+.add-teacher input[type="email"],
+.add-learner input[type="text"],
+.add-learner input[type="email"] {
+    display: flex;
+    gap: 5px;
+    width: 199px;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 0 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #000;
+}
+.teacher, .learner {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    align-items: center;
+}
+.teacher p, .learner p {
+    display: flex;
+    padding: 5px;
+    border: 1px solid  #ccc;
+    width: 100%;
+    margin-top: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.8rem;
+}
+
+.delete-teacher, .delete-learner {
+    display: flex;
+}

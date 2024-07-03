@@ -1,0 +1,10 @@
+p.resource-info {
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+p.resource-content {
+    display: flex;
+    height: auto;
+    width: 100%;
+}

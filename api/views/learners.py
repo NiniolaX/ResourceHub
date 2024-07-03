@@ -68,12 +68,12 @@ def create_learner(department_id):
     return jsonify(new_learner.to_dict()), 201
 
 
-@api_views.route('/learners/<email>',
+@api_views.route('/learners/<learner_id>',
                  methods=['GET'], strict_slashes=False)
-@swag_from('documentation/learner/get_email_learner.yml', methods=['get'])
-def get_learner(email):
+@swag_from('documentation/learner/get_id_learner.yml', methods=['get'])
+def get_learner(learner_id):
     """ Retrieves a learner from database """
-    learner = storage.get_user_by_email(email, "learner")
+    learner = storage.get(Learner, learner_id)
     if not learner:
         abort(404)
 

@@ -68,7 +68,7 @@ class LearnerApiTestCase(unittest.TestCase):
 
     def test_get_learner(self):
         """ Test GET /api/learners/<learner_id> endpoint """
-        response = self.api.get(f"/api/learners/{self.learner.email}")
+        response = self.api.get(f"/api/learners/{self.learner.id}")
         self.assertEqual(response.status_code, 200)
         data_returned = json.loads(response.data)
         self.assertEqual(data_returned, self.learner.to_dict())

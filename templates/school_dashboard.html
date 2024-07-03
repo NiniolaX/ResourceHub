@@ -1,10 +1,10 @@
 {% extends "dashboard-base.html" %}
 
 {% block content %}
-<p>Welcome to your School dashboard</p>
-
-<button id="manage-departments"><a class="action" href=" {{ url_for('render_manage_departments') }}">Manage departments</a></button>
-<button id="manage-teachers"><a class="action" href="{{ url_for('render_manage_teachers') }}">Manage teachers</a></button>
-<button id="manage-learners"><a class="action" href="{{ url_for('render_manage_learners') }}">Manage learners</a></button>
-<button id="manage-resources"><a class="action" href="">Manage resources</a></button>
+<div class="dashboard-box">
+    <button class="manage-item"><a class="action" href=" {{ url_for('render_manage_departments') }}">Manage departments</a></button>
+    <button class="manage-item"><a class="action" href="{{ url_for('render_manage_teachers') }}">Manage teachers</a></button>
+    <button class="manage-item"><a class="action" href="{{ url_for('render_manage_learners') }}">Manage learners</a></button>
+    <button class="manage-item"><a class="action" href="">Manage resources</a></button>
+</div>
 {% endblock %}

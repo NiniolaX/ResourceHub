@@ -1,0 +1,11 @@
+p.resource-name {
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 5px !important;
+    text-align: left;
+    padding: 5px;
+}
+
+button.create-resource {
+    margin-bottom: 40px;
+}
