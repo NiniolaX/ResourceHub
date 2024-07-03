@@ -19,7 +19,7 @@ header {
 
 .header-right {
     display: flex;
-    flex-basis: 30%;
+    flex-basis: 40%;
     align-items: center;
     justify-content: flex-end;
     flex-grow: 0;
@@ -40,8 +40,6 @@ header button {
     font-size: 12px;
     font-weight: bold;
 }
-
-
 
 header a, .action {
     text-decoration: none;
