@@ -136,10 +136,6 @@
     flex-direction: column;
 }
 
-.about-content {
-    border: 1px solid prple;
-}
-
 .developers {
     width: 100%;
     display: flex;
@@ -147,16 +143,12 @@
     border: 1px solid rd;
     margin-top: 20px;
     color: #fff;
-    background-image: linear-gradient( #fff, #0D1A49);
+    background-image: linear-gradient(180deg, #fff, #0D1A49);
     min-height: 300px;
 }
 
 .developers h2 {
     color: #E69138 !important;
-}
-
-.developers div {
-    border: 1px solid rd;
 }
 
 .image-circle {
@@ -170,4 +162,21 @@
     display: flex;
     background-color: #E69138;
     padding: 5px;
+    margin-top: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+p {
+    font-family: Source Serif Pro;
+}
+
+.github-repo {
+    background-color: #0D1A49;
+    color: #E69138;
+    text-align: center;
+    text-decoration: none;
 }
