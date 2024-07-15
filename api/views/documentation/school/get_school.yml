@@ -1,0 +1,47 @@
+get:
+  summary: Returns all schools
+  description: |
+    This endpoint returns ae list of schools in the database.
+  responses:
+    200:
+      description: Successful request
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The unique identifier of the school
+                name:
+                  type: string
+                  description: The name of the school
+                created_at:
+                  type: string
+                  format: date-time
+                  description: The timestamp when the school was created
+                updated_at:
+                  type: string
+                  format: date-time
+                  description: The timestamp when the school was last updated
+                departments:
+                  type: array
+                  description: A list of departments in the school
+                  items:
+                    type: string
+                teachers:
+                  type: array
+                  description: A list of teachers in the school
+                  items:
+                    type: string
+                learners:
+                  type: array
+                  description: A list of learners in the school
+                  items:
+                    type: string
+    500:
+      description: Internal server error
+  tags:
+    - Schools

@@ -10,8 +10,11 @@ from flasgger.utils import swag_from
 @api_views.route('/schools', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/school/get_school.yml', methods=['GET'])
 def get_schools():
-    """
-    Retrieves the list of schools in database
+    """ Retrieves the list of schools in database
+    Args:
+        None
+    Return:
+        list of dicts: JSON representation of list of schools
     """
     schools = storage.all(School).values()
     schools_list = [school.to_dict() for school in schools]
@@ -21,8 +24,11 @@ def get_schools():
 @api_views.route('/schools', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/school/post_school.yml', methods=['POST'])
 def create_school():
-    """
-    Creates a new school
+    """ Creates a new school in database
+    Args:
+        None
+    Return:
+        dict: JSON representation of created school
     """
     try:
         request_data = request.get_json()
@@ -53,7 +59,12 @@ def create_school():
 @api_views.route('/schools/<school_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/school/get_id_school.yml', methods=['get'])
 def get_school(school_id):
-    """ Retrieves a specific School by id """
+    """ Retrieves a specific school from database
+    Args:
+        school_id (str): ID of school to retrieve
+    Return:
+        dict: JSON representation of school if found, else raises 404.
+    """
     school = storage.get(School, school_id)
     if not school:
         abort(404)
@@ -65,10 +76,12 @@ def get_school(school_id):
                  strict_slashes=False)
 @swag_from('documentation/school/delete_school.yml', methods=['DELETE'])
 def delete_school(school_id):
+    """ Deletes a school from database
+    Args:
+        school_id (str): ID of school to delete
+    Return:
+        dict: Empty dict on success, else raises 404.
     """
-    Deletes a School Object
-    """
-
     school = storage.get(School, school_id)
     if not school:
         abort(404)
@@ -81,8 +94,11 @@ def delete_school(school_id):
 @api_views.route('/schools/<school_id>', methods=['PUT'], strict_slashes=False)
 @swag_from('documentation/school/put_school.yml', methods=['PUT'])
 def update_school(school_id):
-    """
-    Updates a School
+    """ Updates a school in a database
+    Args:
+        school_id (str): ID of school to delete
+    Return:
+        dict: JSON representation of updated school
     """
     school = storage.get(School, school_id)
     if not school:

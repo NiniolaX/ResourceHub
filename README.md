@@ -1,92 +1,117 @@
-# ResourceHub Learning App Repository ALX Portolio Project
+# ResourceHub 
 
-Welcome to the ResourceHub !
-This platform is designed to help learners, teachers and institutions access, manage, and interact with learning materials efficiently.
+ResourceHub is a web application designed to streamline the distribution of educational materials within educational institutions. It allows institutions to manage departments, teachers, and learners, while providing a platform for teachers to create and share resources and for learners to access those resources seamlessly.
+
 
 ## Table of Contents
 
 - [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Application](#running-the-application)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-and-installation)
+- [Deployment](#deployment)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
 
+
 ## Features
+### Institution Dashboard
 
+Institutions can:
+- Manage Departments: Create and delete departments.
+- Manage Teachers: Create and delete teachers.
+- Manage Learners: Create and delete learners.
+
+### Teacher Dashboard
+Teachers can:
+- Manage resources: Create and delete resources.
+- View Resources: View resources they have created.
+- Specific Resource Riew: View detailed content of a resource.
+
+### Learner Dashboard
+- View Resources: Access all resources available in their department.
+- Detailed Resource View: Click on a resource to view its detailed content.
 - User authentication and authorization
-- CRUD operations for learning materials
-- User profile management
-- Responsive web design
-- Search and filter functionality
 
-## Technology Stack
+### Authentication and Access Control
+- Role-Based Access: Different dashboards and functionalities are accessible based on the user's role (Institution, Teacher, Learner).
+- User Authentication: Secure login and logout functionalities.
+
+
+## Technologies Used
 
 - **Backend**: Flask, SQLAlchemy
-- **Frontend**: HTML, CSS, JavaScript
-- **Database**: MySQL (development), MySQL (production)
+- **Frontend**: HTML5, CSS, Flask, Jinja2
+- **Database**: MySQL (development), POSTGRESQL (production)
 - **Server**: Gunicorn
-- **Reverse Proxy**: Nginx
+- **Deployment**: The application was deployed on render.com. [Visit the live app](https://resourcehub-0szu.onrender.com/)
 
-## Installation
 
+## Setup and Installation
 ### Prerequisites
 
 - Python 3.8 or higher
 - Virtualenv
-- MySQL (for production)
+- MySQL (for development)
 
-### Steps
+### Installation
 
+Follow these steps to run the application on your local machine.
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/your_project_name.git
+    git clone https://github.com/NiniolaX/ResourceHub.git
     cd ResourceHub
     ```
 
-2. Create a virtual environment and activate it:
+2. Run the setup script:
     ```bash
-    python3 -m venv hub_env
-    source hub_env/bin/activate
+    ./setup/setup.sh
     ```
+   This script:
+	- installs the python venv package on your system if it doesn't exist,
+	- creates a virtual environment named *hub_env*,
+	- activates the virtual environment and installs the app dependencies (defined in setup/requirements.txt) in it, and
+	- closes the virtual environment.
 
-3. Install the dependencies:
+3. Start the virtual environment:
     ```bash
-    pip install -r requirements.txt
+    source hub_env/bin/activate
     ```
 
 4. Set up the database:
     ```bash
-    sudo ./setup_dev_
+    cat setup/setup_mysql_db.sql | sudo mysql -p
+    OR
+    cat setup/setup_mysql_test.sql | sudo mysql -p (Use this when running unittests, all database entries are deleted at the end of the tests)
     ```
 
-## Configuration
+5. Start the *api* on one terminal:
+    ```bash
+    HUB_MYSQL_USER=hub_dev HUB_MYSQL_PWD=hub_dev_pwd HUB_MYSQL_HOST=localhost HUB_MYSQL_DB=hub_dev_db python3 -m api.api
+    ```
 
-Configuration files are located in the `/config` directory. You can set up different configurations for development and production.
+6. Start the *app* on another terminal:
+    ```bash
+    HUB_MYSQL_USER=hub_dev HUB_MYSQL_PWD=hub_dev_pwd HUB_MYSQL_HOST=localhost HUB_MYSQL_DB=hub_dev_db API_URL=http://127.0.0.1:5001/api python3 -m app.app
+    ```
 
-### Development Configuration
+7. Run the application:
+Go to your browser and enter http://127.0.0.1:5000/ to start using the app.
 
-Edit `config/development.py` to set your development configurations.
 
-### Production Configuration
+## Deployment
+The application is deployed on render. You can access it [here](https://resourcehub-0szu.onrender.com/).
 
-Edit `config/production.py` to set your production configurations.
 
-## Running the Application
+## Testing
+You can run the unit tests in the tests/ folder, like so:
+    ```bash
+    HUB_ENV=test HUB_MYSQL_USER=hub_test HUB_MYSQL_PWD=hub_test_pwd HUB_MYSQL_HOST=localhost HUB_MYSQL_DB=hub_test_db API_URL=http://127.0.0.1:5001/api python3 -m unittest discover tests
+    ```
 
-### Development
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
-Run the Flask development server:
 
-```bash
-flask run
-```
-
-Start the Gunicorn server 
-```
-gunicorn -w 4 -b 127.0.0.1:8000 wsgi:app
-
-```
-
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.

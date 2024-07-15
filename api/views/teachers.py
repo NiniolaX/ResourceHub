@@ -14,7 +14,7 @@ from flasgger.utils import swag_from
 @swag_from('documentation/teacher/get_teacher.yml', methods=['GET'])
 def get_teachers(department_id):
     """
-    Retrieves the list of teachers in a department from database
+    Retrieves the list of teachers in a department
     """
     department = storage.get(Department, department_id)
     if not department:
@@ -30,7 +30,7 @@ def get_teachers(department_id):
 @swag_from('documentation/teacher/post_teacher.yml', methods=['POST'])
 def create_teacher(department_id):
     """
-    Adds a new teacher to database
+    Adds a new teacher to a department to database
     """
     department = storage.get(Department, department_id)
     if not department:
@@ -73,7 +73,7 @@ def create_teacher(department_id):
                  methods=['GET'], strict_slashes=False)
 @swag_from('documentation/teacher/get_id_teacher.yml', methods=['get'])
 def get_teacher(teacher_id):
-    """ Retrieves a specific Teacher """
+    """ Retrieves a specific teacher from database """
     teacher = storage.get(Teacher, teacher_id)
     if not teacher:
         abort(404)
@@ -86,7 +86,7 @@ def get_teacher(teacher_id):
 @swag_from('documentation/teacher/delete_teacher.yml', methods=['DELETE'])
 def delete_teacher(teacher_id):
     """
-    Deletes a Teacher Object
+    Deletes a teacher from database
     """
 
     teacher = storage.get(Teacher, teacher_id)
@@ -102,7 +102,7 @@ def delete_teacher(teacher_id):
 @swag_from('documentation/teacher/put_teacher.yml', methods=['PUT'])
 def update_teacher(teacher_id):
     """
-    Updates a Teacher
+    Updates a teacher in database
     """
     teacher = storage.get(Teacher, teacher_id)
     if not teacher:
