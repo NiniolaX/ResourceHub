@@ -3,12 +3,13 @@
 ResourceHub is a web application designed to streamline the distribution of educational materials within educational institutions. It allows institutions to manage departments, teachers, and learners, while providing a platform for teachers to create and share resources and for learners to access those resources seamlessly.
 
 
-## Table of Contents
+## Table of Content
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Setup and Installation](#setup-and-installation)
 - [Deployment](#deployment)
+- [Using the API documentation](#using-the-api-documentation)
 - [Testing](#testing)
 - [Contributing](#contributing)
 - [License](#license)
@@ -85,22 +86,35 @@ Follow these steps to run the application on your local machine.
     cat setup/setup_mysql_test.sql | sudo mysql -p (Use this when running unittests, all database entries are deleted at the end of the tests)
     ```
 
-5. Start the *api* on one terminal:
+5. Start the *API* on one terminal:
     ```bash
     HUB_MYSQL_USER=hub_dev HUB_MYSQL_PWD=hub_dev_pwd HUB_MYSQL_HOST=localhost HUB_MYSQL_DB=hub_dev_db python3 -m api.api
     ```
+    The API is configured to run on port 5001 of your machine, so ensure nothing else is running on that port. You can modify this setting in the *api/api.py* file.
 
 6. Start the *app* on another terminal:
     ```bash
     HUB_MYSQL_USER=hub_dev HUB_MYSQL_PWD=hub_dev_pwd HUB_MYSQL_HOST=localhost HUB_MYSQL_DB=hub_dev_db API_URL=http://127.0.0.1:5001/api python3 -m app.app
     ```
+    The app is configured to run on port 5000 of your machine, so ensure nothing else is running on that port. You can modify this setting in the *app/app.py* file.
 
 7. Run the application:
-Go to your browser and enter http://127.0.0.1:5000/ to start using the app.
+Open your browser and navigate to http://127.0.0.1:5000/ to start using the app.
 
 
 ## Deployment
-The application is deployed on render. You can access it [here](https://resourcehub-0szu.onrender.com/).
+The application is deployed on [Render](https://render.com/). You can access it [here](https://resourcehub-0szu.onrender.com/).
+
+
+# Using the API Documentation
+To use the API documentation, follow the following steps:
+1. Start the *API*:
+    ```bash
+   HUB_MYSQL_USER=hub_dev HUB_MYSQL_PWD=hub_dev_pwd HUB_MYSQL_HOST=localhost HUB_MYSQL_DB=hub_dev_db python3 -m api.api
+    ```
+    The API is configured to run on port 5001 of your machine, so ensure nothing else is running on that port. You can modify this setting in the *api/api.py* file.
+
+2. Open your browser and navigate to http://127.0.0.1:5001/apidocs/ to use the interactive API documentation on Swagger UI.
 
 
 ## Testing
