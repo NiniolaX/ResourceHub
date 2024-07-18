@@ -1,8 +1,8 @@
-Endpoint to retreive a user by ID.
+Gets a user (school, teacher or learner) by its ID
 ---
 tags:
   - Users
-summary: Retrieve a user by ID
+summary: Endpoint to retreive a user by ID.
 description: Retrieves the details of a specific user by their unique ID.
 parameters:
   - name: user_id

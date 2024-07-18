@@ -1,9 +1,10 @@
-Endpoint to create a new resource.
+Creates a new resource
 ---
 tags:
   - Resources
-summary: Adds a new resource to the database.
-description: This endpoint allows for the creation of a new resource associated with a specific teacher.
+summary: Endpoint to add a new resource to the database.
+description: This endpoint allows for the creation of a new resource associated
+  with a specific teacher.
 parameters:
   - name: teacher_id
     in: path

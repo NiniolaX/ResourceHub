@@ -1,9 +1,10 @@
-Endpoint to get a resource by department.
+Gets all resources in a department
 ---
 tags:
   - Resources
-summary: Retrieves the list of resources in a specific department.
-description: This endpoint retrieves all resources associated with a given department ID from the database.
+summary: Endpoint to retrieve the list of resources in a specific department.
+description: This endpoint retrieves all resources associated with a given
+  department ID from the database.
 parameters:
   - name: department_id
     in: path

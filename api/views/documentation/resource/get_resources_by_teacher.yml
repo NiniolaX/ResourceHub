@@ -1,9 +1,10 @@
-Endpoint to get a resource by teacher.
+Gets all resources created by a specific teacher
 ---
 tags:
   - Resources
-summary: Retrieves all resources created by a specific teacher.
-description: This endpoint retrieves all resources associated with a given teacher ID from the database.
+summary: Endpoint to retrieve all resources created by a specific teacher.
+description: This endpoint retrieves all resources associated with a given
+  teacher ID from the database.
 parameters:
   - name: teacher_id
     in: path

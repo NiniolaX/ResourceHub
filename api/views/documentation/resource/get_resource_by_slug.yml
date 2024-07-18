@@ -1,8 +1,8 @@
-Endpoint to get a resource by its slig.
+Gets a resource by its slug
 ---
 tags:
   - Resources
-summary: Retrieves a specific resource by its slug.
+summary: Endpoint to retreive a resource by its slug.
 description: This endpoint retrieves a specific resource by its slug.
 parameters:
   - name: slug

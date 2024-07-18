@@ -1,9 +1,9 @@
-Endpoint to retrieve list of teachers in a department.
----
+Gets all teachers in a department---
 tags:
   - Teachers
-summary: Retrieves list of teachers in a department from database.
-description: This endpoint retrieves the list of teachers in a department of a school, based on the department ID provided.
+summary: Endpoint to retrieve list of teachers in a department from database.
+description: This endpoint retrieves the list of teachers in a department of a
+  school, based on the department ID provided.
 parameters:
   - name: department_id
     in: path

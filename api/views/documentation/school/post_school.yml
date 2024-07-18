@@ -1,8 +1,8 @@
-Endpoint to create a new school.
+Creates a new school
+---
 tags:
   - Schools
-summary: Creates a new school.
-description: This endpoint allows the creation of a new school in the database.
+description: Endpoint to create a new school.
 parameters:
   - name: school
     in: body

@@ -1,8 +1,8 @@
-Endpoint to update a department of a school.
+Updates a department
+---
 tags:
   - Departments
-summary: Updates a department of a school.
-description: This endpoint allows for a department in a school to be updated in the database, given the department's ID.
+description: Endpoint to update a department of a school.
 parameters:
   - name: department_id
     in: path

@@ -1,9 +1,10 @@
-Endpoint to update a teacher.
+Updates a teacher
 ---
 tags:
   - Teachers
-summary: Updates a specific teacher.
-description: This endpoint updates a specific teacher in the database based on the provided teacher ID.
+summary: Endpoint to update a teacher.
+description: This endpoint updates a specific teacher in the database based
+  on the provided teacher ID.
 parameters:
   - name: teacher_id
     in: path

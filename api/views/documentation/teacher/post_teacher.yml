@@ -1,9 +1,10 @@
-Endpoint to add a new teacher to a specific department of a school.
+Adds a new teacher to a department
 ---
 tags:
   - Teachers
-summary: Adds a new teacher to a specific department.
-description: This endpoint adds a new teacher to a specific department of a school in the database, based on the provided department ID.
+summary: Endpoint to add a new teacher to a specific department of a school.
+description: This endpoint adds a new teacher to a specific department of a
+  school in the database, based on the provided department ID.
 parameters:
   - name: department_id
     in: path

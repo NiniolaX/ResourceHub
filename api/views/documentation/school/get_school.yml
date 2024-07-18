@@ -1,8 +1,8 @@
-Endpoint to retrieve a school.
+Gets a school
+---
 tags:
   - Schools
-summary: Retrieve a specific school.
-description: This endpoint retrieves a specific school from the database based on the provided school ID.
+description: Endpoint to retrieve a school based on its ID.
 parameters:
   - name: school_id
     in: path

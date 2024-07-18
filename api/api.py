@@ -21,7 +21,6 @@ from os import environ
 
 api = Flask(__name__)
 api.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
-swagger = Swagger(api)
 
 # Register Blueprint
 api.register_blueprint(api_views)
@@ -56,6 +55,13 @@ def server_error(error):
         description: an internal server error occured
     """
     return make_response(jsonify({"error": "Internal server error"}), 500)
+
+
+api.config['SWAGGER'] = {
+    'title': 'ResourceHub Restful API',
+    'uiversion': 3
+}
+Swagger(api)
 
 
 if __name__ == "__main__":

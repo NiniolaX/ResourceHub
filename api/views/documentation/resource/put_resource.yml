@@ -1,8 +1,8 @@
-Endpoint to update a resource
+Updates a resource
 ---
 tags:
   - Resources
-summary: Updates a Resource
+summary: Endpoint to update a resource.
 description: Updates the details of a resource object in the database.
 parameters:
   - name: resource_id

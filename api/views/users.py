@@ -7,7 +7,7 @@ from flasgger.utils import swag_from
 
 
 @api_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
-@swag_from('api/views/documentation/user/get_user.yml', methods=['GET'])
+@swag_from('documentation/user/get_user.yml', methods=['GET'])
 def get_user(user_id):
     """ Retrieves a specific user by id """
     users = storage.all().values()
@@ -19,7 +19,7 @@ def get_user(user_id):
     abort(404)
 
 @api_views.route('/usersbyemail/<email>', methods=['GET'], strict_slashes=False)
-@swag_from('api/views/documentation/user/get_user_by_email.yml', methods=['GET'])
+@swag_from('documentation/user/get_user_by_email.yml', methods=['GET'])
 def get_user_by_email(email):
     """ Retrieves a specific user by email """
     user = storage.get_user_by_email(email)

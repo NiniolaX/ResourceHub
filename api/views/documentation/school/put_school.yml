@@ -1,8 +1,8 @@
-Endpoint to update a school.
+Updates a school
+---
 tags:
   - Schools
-summary: Updates a specific school.
-description: This endpoint updates a specific school in the database based on the provided school ID.
+description: Endpoint to update a school.
 parameters:
   - name: school_id
     in: path
@@ -34,7 +34,6 @@ parameters:
           description: New hashed password for school's account
           required: false
           nullable: false
-        
 responses:
   200:
     description: School successfully updated
@@ -70,7 +69,6 @@ responses:
         password:
           type: string
           description: Hashed password for school's account
-          example: "scrypt:32768:8:1$qwoXMhePqRn9p0hM$bcfd0ea42049ed926915113c3780c2df132fd4c65e1e7245afb6390c19110dce7a278fdf58beaccb7c04f00c9de59e8ff4097ff37c9f9a74c79331bf45c0cbd1"
   400:
     description: Bad request
     schema:

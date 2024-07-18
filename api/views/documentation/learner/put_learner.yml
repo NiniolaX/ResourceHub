@@ -1,9 +1,10 @@
-Endpoint to update a learner
+Updates a learner
 ---
 tags:
   - Learners
-summary: Updates a specific learner.
-description: This endpoint updates a learner in the database based on the provided learner ID.
+summary: Endpoint to update a learner.
+description: This endpoint updates a learner in the database based on the
+  provided learner ID.
 parameters:
   - name: learner_id
     in: path

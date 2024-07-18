@@ -1,8 +1,8 @@
-Endpoint to retrieve a department
+Gets a department
+---
 tags:
   - Departments
-summary: Retrieves a department
-description: This endpoint retrieves a specific department from the database based on the provided Department ID.
+description: Endpoint to retrieve a department.
 parameters:
   - name: department_id
     in: path
@@ -52,7 +52,7 @@ responses:
           description: Error message
           example: "Not found"
   500:
-    description: Internal server error:
+    description: Internal server error
     schema:
       type: object
       properties:

@@ -1,8 +1,8 @@
-Endpoint to delete a school.
+Deletes a school
+---
 tags:
   - Schools
-summary: Deletes a specific school.
-description: This endpoint allows a specific school to be deleted from the database based on the provided school ID.
+description: Endpoint to delete a school.
 parameters:
   - name: school_id
     in: path

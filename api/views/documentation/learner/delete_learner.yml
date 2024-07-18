@@ -1,9 +1,10 @@
-Endpoint to delete a learner.
+Deletes a learner
 ---
 tags:
   - Learners
-summary: Deletes a specific learner.
-description: This endpoint deletes a learner from the database based on the provided learner ID.
+summary: Endpoint to delete a specific learner of a school.
+description: This endpoint deletes a learner from the database based on the
+  provided learner ID.
 parameters:
   - name: learner_id
     in: path

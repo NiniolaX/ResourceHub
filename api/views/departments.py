@@ -9,7 +9,7 @@ from flasgger.utils import swag_from
 
 
 @api_views.route('/schools/<school_id>/departments', methods=['GET'], strict_slashes=False)
-@swag_from('api/views/documentation/department/get_departments.yml', methods=['GET'])
+@swag_from('documentation/department/get_departments.yml', methods=['GET'])
 def get_departments(school_id):
     """
     Retrieves list of departments in a school from database.
@@ -25,7 +25,7 @@ def get_departments(school_id):
 
 
 @api_views.route('/schools/<school_id>/departments', methods=['POST'], strict_slashes=False)
-@swag_from('api/views/documentation/department/post_department.yml', methods=['POST'])
+@swag_from('documentation/department/post_department.yml', methods=['POST'])
 def create_department(school_id):
     """
     Adds a new department to a school in database.
@@ -63,7 +63,7 @@ def create_department(school_id):
 
 
 @api_views.route('/departments/<department_id>', methods=['GET'], strict_slashes=False)
-@swag_from('api/views/documentation/department/get_department.yml', methods=['GET'])
+@swag_from('documentation/department/get_department.yml', methods=['GET'])
 def get_department(department_id):
     """ Retrieves a specific department of a school from database.
     """
@@ -74,9 +74,8 @@ def get_department(department_id):
     return jsonify(department.to_dict())
 
 
-@api_views.route('/departments/<department_id>', methods=['DELETE'],
-                 strict_slashes=False)
-@swag_from('api/views/documentation/department/delete_department.yml', methods=['DELETE'])
+@api_views.route('/departments/<department_id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('documentation/department/delete_department.yml', methods=['DELETE'])
 def delete_department(department_id):
     """
     Deletes a department from school in database.
@@ -92,7 +91,7 @@ def delete_department(department_id):
 
 
 @api_views.route('/departments/<department_id>', methods=['PUT'], strict_slashes=False)
-@swag_from('api/views/documentation/department/put_department.yml', methods=['PUT'])
+@swag_from('documentation/department/put_department.yml', methods=['PUT'])
 def update_department(department_id):
     """
     Updates a department of a school in database.

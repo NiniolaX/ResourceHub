@@ -9,9 +9,8 @@ from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
 
 
-@api_views.route('/departments/<department_id>/learners',
-                 methods=['GET'], strict_slashes=False)
-@swag_from('api/views/documentation/learner/get_learners.yml', methods=['GET'])
+@api_views.route('/departments/<department_id>/learners', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/learner/get_learners.yml', methods=['GET'])
 def get_learners(department_id):
     """
     Retrieves the list of learners in a department from database
@@ -25,9 +24,8 @@ def get_learners(department_id):
     return jsonify(learner_list)
 
 
-@api_views.route('/departments/<department_id>/learners',
-                 methods=['POST'], strict_slashes=False)
-@swag_from('api/views/documentation/learner/post_learner.yml', methods=['POST'])
+@api_views.route('/departments/<department_id>/learners', methods=['POST'], strict_slashes=False)
+@swag_from('documentation/learner/post_learner.yml', methods=['POST'])
 def create_learner(department_id):
     """
     Adds a new learner to database
@@ -68,8 +66,7 @@ def create_learner(department_id):
     return jsonify(new_learner.to_dict()), 201
 
 
-@api_views.route('/learners/<learner_id>',
-                 methods=['GET'], strict_slashes=False)
+@api_views.route('/learners/<learner_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/learner/get_learner.yml', methods=['GET'])
 def get_learner(learner_id):
     """ Retrieves a learner from database """
@@ -80,9 +77,8 @@ def get_learner(learner_id):
     return jsonify(learner.to_dict())
 
 
-@api_views.route('/learners/<learner_id>', methods=['DELETE'],
-                 strict_slashes=False)
-@swag_from('api/views/documentation/learner/delete_learner.yml', methods=['DELETE'])
+@api_views.route('/learners/<learner_id>', methods=['DELETE'], strict_slashes=False)
+@swag_from('documentation/learner/delete_learner.yml', methods=['DELETE'])
 def delete_learner(learner_id):
     """ Deletes a learner from database """
 
@@ -96,7 +92,7 @@ def delete_learner(learner_id):
 
 
 @api_views.route('/learners/<learner_id>', methods=['PUT'], strict_slashes=False)
-@swag_from('api/views/documentation/learner/put_learner.yml', methods=['PUT'])
+@swag_from('documentation/learner/put_learner.yml', methods=['PUT'])
 def update_learner(learner_id):
     """ Updates a learner in databse """
     learner = storage.get(Learner, learner_id)

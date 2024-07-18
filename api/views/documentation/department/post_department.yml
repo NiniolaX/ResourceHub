@@ -1,8 +1,8 @@
-Endpoint to create a new department in a school.
+Adds a new department to a school
+---
 tags:
   - Departments
-summary: Creates a new department in a school.
-description: This endpoint allows creation of a new department in a school based on the provided school ID.
+description: Endpoint to create a new department in a school.
 parameters:
   - name: school_id
     in: path
@@ -75,9 +75,9 @@ responses:
       type: object
       properties:
         error:
-        type: string
-        description: Error message
-        example: "Not found"
+          type: string
+          description: Error message
+          example: "Not found"
   500:
     description: Internal server error
     schema:

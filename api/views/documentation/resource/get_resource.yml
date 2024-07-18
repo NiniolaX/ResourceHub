@@ -1,8 +1,8 @@
-Endpoint to retrieve a resource.
+Gets a resource by its ID
 ---
 tags:
   - Resources
-summary: Retrieves a specific resource.
+summary: Endpoint to retrieve a specific resource.
 description: This endpoint retrieves a specific resource by its ID.
 parameters:
   - name: resource_id

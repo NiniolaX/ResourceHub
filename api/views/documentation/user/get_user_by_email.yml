@@ -1,8 +1,8 @@
-Endpoint to retrieve a user by email
+Gets a user (school, teacher or learner) by its email
 ---
 tags:
   - Users
-summary: Retrieve a user by email
+summary: Endpoint to retrieve a user by email.
 description: Retrieves the details of a specific user by their email address.
 parameters:
   - name: email

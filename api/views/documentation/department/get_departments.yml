@@ -1,9 +1,8 @@
-Endpoint to retrieve the list of departments in a school.
+Gets all departments in a school
 ---
 tags:
   - Departments
-summary: Retrieves list of departments in a school.
-description: This endpoint retrieves the list of departments in a school from the database based on the provided school ID.
+description: Endpoint to retrieve the list of departments in a school.
 parameters:
   - name: school_id
     in: path

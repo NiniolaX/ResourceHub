@@ -1,8 +1,10 @@
-Endpoint to delete a teacher from a department in a school.
+Deletes a teacher
+---
 tags:
   - Teachers
-summary: Deletes a specific teacher.
-description: This endpoint deletes a specific teacher from a department in a school, based on the provided teacher ID.
+summary: Endpoint to delete a specific teacher.
+description: This endpoint deletes a specific teacher from a department in a
+  school, based on the provided teacher ID.
 parameters:
   - name: teacher_id
     in: path

@@ -1,8 +1,8 @@
-Endpoint to delete resource.
+Deletes a resource
 ---
 tags:
   - Resources
-summary: Deletes a Resource
+summary: Endpoint to delete a resource.
 description: Deletes a resource object from the database.
 parameters:
   - name: resource_id

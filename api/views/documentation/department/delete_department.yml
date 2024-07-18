@@ -1,8 +1,8 @@
-Endpoint to delete a department from a school.
+Deletes a department
+---
 tags:
   - Departments
-summary: Deletes a department from a school in database.
-description: This endpoint allows a specific department to be deleted from a school in the database, provided the department's ID.
+description: Endpoint to delete a department from a school.
 parameters:
   - name: department_id
     in: path

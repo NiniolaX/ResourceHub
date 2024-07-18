@@ -1,9 +1,10 @@
-Endpoint to retreive list of learners in a department.
+Get all learners in a department
 ---
 tags:
   - Learners
-summary: Retrieves a list of learners in a specific department.
-description: This endpoint retrieves the list of learners in a school's department from the database based on the provided department ID.
+summary: Endpoint to retreive list of learners in a school's department.
+description: This endpoint retrieves the list of learners in a school's
+  department from the database based on the provided department ID.
 parameters:
   - name: department_id
     in: path

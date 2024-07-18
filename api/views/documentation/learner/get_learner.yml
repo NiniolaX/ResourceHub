@@ -1,9 +1,10 @@
-Endpoint to retreive a learner.
+Get a learner
 ---
 tags:
   - Learners
-summary: Retrieves a specific learner.
-description: This endpoint retrieves a learner from the database based on the provided learner ID.
+summary: Endpoint to retreive a specific learner from a school's department.
+description: This endpoint retrieves a learner from the database based on the
+  provided learner ID.
 parameters:
   - name: department_id
     in: path

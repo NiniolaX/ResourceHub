@@ -1,9 +1,10 @@
-Endpoint to add a new learner to a specific department of a school.
+Adds a new learner to a department
 ---
 tags:
   - Learners
-summary: Adds a new learner to a specific department.
-description: This endpoint adds a new learner to the database for a specific department in a school, based on the provided department ID.
+summary: Endpoint to add a new learner to a specific department of a school.
+description: This endpoint adds a new learner to the database for a specific
+  department in a school, based on the provided department ID.
 parameters:
   - name: department_id
     in: path
