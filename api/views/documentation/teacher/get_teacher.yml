@@ -1,0 +1,83 @@
+Gets a teacher
+---
+tags:
+  - Teachers
+summary: Endpoint to retrieve a specific teacher.
+description: This endpoint retrieves a specific teacher from the database
+  based on the provided teacher ID.
+parameters:
+  - name: teacher_id
+    in: path
+    description: ID of teacher to retrieve
+    required: true
+    type: string
+    example: "6ac6d4c9-1cd1-4fea-a792-8337713e2bf1"
+responses:
+  200:
+    description: Teacher retrieved successfully
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Teacher's ID
+          example: "6ac6d4c9-1cd1-4fea-a792-8337713e2bf1"
+        created_at:
+          type: string
+          format: date-time
+          description: Date the teacher was created
+          example: "2024-07-01T12:00:14.000000"
+        updated_at:
+          type: string
+          format: date-time
+          description: Date the teacher was last updated
+          example: "2024-07-01T12:00:14.000000"
+        __class__:
+          type: string
+          description: Class name of object
+          example: "Teacher"
+        department_id:
+          type: string
+          description: ID of the department teacher belongs to
+          example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+        school_id:
+          type: string
+          description: ID of the school teacher belongs to
+          example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+        fname:
+          type: string
+          description: First name of teacher
+          example: "Fidelis"
+        lname:
+          type: string
+          description: Last name of teacher
+          example: "Ogunsanwo"
+        email:
+          type: string
+          description: Email address of teacher
+          example: "fideolisogunsanwo@tasued.edu.com.ng"
+        password:
+          type: string
+          description: Hashed password for teacher's account
+        title:
+          type: string
+          description: Title of the teacher
+          example: "Professor"
+  404:
+    description: teacher not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

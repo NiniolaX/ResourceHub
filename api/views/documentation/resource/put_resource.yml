@@ -1,0 +1,153 @@
+Updates a resource
+---
+tags:
+  - Resources
+summary: Endpoint to update a resource.
+description: Updates the details of a resource object in the database.
+parameters:
+  - name: resource_id
+    in: path
+    description: ID of the resource to update
+    required: true
+    type: string
+    example: "cd28a138-2404-4689-b213-a250726102a3"
+requestBody:
+  description: Data for updating the resource
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          title:
+            type: string
+            description: Title of the resource
+            example: "Updated Resource Title"
+          content:
+            type: string
+            description: Content of the resource
+            example: "Updated content of the resource."
+responses:
+  200:
+    description: Resource updated successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Resource's ID
+              example: "cd28a138-2404-4689-b213-a250726102a3"
+            created_at:
+              type: string
+              format: date-time
+              description: Date the resource was created
+              example: "2024-07-01T12:02:58.000000"
+            updated_at:
+              type: string
+              format: date-time
+              description: Date the resource was last updated
+              example: "2024-07-01T12:02:58.000000"
+            __class__:
+              type: string
+              description: Class name of object
+              example: "Resource"
+            department_id:
+              type: string
+              description: ID of the department the resource belongs to
+              example: "78ba3dff-638b-45ab-a56b-a9b70c7ac27e"
+            school_id:
+              type: string
+              description: ID of the school the resource belongs to
+              example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+            teacher_id:
+              type: string
+              description: ID of the teacher who created the resource
+              example: "ab288fb3-1870-4788-afb4-4202283f108c"
+            title:
+              type: string
+              description: Title of the resource
+              example: "Updated Resource Title"
+            content:
+              type: string
+              description: Content of the resource
+              example: "Updated content of the resource."
+            slug:
+              type: string
+              description: Slug for the resource
+              example: "updated-resource-title"
+            teacher:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Teacher's ID
+                  example: "ab288fb3-1870-4788-afb4-4202283f108c"
+                created_at:
+                  type: string
+                  format: date-time
+                  description: Date the teacher was created
+                  example: "2024-07-01T12:00:14.000000"
+                updated_at:
+                  type: string
+                  format: date-time
+                  description: Date the teacher was last updated
+                  example: "2024-07-01T12:00:14.000000"
+                __class__:
+                  type: string
+                  description: Class name of object
+                  example: "Teacher"
+                department_id:
+                  type: string
+                  description: ID of the department the teacher belongs to
+                  example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+                school_id:
+                  type: string
+                  description: ID of the school the teacher belongs to
+                  example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+                fname:
+                  type: string
+                  description: First name of the teacher
+                  example: "Fidelis"
+                lname:
+                  type: string
+                  description: Last name of the teacher
+                  example: "Ogunsanwo"
+                email:
+                  type: string
+                  description: Email address of the teacher
+                  example: "fideolisogunsanwo@tasued.edu.com.ng"
+  400:
+    description: Bad request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Not a JSON"
+  404:
+    description: Resource not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Not found"
+  500:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Internal server error"

@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ ResourceHub Application Codebase """
+from app.generic_user_model import GenericUser
 from flask import abort, flash, Flask, redirect, render_template, request, url_for
 from flask_cors import CORS
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from functools import wraps
-from generic_user_model import GenericUser
 from os import environ
 from werkzeug.security import check_password_hash, generate_password_hash
 import json
@@ -16,14 +16,15 @@ app.secret_key = environ.get('SECRET_KEY', 'default_secret_key')
 # Define conditions for Cross-Origin Resource Sharing
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
+# Initialize login manager
 login_manager = LoginManager()
 login_manager.login_view = "login"
 login_manager.init_app(app)
 
-# Get API host and port
-api_url = "https://resourcehub-api.onrender.com/api"
+# Get API URL 
+api_url = environ.get('API_URL')
 
-# Function loads user to login manager
+# Function to load user into login manager
 @login_manager.user_loader
 def load_user(user_id):
     response = requests.get(f"{api_url}/users/{user_id}/")
@@ -34,7 +35,7 @@ def load_user(user_id):
 
     return None
 
-# Function handles role based access control 
+# Function to handle role based access control 
 def role_required(role):
     def decorator(f):
         @wraps(f)
@@ -64,7 +65,7 @@ def about():
 
 @app.route("/signup", methods=['POST'], strict_slashes=False)
 def signup_post():
-    """ Handles user registration """
+    """ Handles school registration """
     # Extract school information from form data
     school_info = {
                    "name": request.form["name"],
@@ -78,13 +79,13 @@ def signup_post():
 
     # Check if error occured with school creation
     if response.status_code != 201:
-        error_message = response.json().get("error", "An error has occured")
+        error_message = response.json().get("error", "An error has occured") # Extracts error message returned by API
         flash(error_message)
         return redirect(url_for("signup"))
 
     # Redirect client to login
-    flash("School created successfully!", "success")
-    return redirect(url_for("signup"))
+    flash("School created successfully! Login here.", "success")
+    return redirect(url_for("login"))
 
 
 @app.route("/login", strict_slashes=False)
@@ -106,10 +107,14 @@ def login_post():
         flash("User does not exist", "error")
         return redirect(url_for('login'))
 
-    # Check that user password is correct
+    # Check that user's password is correct
     user_data = response.json()
     if check_password_hash(user_data['password'], password):
         user = GenericUser(**user_data)
+        # Check that user selected appropriate user type
+        if user.role != user_type:
+            flash("Incorrect user type.", "error")
+            return redirect(url_for('login'))
         login_user(user)
         return redirect(url_for('render_dashboard'))
     else:
@@ -120,7 +125,7 @@ def login_post():
 @app.route("/dashboard", strict_slashes=False)
 @login_required
 def render_dashboard():
-    """ Returns the appropriate dashboard """
+    """ Renders the appropriate dashboard """
     if current_user.role == "School":
         return render_template("school_dashboard.html")
 
@@ -188,7 +193,7 @@ def add_department():
                              data=json.dumps({"name": name}),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
-        flash("Successfully added department", "success")
+        flash("Department added successfully!", "success")
     else:
         error_message = response.json().get("error", "An error has occured")
         flash(error_message)
@@ -248,7 +253,7 @@ def add_teacher():
                              data=json.dumps(teacher_info),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
-        flash("Successfully added teacher", "success")
+        flash("Teacher added successfully!", "success")
     else:
         error_message = response.json().get("error", "An error has occured")
         flash(error_message)
@@ -307,7 +312,7 @@ def add_learner():
                              data=json.dumps(learner_info),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
-        flash("Successfully added learner", "success")
+        flash("Learner added successfully!", "success")
     else:
         error_message = response.json().get("error", "An error has occured")
         flash(error_message)
@@ -351,7 +356,7 @@ def create_resource():
                              data=json.dumps(resource_info),
                              headers={"Content-Type": "application/json"})
     if response.status_code == 201:
-        flash("New resource created", "success")
+        flash("New resource created!", "success")
     else:
         error_message = response.json().get("error", "An error has occured")
         flash(error_message)

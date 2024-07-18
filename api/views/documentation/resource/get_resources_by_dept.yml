@@ -1,0 +1,120 @@
+Gets all resources in a department
+---
+tags:
+  - Resources
+summary: Endpoint to retrieve the list of resources in a specific department.
+description: This endpoint retrieves all resources associated with a given
+  department ID from the database.
+parameters:
+  - name: department_id
+    in: path
+    description: ID of department whose resources are to be retrieved
+    required: true
+    type: string
+    example: "78ba3dff-638b-45ab-a56b-a9b70c7ac27e"
+responses:
+  200:
+    description: List of resources retrieved successfully
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Resource's ID
+                example: "cd28a138-2404-4689-b213-a250726102a3"
+              created_at:
+                type: string
+                format: date-time
+                description: Date the resource was created
+                example: "2024-07-01T12:02:58.000000"
+              updated_at:
+                type: string
+                format: date-time
+                description: Date the resource was last updated
+                example: "2024-07-01T12:02:58.000000"
+              __class__:
+                type: string
+                description: Class name of object
+                example: "Resource"
+              department_id:
+                type: string
+                description: ID of the department the resource belongs to
+                example: "78ba3dff-638b-45ab-a56b-a9b70c7ac27e"
+              school_id:
+                type: string
+                description: ID of the school the resource belongs to
+                example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+              teacher_id:
+                type: string
+                description: ID of the teacher who created the resource
+                example: "ab288fb3-1870-4788-afb4-4202283f108c"
+              title:
+                type: string
+                description: Title of the resource
+                example: "Test Resource"
+              content:
+                type: string
+                description: Content of the resource
+                example: "This is a test resource."
+              slug:
+                type: string
+                description: Slug for the resource
+                example: "test-resource-a788b5ea-839c-48cb-9f5b-81856c55e76f"
+              teacher:
+                type: object
+                description: Teacher who created the resource
+                properties:
+                  id:
+                    type: string
+                    description: Teacher's ID
+                    example: "ab288fb3-1870-4788-afb4-4202283f108c"
+                  department_id:
+                    type: string
+                    description: ID of the department the teacher belongs to
+                    example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+                  school_id:
+                    type: string
+                    description: ID of the school the teacher belongs to
+                    example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+                  fname:
+                    type: string
+                    description: First name of the teacher
+                    example: "Israel"
+                  lname:
+                    type: string
+                    description: Last name of the teacher
+                    example: "Adejuyigbe"
+                  title:
+                    type: string
+                    description: Title of teacher
+                    example: "Dr."
+                  email:
+                    type: string
+                    description: Email address of the teacher
+                    example: "israel@unilag.com"
+  404:
+    description: Department not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Not found"
+  500:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Internal server error"

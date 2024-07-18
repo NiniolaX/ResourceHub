@@ -1,0 +1,38 @@
+Deletes a teacher
+---
+tags:
+  - Teachers
+summary: Endpoint to delete a specific teacher.
+description: This endpoint deletes a specific teacher from a department in a
+  school, based on the provided teacher ID.
+parameters:
+  - name: teacher_id
+    in: path
+    description: ID of the teacher to delete
+    required: true
+    type: string
+    example: "6ac6d4c9-1cd1-4fea-a792-8337713e2bf1"
+responses:
+  200:
+    description: Teacher successfully deleted
+    schema:
+      type: object
+      description: Empty response object
+  404:
+    description: Teacher not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

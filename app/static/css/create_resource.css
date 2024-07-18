@@ -13,10 +13,17 @@ textarea {
 #content {
     width: 100%;
 }
-#post {
+input#post {
     background-color: #E69138;
     color: #0D1A49;
     width: 100px;
     height: 30px;
-    border-radius: 50px
+    border-radius: 50px;
+    font-weight: bold;
+}
+input#post:hover {
+    cursor: pointer;
+}
+input#post:activer {
+    cursor: grabbing;
 }

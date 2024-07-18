@@ -1,0 +1,84 @@
+Updates a department
+---
+tags:
+  - Departments
+description: Endpoint to update a department of a school.
+parameters:
+  - name: department_id
+    in: path
+    description: ID of department
+    required: true
+    type: string
+    example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+  - name: department_info
+    in: body
+    description: Information/properties of department to be updated.
+    required: true
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: New name of department
+          required: false
+          example: "Department of Physics and Telecommunications Science"
+          nullable: false
+responses:
+  200:
+    description: Department successfully updated
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of department
+          example: "8f5033e-6534-46fb-ab28-154abd27daea"
+        created_at:
+          type: string
+          format: date-time
+          description: Date department was created
+          example: "2024-07-01T11:59:35.000000"
+        updated_at:
+          type: string
+          format: date-time
+          description: Date department was last updated
+          example: "2024-07-04T05:00:23.000000"
+        __class__:
+          type: string
+          description: Class name of object
+          example: "Department"
+        name:
+          type: string
+          description: Name of department
+          example: "Department of Physics and Telecommunications Science"
+        school_id:
+          type: string
+          description: ID of school department belongs to
+          example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+  400:
+    description: Bad request
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not a JSON"
+  404:
+    description: Department not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          descripion: Error message
+          example: "Internal server error"

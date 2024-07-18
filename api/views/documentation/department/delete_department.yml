@@ -1,0 +1,36 @@
+Deletes a department
+---
+tags:
+  - Departments
+description: Endpoint to delete a department from a school.
+parameters:
+  - name: department_id
+    in: path
+    description: ID of department to delete
+    required: true
+    type: string
+    example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+responses:
+  200:
+    description: Department successfully deleted
+    schema:
+      type: object
+      description: Empty response object
+  404:
+    description: Department not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

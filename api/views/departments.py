@@ -9,10 +9,10 @@ from flasgger.utils import swag_from
 
 
 @api_views.route('/schools/<school_id>/departments', methods=['GET'], strict_slashes=False)
-@swag_from('documentation/department/get_department.yml', methods=['GET'])
+@swag_from('documentation/department/get_departments.yml', methods=['GET'])
 def get_departments(school_id):
     """
-    Retrieves the list of departments a school from database
+    Retrieves list of departments in a school from database.
     """
     school = storage.get(School, school_id)
     if not school:
@@ -28,7 +28,7 @@ def get_departments(school_id):
 @swag_from('documentation/department/post_department.yml', methods=['POST'])
 def create_department(school_id):
     """
-    Adds a new department to database
+    Adds a new department to a school in database.
     """
     school = storage.get(School, school_id)
     if not school:
@@ -63,9 +63,10 @@ def create_department(school_id):
 
 
 @api_views.route('/departments/<department_id>', methods=['GET'], strict_slashes=False)
-@swag_from('documentation/department/get_id_department.yml', methods=['get'])
+@swag_from('documentation/department/get_department.yml', methods=['GET'])
 def get_department(department_id):
-    """ Retrieves a specific Department """
+    """ Retrieves a specific department of a school from database.
+    """
     department = storage.get(Department, department_id)
     if not department:
         abort(404)
@@ -73,12 +74,11 @@ def get_department(department_id):
     return jsonify(department.to_dict())
 
 
-@api_views.route('/departments/<department_id>', methods=['DELETE'],
-                 strict_slashes=False)
+@api_views.route('/departments/<department_id>', methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/department/delete_department.yml', methods=['DELETE'])
 def delete_department(department_id):
     """
-    Deletes a Department Object
+    Deletes a department from school in database.
     """
 
     department = storage.get(Department, department_id)
@@ -94,7 +94,7 @@ def delete_department(department_id):
 @swag_from('documentation/department/put_department.yml', methods=['PUT'])
 def update_department(department_id):
     """
-    Updates a Department
+    Updates a department of a school in database.
     """
     department = storage.get(Department, department_id)
     if not department:

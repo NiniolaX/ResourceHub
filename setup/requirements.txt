@@ -1,3 +1,4 @@
+aniso8601==9.0.1
 attrs==23.2.0
 blinker==1.8.2
 certifi==2024.7.4
@@ -7,6 +8,7 @@ flasgger==0.9.7.1
 Flask==3.0.3
 Flask-Cors==4.0.1
 Flask-Login==0.6.3
+Flask-RESTful==0.3.10
 greenlet==3.0.3
 gunicorn==22.0.0
 idna==3.7
@@ -16,8 +18,10 @@ jsonschema==4.22.0
 jsonschema-specifications==2023.12.1
 MarkupSafe==2.1.5
 mistune==3.0.2
+mysqlclient==2.2.4
 packaging==24.1
 psycopg2-binary==2.9.9
+pytz==2024.1
 PyYAML==6.0.1
 referencing==0.35.1
 requests==2.32.3

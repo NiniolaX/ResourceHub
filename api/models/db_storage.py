@@ -31,18 +31,21 @@ class DBStorage:
 
     def __init__(self, DATABASE_URI):
         """Instantiates a DBStorage object"""
-        self.__engine = create_engine(DATABASE_URI)  # DATABASE_URI defined and passed in models/__init__.py
+        self.__engine = create_engine(DATABASE_URI)  # DATABASE_URI defined in api/models/__init__.py
         env = environ.get('HUB_ENV')
         if env == "test":
-            # Drop all tables
+            # Drop all tables when testing
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """Queries current database session
+        """
+        Returns a dict of all objects in the database or for a specified class.
+
         Args:
             cls(str): Name of class whose table is to be queried (optional)
+
         Return:
-            __objects(dict): Format: {<class-name.obj1-id> = obj,...}
+            __objects(dict): Format- {<class-name.obj1-id> = obj,...}
         """
         objects = {}
         for clss in classes:
@@ -54,7 +57,10 @@ class DBStorage:
         return (objects)
 
     def new(self, obj):
-        """Adds an object to the current database session
+        """
+        Adds an object to the current database session and saves session
+        changes.
+
         Args:
             obj(object): Object to be added
         """
@@ -66,9 +72,11 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
-        """Deletes obj from the current database session if not None
+        """Deletes an object from the current database session
+
         Args:
             obj(object): Object to be deleted
+
         Return:
             None
         """
@@ -77,7 +85,9 @@ class DBStorage:
             self.save()
 
     def reload(self):
-        """Reloads data from the database"""
+        """
+        Creates all tables in the database and creates a session
+        """
         Base.metadata.create_all(self.__engine)
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
@@ -92,13 +102,14 @@ class DBStorage:
 
     def get(self, cls, obj_id):
         """
-        Returns the object based on the class name and its ID, or
-        None if not found
+        Returns an object based on its class name and ID
+
         Args:
             cls(class): Class of object to be retrieved
-            obj_id(str): Id of object to be retrieved
+            obj_id(str): ID of object to be retrieved
+
         Return:
-            obj(object): Object
+            obj(object): Object, if found otherwise, None
         """
         # Return None if no class or object was passed
         if not cls or not obj_id:
@@ -113,11 +124,13 @@ class DBStorage:
         for obj in cls_objs:
             if (obj.id == obj_id):
                 return obj
+
         # Return None if object was not found
         return None
 
     def count(self, cls=None):
         """Returns the number of objects in storage
+
         Args:
             cls(class): Class of objects to count
         """
@@ -141,10 +154,12 @@ class DBStorage:
 
     def get_user_by_email(self, email, user_type=None):
         """Returns a user object by email
+
         Args:
             email(str): Email of user to fetch
             user_type(str): Type of user
         """
+        # Checks all users if user_type is not passed else check specified user table
         if not user_type:
             all_users = {**self.all(School), **self.all(Teacher), **self.all(Learner)}
             for user in all_users.values():

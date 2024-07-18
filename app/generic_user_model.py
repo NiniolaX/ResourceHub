@@ -9,7 +9,7 @@ from flask_login import UserMixin
 class GenericUser(UserMixin):
     """ Recreates a user as a subclass of UserMixin
     Params:
-        dict: dictionary representation of user
+        kwargs (dict): dictionary representation of user data
     """
     def __init__(self, **kwargs):
         """ Initializes instance """
@@ -18,4 +18,4 @@ class GenericUser(UserMixin):
     @property
     def role(self):
         """ Returns user role """
-        return self.__dict__.get('__class__')
+        return self.__dict__.get('__class__') # __class__ parameter was defined in BaseModel

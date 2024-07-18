@@ -10,9 +10,8 @@ from flasgger.utils import swag_from
 import uuid
 
 
-@api_views.route('/departments/<department_id>/resources',
-                 methods=['GET'], strict_slashes=False)
-@swag_from('documentation/resource/get_resource.yml', methods=['GET'])
+@api_views.route('/departments/<department_id>/resources', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/resource/get_resources_by_dept.yml', methods=['GET'])
 def get_resources_by_department(department_id):
     """
     Retrieves the list of resources in a department from database
@@ -28,13 +27,15 @@ def get_resources_by_department(department_id):
         teacher = resource.teacher
         if teacher:
             resource_dict['teacher'] = teacher.to_dict()
+            # Delete password of teacher from resource dict to be returned
+            del resource_dict['teacher']['password']
         resource_list.append(resource_dict)
 
     return jsonify(resource_list)
 
 
-@api_views.route('/teachers/<teacher_id>/resources',
-           methods=['GET'], strict_slashes=False)
+@api_views.route('/teachers/<teacher_id>/resources', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/resource/get_resources_by_teacher.yml', methods=['GET'])
 def get_resources_by_teacher(teacher_id):
     """
     Retrieves all resources by a specific teacher
@@ -48,8 +49,7 @@ def get_resources_by_teacher(teacher_id):
     return jsonify(resource_list)
 
 
-@api_views.route('/teachers/<teacher_id>/resources',
-                 methods=['POST'], strict_slashes=False)
+@api_views.route('/teachers/<teacher_id>/resources', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/resource/post_resource.yml', methods=['POST'])
 def create_resource(teacher_id):
     """
@@ -95,9 +95,8 @@ def generate_unique_slug(title):
     return unique_slug
 
 
-@api_views.route('/resources/<resource_id>',
-                 methods=['GET'], strict_slashes=False)
-@swag_from('documentation/resource/get_id_resource.yml', methods=['get'])
+@api_views.route('/resources/<resource_id>', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/resource/get_resource.yml', methods=['GET'])
 def get_resource(resource_id):
     """ Retrieves a specific Resource """
     resource = storage.get(Resource, resource_id)
@@ -109,13 +108,13 @@ def get_resource(resource_id):
     teacher = resource.teacher
     if teacher:
         resource_dict['teacher'] = teacher.to_dict()
+        del resource_dict['teacher']['password']
 
     return jsonify(resource_dict)
 
 
-@api_views.route('/resourcesbyslug/<slug>',
-                 methods=['GET'], strict_slashes=False)
-@swag_from('documentation/resource/get_slug_resource.yml', methods=['get'])
+@api_views.route('/resourcesbyslug/<slug>', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/resource/get_resource_by_slug.yml', methods=['GET'])
 def get_resource_by_slug(slug):
     """ Retrieves a specific Resource """
     for resource in storage.all(Resource).values():
@@ -125,13 +124,13 @@ def get_resource_by_slug(slug):
             teacher = resource.teacher
             if teacher:
                 resource_dict['teacher'] = teacher.to_dict()
+                del resource_dict['teacher']['password']
             return jsonify(resource_dict)
 
     abort(404)
 
 
-@api_views.route('/resources/<resource_id>', methods=['DELETE'],
-                 strict_slashes=False)
+@api_views.route('/resources/<resource_id>', methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/resource/delete_resource.yml', methods=['DELETE'])
 def delete_resource(resource_id):
     """

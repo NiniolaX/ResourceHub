@@ -1,0 +1,122 @@
+Creates a new resource
+---
+tags:
+  - Resources
+summary: Endpoint to add a new resource to the database.
+description: This endpoint allows for the creation of a new resource associated
+  with a specific teacher.
+parameters:
+  - name: teacher_id
+    in: path
+    description: ID of the teacher creating the resource
+    required: true
+    type: string
+    example: "ab288fb3-1870-4788-afb4-4202283f108c"
+requestBody:
+  description: Resource object that needs to be added to the database
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - title
+          - content
+        properties:
+          title:
+            type: string
+            description: Title of the resource
+            example: "Test Resource"
+            nullable: false
+          content:
+            type: string
+            description: Content of the resource
+            example: "This is a test resource."
+            nullable: false
+responses:
+  201:
+    description: Resource successfully created
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Resource's ID
+              example: "cd28a138-2404-4689-b213-a250726102a3"
+            created_at:
+              type: string
+              format: date-time
+              description: Date the resource was created
+              example: "2024-07-01T12:02:58.000000"
+            updated_at:
+              type: string
+              format: date-time
+              description: Date the resource was last updated
+              example: "2024-07-01T12:02:58.000000"
+            __class__:
+              type: string
+              description: Class name of object
+              example: "Resource"
+            department_id:
+              type: string
+              description: ID of the department the resource belongs to
+              example: "78ba3dff-638b-45ab-a56b-a9b70c7ac27e"
+            school_id:
+              type: string
+              description: ID of the school the resource belongs to
+              example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+            teacher_id:
+              type: string
+              description: ID of the teacher who created the resource
+              example: "ab288fb3-1870-4788-afb4-4202283f108c"
+            title:
+              type: string
+              description: Title of the resource
+              example: "Test Resource"
+            content:
+              type: string
+              description: Content of the resource
+              example: "This is a test resource."
+            slug:
+              type: string
+              description: Slug for the resource or path to resource
+              example: "test-resource-a788b5ea-839c-48cb-9f5b-81856c55e76f"
+  400:
+    description: Bad request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              examples:
+                not_json:
+                  value: "Not a JSON"
+                missing_param:
+                  value: "Missing title"
+  404:
+    description: Teacher not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Not found"
+  500:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Internal server error"

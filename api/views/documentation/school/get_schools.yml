@@ -1,0 +1,51 @@
+Gets all schools
+---
+tags:
+  - Schools
+description: Endpoint to retrieve list of all schools.
+responses:
+  200:
+    description: Schools successfully retrieved
+    schema:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            description: School's ID
+            example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+          created_at:
+            type: string
+            format: date-time
+            description: Date school was created
+            example: "2024-07-01T11:58:55.000000"
+          updated_at:
+            type: string
+            format: date-time
+            description: Date school was last updated
+            example: "2024-07-01T11:40:05.000000"
+          __class__:
+            type: string
+            description: Class name of object
+            example: "School"
+          name:
+            type: string
+            description: Name of school
+            example: "Tai Solarin University of Education"
+          email:
+            type: string
+            description: Email of school
+            example: "admin@tasued.edu.ng"
+          password:
+            type: string
+            description: Hashed password for school's account
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

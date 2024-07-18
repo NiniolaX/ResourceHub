@@ -1,0 +1,79 @@
+Get a learner
+---
+tags:
+  - Learners
+summary: Endpoint to retreive a specific learner from a school's department.
+description: This endpoint retrieves a learner from the database based on the
+  provided learner ID.
+parameters:
+  - name: department_id
+    in: path
+    description: ID of the department where the learner will be added
+    required: true
+    type: string
+    example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+responses:
+  200:
+    description: Learner successfully retrieved
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Learner's ID
+          example: "14618585-b768-4c9f-a85d-346c733e1e7c"
+        created_at:
+          type: string
+          format: date-time
+          description: Date learner was created
+          example: "2024-07-01T12:01:30.000000"
+        updated_at:
+          type: string
+          format: date-time
+          description: Date learner was last updated
+          example: "2024-07-01T12:01:30.000000"
+        __class__:
+          type: string
+          description: Class name of object
+          example: "Learner"
+        department_id:
+          type: string
+          description: ID of department the learner belongs to
+          example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+        school_id:
+          type: string
+          description: ID of school the learner belongs to
+          example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+        fname:
+          type: string
+          description: First name of learner
+          example: "Love"
+        lname:
+          type: string
+          description: Last name of learner
+          example: "Afinni"
+        email:
+          type: string
+          description: Email address of learner
+          example: "loveafinni@tasued.edu.com.ng"
+        password:
+          type: string
+          description: Hashed password for the learner's account
+  404:
+    description: Learner not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

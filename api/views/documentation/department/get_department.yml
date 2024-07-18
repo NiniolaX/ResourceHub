@@ -1,0 +1,62 @@
+Gets a department
+---
+tags:
+  - Departments
+description: Endpoint to retrieve a department.
+parameters:
+  - name: department_id
+    in: path
+    description: ID of department to retrieve
+    required: true
+    type: string
+    example: "8f5033e-6534-46fb-ab28-154abd27daea"
+responses:
+  200:
+    description: Department successfully retreived
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of department
+          example: "8f5033e-6534-46fb-ab28-154abd27daea"
+        created_at:
+          type: string
+          format: date-time
+          description: Date department was created
+          example: "2024-07-01T11:59:35.000000"
+        updated_at:
+          type: string
+          format: date-time
+          description: Date department was last updated
+          example: "2024-07-03T05:45:15.000000"
+        __class__:
+          type: string
+          description: Class name of object
+          example: "Department"
+        name:
+          type: string
+          description: Name of department
+          example: "Department of Physics"
+        school_id:
+          type: string
+          description: ID of school department belongs to
+          example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+  404:
+    description: Department not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

@@ -1,0 +1,98 @@
+Updates a school
+---
+tags:
+  - Schools
+description: Endpoint to update a school.
+parameters:
+  - name: school_id
+    in: path
+    description: ID of school to update
+    required: true
+    type: string
+    example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+  - name: department_info
+    in: body
+    description: Information/properties of school to be updated.
+    required: true
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: New name of school
+          required: false
+          example: "University of Lagos"
+          nullable: false
+        email:
+          type: string
+          description: New email of school
+          required: false
+          example: "contact@unilag.edu.com.ng"
+          nullable: false
+        password:
+          type: string
+          description: New hashed password for school's account
+          required: false
+          nullable: false
+responses:
+  200:
+    description: School successfully updated
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: School's ID
+          example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+        created_at:
+          type: string
+          format: date-time
+          description: Date school was created
+          example: "2024-07-01T11:58:55.000000"
+        updated_at:
+          type: string
+          format: date-time
+          description: Date school was last updated
+          example: "2024-07-01T11:40:05.000000"
+        __class__:
+          type: string
+          description: Class name of object
+          example: "School"
+        name:
+          type: string
+          description: Name of school
+          example: "International School of Kenya"
+        email:
+          type: string
+          description: Email address of school
+          example: "info@isk.ac.ke"
+        password:
+          type: string
+          description: Hashed password for school's account
+  400:
+    description: Bad request
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not a JSON"
+  404:
+    description: School not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

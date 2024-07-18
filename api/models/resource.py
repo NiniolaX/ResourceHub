@@ -20,7 +20,8 @@ class Resource(BaseModel, Base):
     school_id = Column(String(60), ForeignKey('schools.id'),
                        nullable=False)
 
-    teacher = relationship("Teacher", back_populates="resources")
+    teacher = relationship("Teacher",
+                           back_populates="resources")
 
     def __init__(self, *args, **kwargs):
         """Initializes resource"""
