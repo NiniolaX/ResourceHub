@@ -1,0 +1,37 @@
+Endpoint to delete a learner.
+---
+tags:
+  - Learners
+summary: Deletes a specific learner.
+description: This endpoint deletes a learner from the database based on the provided learner ID.
+parameters:
+  - name: learner_id
+    in: path
+    description: ID of the learner to delete
+    required: true
+    type: string
+    example: "14618585-b768-4c9f-a85d-346c733e1e7c"
+responses:
+  200:
+    description: Learner deleted successfully
+    schema:
+      type: object
+      description: Empty response object
+  404:
+    description: Learner not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

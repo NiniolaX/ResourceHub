@@ -1,0 +1,46 @@
+Endpoint to retrieve the list of all schools.
+---
+tags:
+    - Schools
+summary: Retrieves list of all schools.
+description: This endpoint retrieves a list of all schools in the database.
+responses:
+    200:
+        description: School list successfully retrieved
+        schema:
+            type: array
+            items:
+                type: object
+                properties:
+                    id:
+                      type: string
+                      description: School's ID
+                      example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: Date school was created
+                      example: "2024-07-01T11:58:55.000000"
+                    updated_at:
+                      type: string
+                      format: date-time
+                      description: Date school was last updated
+                      example: "2024-07-01T11:40:05.000000"
+                    __class__:
+                      type: string
+                      description: Class name of object
+                      example: "School"
+                    name:
+                      type: string
+                      description: Name of school
+                      example: "Tai Solarin University of Education"
+                    email:
+                      type: string
+                      description: Email of school
+                      example: "admin@tasued.edu.ng"
+                    password:
+                      type: string
+                      description: Hashed password for school's account
+                      example: "scrypt:32768:8:1$qwoXMhePqRn9p0hM$bcfd0ea42049ed926915113c3780c2df132fd4c65e1e7245afb6390c19110dce7a278fdf58beaccb7c04f00c9de59e8ff4097ff37c9f9a74c79331bf45c0cbd1"
+    500:
+        description: Internal server error

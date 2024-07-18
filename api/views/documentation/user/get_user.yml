@@ -1,0 +1,77 @@
+Endpoint to retreive a user by ID.
+---
+tags:
+  - Users
+summary: Retrieve a user by ID
+description: Retrieves the details of a specific user by their unique ID.
+parameters:
+  - name: user_id
+    in: path
+    description: ID of the user to retrieve
+    required: true
+    schema:
+      type: string
+    example: "14618585-b768-4c9f-a85d-346c733e1e7c"
+responses:
+  200:
+    description: User successfully retrieved
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              description: User's ID
+              example: "14618585-b768-4c9f-a85d-346c733e1e7c"
+            created_at:
+              type: string
+              format: date-time
+              description: Date the user was created
+              example: "2024-07-01T12:01:30.000000"
+            updated_at:
+              type: string
+              format: date-time
+              description: Date the user was last updated
+              example: "2024-07-01T12:01:30.000000"
+            __class__:
+              type: string
+              description: Class name of user
+              example: "Learner"
+            email:
+              type: string
+              description: User's email address
+              example: "love@tasued.edu.com.ng"
+            fname:
+              type: string
+              description: User's first name
+              example: "Emmanuel"
+            lname:
+              type: string
+              description: User's last name
+              example: "Afinni"
+            password:
+              type: string
+              description: Hashed password of the user
+  404:
+    description: User not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Not found"
+  500:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Internal server error"

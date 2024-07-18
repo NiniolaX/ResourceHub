@@ -1,0 +1,89 @@
+Endpoint to create a new department in a school.
+tags:
+  - Departments
+summary: Creates a new department in a school.
+description: This endpoint allows creation of a new department in a school based on the provided school ID.
+parameters:
+  - name: school_id
+    in: path
+    description: ID of school to add new department to
+    required: true
+    type: string
+    example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+  - name: department
+    in: body
+    description: JSON object containing department details
+    required: true
+    schema:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Name of department
+          example: "Department of Physics"
+          nullable: false
+responses:
+  201:
+    description: Department successfully created
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of department
+          example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+        created_at:
+          type: string
+          format: date-time
+          description: Date department was created
+          example: "2024-07-01T11:59:13.000000"
+        updated_at:
+          type: string
+          format: date-time
+          description: Date department was last updated
+          example: "2024-07-02T07:45:15.000000"
+        __class__:
+          type: string
+          description: Class name of object
+          example: "Department"
+        name:
+          type: string
+          description: Name of department
+          example: "Department of Physics"
+        school_id:
+          type: string
+          description: ID of school department belongs to or was added to
+          example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+  400:
+    description: Bad request
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          examples:
+            not_json:
+              value: "Not a JSON"
+            missing_param:
+              value: "Missing name"
+  404:
+    description: School not found
+    schema:
+      type: object
+      properties:
+        error:
+        type: string
+        description: Error message
+        example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

@@ -1,23 +1,48 @@
-Endpoint to retrieve a school.
+Endpoint to update a school.
 tags:
   - Schools
-summary: Retrieve a specific school.
-description: This endpoint retrieves a specific school from the database based on the provided school ID.
+summary: Updates a specific school.
+description: This endpoint updates a specific school in the database based on the provided school ID.
 parameters:
   - name: school_id
     in: path
-    description: ID of school to retrieve
+    description: ID of school to update
     required: true
     type: string
     example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+  - name: department_info
+    in: body
+    description: Information/properties of school to be updated.
+    required: true
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: New name of school
+          required: false
+          example: "University of Lagos"
+          nullable: false
+        email:
+          type: string
+          description: New email of school
+          required: false
+          example: "contact@unilag.edu.com.ng"
+          nullable: false
+        password:
+          type: string
+          description: New hashed password for school's account
+          required: false
+          nullable: false
+        
 responses:
   200:
-    description: School successfully retreived
+    description: School successfully updated
     schema:
       type: object
       properties:
         id:
-          type: integer
+          type: string
           description: School's ID
           example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
         created_at:
@@ -37,14 +62,24 @@ responses:
         name:
           type: string
           description: Name of school
-          example: "Tai Solarin University of Education"
+          example: "International School of Kenya"
         email:
           type: string
           description: Email address of school
-          example: "admin@tasued.edu.ng"
+          example: "info@isk.ac.ke"
         password:
           type: string
           description: Hashed password for school's account
+          example: "scrypt:32768:8:1$qwoXMhePqRn9p0hM$bcfd0ea42049ed926915113c3780c2df132fd4c65e1e7245afb6390c19110dce7a278fdf58beaccb7c04f00c9de59e8ff4097ff37c9f9a74c79331bf45c0cbd1"
+  400:
+    description: Bad request
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not a JSON"
   404:
     description: School not found
     schema:

@@ -1,0 +1,65 @@
+Endpoint to retrieve the list of departments in a school.
+---
+tags:
+  - Departments
+summary: Retrieves list of departments in a school.
+description: This endpoint retrieves the list of departments in a school from the database based on the provided school ID.
+parameters:
+  - name: school_id
+    in: path
+    description: ID of school whose departments are to be retrieved
+    required: true
+    type: string
+    example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+responses:
+  200:
+    description: Department list successfully retrieved
+    schema:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Department's ID
+            example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+          created_at:
+            type: string
+            format: date-time
+            description: Date department was created
+            example: "2024-07-01T11:59:35.000000"
+          updated_at:
+            type: string
+            format: date-time
+            description: Date department was last updated
+            example: "2024-07-03T05:45:15.000000"
+          __class__:
+            type: string
+            description: Class name of object
+            example: "Department"
+          name:
+            type: string
+            description: Name of department
+            example: "Department of Physics"
+          school_id:
+            type: string
+            description: ID of school department belongs to
+            example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+  404:
+    description: School not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

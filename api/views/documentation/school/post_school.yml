@@ -1,23 +1,42 @@
-Endpoint to retrieve a school.
+Endpoint to create a new school.
 tags:
   - Schools
-summary: Retrieve a specific school.
-description: This endpoint retrieves a specific school from the database based on the provided school ID.
+summary: Creates a new school.
+description: This endpoint allows the creation of a new school in the database.
 parameters:
-  - name: school_id
-    in: path
-    description: ID of school to retrieve
+  - name: school
+    in: body
+    description: JSON object containing school details
     required: true
-    type: string
-    example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+    schema:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          description: Name of school
+          example: "University of Lagos"
+          nullable: false
+        email:
+          type: string
+          description: Email address of school
+          example: "contact@unilag.edu.ng"
+          nullable: false
+        password:
+          type: string
+          description: Hashed password for school's account
+          nullable: false
 responses:
-  200:
-    description: School successfully retreived
+  201:
+    description: School successfully created
     schema:
       type: object
       properties:
         id:
-          type: integer
+          type: string
           description: School's ID
           example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
         created_at:
@@ -44,16 +63,22 @@ responses:
           example: "admin@tasued.edu.ng"
         password:
           type: string
-          description: Hashed password for school's account
-  404:
-    description: School not found
+          description: Hashed password of school's account
+  400:
+    description: Bad request
     schema:
       type: object
       properties:
         error:
           type: string
           description: Error message
-          example: "Not found"
+          examples:
+            not_json:
+              value: "Not a JSON"
+            missing_param:
+              value: "Missing name"
+            email_exists:
+              value: "Email already exists"
   500:
     description: Internal server error
     schema:

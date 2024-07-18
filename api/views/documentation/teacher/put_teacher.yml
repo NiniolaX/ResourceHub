@@ -1,0 +1,117 @@
+Endpoint to update a teacher.
+---
+tags:
+  - Teachers
+summary: Updates a specific teacher.
+description: This endpoint updates a specific teacher in the database based on the provided teacher ID.
+parameters:
+  - name: teacher_id
+    in: path
+    description: ID of the teacher to update
+    required: true
+    type: string
+    example: "6ac6d4c9-1cd1-4fea-a792-8337713e2bf1"
+  - name: teacher_info
+    in: body
+    description: Information/properties of teacher to update
+    required: true
+    schema:
+      type: object
+      properties:
+        fname:
+          type: string
+          description: First name of the teacher
+          example: "Fidelis"
+        lname:
+          type: string
+          description: Last name of the teacher
+          example: "Ogunsanwo"
+        email:
+          type: string
+          description: Email address of the teacher
+          example: "profogunsanwo@tasued.edu.com.ng"
+        password:
+          type: string
+          description: Hashed password for the teacher's account
+        title:
+          type: string
+          description: Title of the teacher
+          example: "Professor"
+responses:
+  200:
+    description: Teacher successfully updated
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Teacher's ID
+          example: "6ac6d4c9-1cd1-4fea-a792-8337713e2bf1"
+        created_at:
+          type: string
+          format: date-time
+          description: Date teacher was created
+          example: "2024-07-01T12:00:14.000000"
+        updated_at:
+          type: string
+          format: date-time
+          description: Date teacher was last updated
+          example: "2024-07-01T12:00:14.000000"
+        __class__:
+          type: string
+          description: Class name of object
+          example: "Teacher"
+        department_id:
+          type: string
+          description: ID of department the teacher belongs to
+          example: "e8f5033e-6534-46fb-ab28-154abd27daea"
+        school_id:
+          type: string
+          description: ID of school the teacher belongs to
+          example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+        fname:
+          type: string
+          description: First name of teacher
+          example: "Fidelis"
+        lname:
+          type: string
+          description: Last name of teacher
+          example: "Ogunsanwo"
+        email:
+          type: string
+          description: Email address of the teacher
+          example: "profogunsanwo@tasued.edu.com.ng"
+        password:
+          type: string
+          description: Hashed password for the teacher's account
+        title:
+          type: string
+          description: Title of the teacher
+          example: "Professor"
+  400:
+    description: Bad request
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not a JSON"
+  404:
+    description: Teacher not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

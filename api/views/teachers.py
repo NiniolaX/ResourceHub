@@ -11,7 +11,7 @@ from flasgger.utils import swag_from
 
 @api_views.route('/departments/<department_id>/teachers',
                  methods=['GET'], strict_slashes=False)
-@swag_from('documentation/teacher/get_teacher.yml', methods=['GET'])
+@swag_from('api/views/documentation/teacher/get_teachers.yml', methods=['GET'])
 def get_teachers(department_id):
     """
     Retrieves the list of teachers in a department
@@ -27,7 +27,7 @@ def get_teachers(department_id):
 
 @api_views.route('/departments/<department_id>/teachers',
                  methods=['POST'], strict_slashes=False)
-@swag_from('documentation/teacher/post_teacher.yml', methods=['POST'])
+@swag_from('api/views/documentation/teacher/post_teacher.yml', methods=['POST'])
 def create_teacher(department_id):
     """
     Adds a new teacher to a department to database
@@ -71,7 +71,7 @@ def create_teacher(department_id):
 
 @api_views.route('/teachers/<teacher_id>',
                  methods=['GET'], strict_slashes=False)
-@swag_from('documentation/teacher/get_id_teacher.yml', methods=['get'])
+@swag_from('api/views/documentation/teacher/get_teacher.yml', methods=['get'])
 def get_teacher(teacher_id):
     """ Retrieves a specific teacher from database """
     teacher = storage.get(Teacher, teacher_id)
@@ -83,12 +83,11 @@ def get_teacher(teacher_id):
 
 @api_views.route('/teachers/<teacher_id>', methods=['DELETE'],
                  strict_slashes=False)
-@swag_from('documentation/teacher/delete_teacher.yml', methods=['DELETE'])
+@swag_from('api/views/documentation/teacher/delete_teacher.yml', methods=['DELETE'])
 def delete_teacher(teacher_id):
     """
     Deletes a teacher from database
     """
-
     teacher = storage.get(Teacher, teacher_id)
     if not teacher:
         abort(404)

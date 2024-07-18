@@ -1,0 +1,36 @@
+Endpoint to delete a school.
+tags:
+  - Schools
+summary: Deletes a specific school.
+description: This endpoint allows a specific school to be deleted from the database based on the provided school ID.
+parameters:
+  - name: school_id
+    in: path
+    description: ID of school to delete
+    required: true
+    type: string
+    example: "7b7fba28-e8a5-4647-823f-1b7dbf56b657"
+responses:
+  200:
+    description: School successfully deleted
+    schema:
+      type: object
+      description: Empty response object
+  404:
+    description: School not found
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Not found"
+  500:
+    description: Internal server error
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Internal server error"

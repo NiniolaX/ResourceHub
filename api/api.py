@@ -21,40 +21,13 @@ from os import environ
 
 api = Flask(__name__)
 api.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
-api.config["SWAGGER"] = {
-    "title": "ResourceHub RESTful API",
-    "openapi": "3.0.0",
-    "specs_route": "/swagger/",
-    "servers": [
-        {
-            "url": "http://localhost:5001/api",
-            "description": "Local Development Server"
-        }
-    ],
-    "swagger_ui": True,
-    "specs": [
-        {
-            "endpoint": 'swagger',
-            "route": '/swagger/',
-            "rule_filter": lambda rule: True,
-            "model_filter": lambda tag: True,
-            "specs_dir": 'api/views/documentation',  # Correct path to your YAML files
-        }
-    ]
-}
+swagger = Swagger(api)
 
 # Register Blueprint
 api.register_blueprint(api_views)
 
 # Define conditions for Cross-Origin Resource Sharing
 cors = CORS(api, resources={r"/api/*": {"origins": "*"}})
-
-Swagger(api)
-
-# Redirect to Swagger UI
-# @api.route('/swagger', strict_slashes=False)
-# def swagger_ui():
-#    return redirect('/apidocs/')
 
 
 @api.teardown_appcontext
@@ -72,6 +45,17 @@ def not_found(error):
         description: a resource was not found
     """
     return make_response(jsonify({"error": "Not found"}), 404)
+
+
+@api.errorhandler(500)
+def server_error(error):
+    """ Raise 500 error
+    ---
+    responses:
+      500:
+        description: an internal server error occured
+    """
+    return make_response(jsonify({"error": "Internal server error"}), 500)
 
 
 if __name__ == "__main__":

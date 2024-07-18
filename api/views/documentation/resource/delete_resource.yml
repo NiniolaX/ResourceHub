@@ -1,0 +1,44 @@
+Endpoint to delete resource.
+---
+tags:
+  - Resources
+summary: Deletes a Resource
+description: Deletes a resource object from the database.
+parameters:
+  - name: resource_id
+    in: path
+    description: ID of the resource to delete
+    required: true
+    type: string
+    example: "cd28a138-2404-4689-b213-a250726102a3"
+responses:
+  200:
+    description: Resource deleted successfully
+    content:
+      application/json:
+        schema:
+          type: object
+          description: An empty JSON object
+          example: {}
+  404:
+    description: Resource not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Not found"
+  500:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message
+              example: "Internal server error"
